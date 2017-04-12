@@ -1,9 +1,6 @@
 <?php
 
 namespace InnovateWebdesign\Modules\QRCodeLogin\Model;
-use InnovateWebdesign\Modules\QRCodeLogin\Model\Encryption as Encryption;
-
-require_once("encryption.php");
 
 final class QRCode {
 	private $width;
@@ -16,7 +13,11 @@ final class QRCode {
 	
 	public function Generate($output = false) {
 		if (!$output):
-			$output = session_id();
+			$output = [
+				"type" => "login",
+				"value" => session_id()
+			];
+			$output = json_encode($output);
 		endif;
 		
 		$qrcode = "https://chart.googleapis.com/chart?chs=" . $this->width . "x" . $this->height . "&cht=qr&chl=" . $output . "&choe=UTF-8";
