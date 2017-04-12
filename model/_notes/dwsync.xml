@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="qr-code.php" server="C:/xampp/htdocs/" local="131341728482120507" remote="131341728480000000" Dst="1" />
 <file name="connection.php" server="C:/xampp/htdocs/" local="131355383940619095" remote="131355383940000000" Dst="2" />
 <file name="encryption.php" server="C:/xampp/htdocs/" local="131344242987604843" remote="131344242980000000" Dst="2" />
 <file name="sha3.php" server="C:/xampp/htdocs/" local="131338189692468441" remote="131338189690000000" Dst="2" />
 <file name="config.php" server="C:/xampp/htdocs/" local="131341482612646580" remote="131341482610000000" Dst="1" />
 <file name="keys.php" server="C:/xampp/htdocs/" local="131340782067624421" remote="131340782060000000" Dst="2" />
+<file name="config.php" server="ftp.team16j.p004.nl//domains/team16j.p004.nl/public_html/" local="131364896845587590" remote="131364919800000000" Dst="2" />
+<file name="connection.php" server="ftp.team16j.p004.nl//domains/team16j.p004.nl/public_html/" local="131364918630303438" remote="131364919800000000" Dst="2" />
+<file name="encryption.php" server="ftp.team16j.p004.nl//domains/team16j.p004.nl/public_html/" local="131364919051516438" remote="131364919800000000" Dst="2" />
+<file name="qrCode.php" server="ftp.team16j.p004.nl//domains/team16j.p004.nl/public_html/" local="131364919164944317" remote="131364919800000000" Dst="2" />
+<file name="sha3.php" server="ftp.team16j.p004.nl//domains/team16j.p004.nl/public_html/" local="131364919348695011" remote="131364919800000000" Dst="2" />
+<file name="keys.php" server="ftp.team16j.p004.nl//domains/team16j.p004.nl/public_html/" local="131340782067624421" remote="131364919800000000" Dst="2" />
 </dwsync>

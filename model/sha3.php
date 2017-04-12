@@ -1,6 +1,6 @@
 <?php
 
-namespace InnovateWebdesign\Modules\QRCodeLogin\Model;
+namespace Team10\Absence\Model;
 
 final class Sha3 {
     const KECCAK_ROUNDS = 24;

@@ -1,9 +1,9 @@
 <?php 
 
-namespace InnovateWebdesign\Modules\QRCodeLogin\Model;
-use InnovateWebdesign\Modules\QRCodeLogin\Model\Sha3 as Sha3;
-use InnovateWebdesign\Modules\QRCodeLogin\Model\Interfaces\Encryption as EncryptionInterface;
-use InnovateWebdesign\Modules\QRCodeLogin\Model\Encryption as Encryption;
+namespace Team10\Absence\Model;
+use Team10\Absence\Model\Sha3 as Sha3;
+use Team10\Absence\Model\Interfaces\Encryption as EncryptionInterface;
+use Team10\Absence\Model\Encryption as Encryption;
 
 require_once("sha3.php");
 require_once("interfaces/encryption.php");

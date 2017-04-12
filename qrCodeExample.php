@@ -1,8 +1,8 @@
 <?php
 	session_start();
 
-	use InnovateWebdesign\Modules\QRCodeLogin\Model\QRCode as QRCode;
-	use InnovateWebdesign\Modules\QRCodeLogin\Model\Connection as Connection;
+	use Team10\Absence\Model\QRCode as QRCode;
+	use Team10\Absence\Model\Connection as Connection;
 
 	require("require.php");
 	

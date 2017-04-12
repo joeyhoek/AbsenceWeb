@@ -1,6 +1,6 @@
 <?php
 
-
-require("controller/navigationHandler.php");
+namespace Team10\Absence;
+require("controller/requestHandler.php");
 
 ?>
