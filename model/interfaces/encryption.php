@@ -1,6 +1,6 @@
 <?php
 
-namespace InnovateWebdesign\Modules\QRCodeLogin\Model\Interfaces;
+namespace Team10\Absence\Model\Interfaces;
 
 interface Encryption {
 	public function encrypt($data);
