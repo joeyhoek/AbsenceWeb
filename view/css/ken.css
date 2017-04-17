@@ -1,0 +1,104 @@
+/*#01577A Donkerblauw*/
+/*#464648 Donkergrijs*/
+
+/* FOR DOUBLE BORDER
+.borders{position:relative; z-index:10; padding:10px; background:#fff; border:2px solid #390; }
+.borders:before{content:""; display:block; position:absolute; z-index:-10; top:0px; left:0px; 
+bottom:0px; border:5px solid #36F}
+*/
+
+
+html {
+	background: url(../images/achtergrondGrijs.png) no-repeat center center fixed; 
+	
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-attachment: fixed;
+	background-position: 100% 100%;
+	-moz-transform: scale(1.3); /* for Firefox, default 1*/
+    zoom:130%; /* For Chrome, IE, default 100%*/
+/*
+	column-count: 2;
+	column-width: 50%;
+*/
+}
+
+body {
+	text-align: center;
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+#footer {
+	color: grey;
+}
+
+#column-left {
+	float: left;
+	width: 600px;
+}
+
+#column-right {
+	float: right;
+	width: 600px;
+}
+
+.button {
+	background-color: #01577A;
+	border: 0px;
+	color: white;
+	padding: 4px 18px 4px 18px;
+	font-size: 13px;
+	font-family: "";
+	margin-bottom: 5px;
+}
+
+a:link {
+	color: #464648;
+	text-decoration: none;
+	font-size: 10px;
+}
+
+.button:active, .button:hover, .button:focus {
+	cursor: pointer;
+	outline: none;
+}
+
+.input {
+	padding: 10px;
+	margin-bottom: 10px;
+	background-color: white;
+	border-radius: 1px 2px 0px 0px;
+	border: solid 1.5px #464648;
+}
+
+input:-webkit-autofill { -webkit-box-shadow:200px 200px 100px white inset; box-shadow:200px 200px 100px white inset; }
+
+.email {
+	background: url(../images/login.png) no-repeat right 5px center;
+	background-size: 20px 20px; 
+}
+
+.password {
+	background: url(../images/slotje.png) no-repeat right 5px center;
+	background-size: 20px 20px; 
+}
+
+#wit {
+	-moz-transform: rotate(20deg);
+	-ms-transform: rotate(20deg);
+	-webkit-transform: rotate(20deg);
+	transform: rotate(-20deg);
+	background-color: green;
+	width: 100%;
+	height: 200px;
+}
+
+#footer {
+	width:100%;
+	height:100px;
+	position:absolute;
+	bottom:0;
+	left:0;
+	
+}
