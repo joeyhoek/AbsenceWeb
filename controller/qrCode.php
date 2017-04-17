@@ -9,8 +9,9 @@ $output = [
 ];
 $output = json_encode($output);
 $QRCode = new QRCode(300, 300);
-$QRCode = $QRCode->Generate($output);
-
-require_once("view/login.php");
+$QRCodeLink = $QRCode->Generate($output);
+$QRCodeDesktopLink = $QRCode->GenerateDesktopClientLink($QRCodeLink, "HDBJHAS", "ADHKJAH", "134342");
+echo "<a href='" . $QRCodeDesktopLink . "'>Klik hier</a> om de Desktop Client te openen";
+//require_once("view/login.php");
 
 ?>

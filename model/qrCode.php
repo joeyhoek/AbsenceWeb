@@ -20,8 +20,13 @@ final class QRCode {
 			$output = json_encode($output);
 		endif;
 		
-		$qrcode = "https://chart.googleapis.com/chart?chs=" . $this->width . "x" . $this->height . "&cht=qr&chl=" . $output . "&choe=UTF-8";
+		$qrcode = "https://api.qrserver.com/v1/create-qr-code/?size=" . $this->width . "x" . $this->height . "&data=" . $output;
 		return $qrcode;
+	}
+	
+	public function GenerateDesktopClientLink($qrCode, $userId, $token, $classId) {
+		$qrCode = str_replace("&", "$", $qrCode);
+		return "absence:\\\\" . $qrCode . "%" . $userId . "%" . $token . "%" . $classId;
 	}
 }
 
