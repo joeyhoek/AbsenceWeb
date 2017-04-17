@@ -3,7 +3,6 @@
 namespace Team10\Absence\Model;
 use Team10\Absence\Model\Sha3 as Sha3;
 use Team10\Absence\Model\Interfaces\Encryption as EncryptionInterface;
-use Team10\Absence\Model\Encryption as Encryption;
 
 require_once("sha3.php");
 require_once("interfaces/encryption.php");
@@ -86,12 +85,5 @@ final class Encryption implements EncryptionInterface {
 		endif;
 	}	
 }
-
-$string = "Straat";
-$encryption = new Encryption;
-
-echo $encryption->encrypt($string);
-echo "<br />";
-echo $encryption->encrypt($string);
 
 ?>

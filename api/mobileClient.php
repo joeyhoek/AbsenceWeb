@@ -1,10 +1,10 @@
 <?php
 
-use InnovateWebdesign\Modules\QRCodeLogin\Model\Connection as Connection;
-use InnovateWebdesign\Modules\QRCodeLogin\Model\Encryption as Encryption;
+use Team10\Absence\Model\Connection as Connection;
+use Team10\Absence\Model\Encryption as Encryption;
 
-require_once("model/connection.php");
-require_once("model/encryption.php");
+require_once("../model/connection.php");
+require_once("../model/encryption.php");
 
 if (isset($_POST["username"]) && isset($_POST["password"])):
 	$connection = new Connection("localhost", "innovate_absence", "TDz8e0lOmL", "innovate_absence");
