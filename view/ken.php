@@ -5,7 +5,7 @@
 
 
 <body>
-	
+	<div class="container">
 	<div id="column-left">
 		
 		<div id="qrcode">
@@ -20,10 +20,15 @@
 
 		<form method="POST">
 
-			<input class="input email" type="text" name="email" required><br>
-			<input class="input password" type="password" name="password" required><br>
+			<input class="input email" type="text" name="email" required>
+			<img class="emailLogo" src="view/images/login.png">
+			<br>
+			<input class="input password" type="password" name="password" required>
+			<img class="passwordLogo" src="view/images/slotje.png">
+			<br>
+			
 			<button class="button" type="submit" name="login">Sign In</button> <br>
-			<a href="../controller/forgot_password.php">Forgot Password?</a>
+			<span class="forgot_password"><a href="../controller/forgot_password.php">Forgot Password?</a></span>
 		</form>	
 
 <!-- DOUBLE BORDERS TEST
@@ -35,13 +40,8 @@
 
 	</div>
 	
-	<div id="column-middle">
-		hoi
-		
-	</div>
-	
-	<div id="wit"></div>
+		<div id="container2"><div id="wit"></div></div>
 	
 	<span id="footer">Copyright 2017 © Windesheim Flevoland</span>
-	
+	</div>
 </body>

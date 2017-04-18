@@ -7,10 +7,8 @@
 bottom:0px; border:5px solid #36F}
 */
 
-
 html {
 	background: url(../images/achtergrondGrijs.png) no-repeat center center fixed; 
-	
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -18,30 +16,67 @@ html {
 	background-position: 100% 100%;
 	-moz-transform: scale(1.3); /* for Firefox, default 1*/
     zoom:130%; /* For Chrome, IE, default 100%*/
-/*
-	column-count: 2;
-	column-width: 50%;
-*/
+	overflow-x: hidden;
+}
+
+#wit {
+	-moz-transform: rotate(-9deg);
+	-ms-transform: rotate(-9deg);
+	-webkit-transform: rotate(-9deg);
+	transform: rotate(-9deg);
+	background-color: white;
+	width: 120%;
+	height: 330px;
+	position: absolute;
+	z-index: -1;
+	top: calc(50% - 165px);
+	left: -100px;
+	
+	
 }
 
 body {
 	text-align: center;
 	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	overflow-x: hidden;
+}
+
+
+.container {
+	max-width: 100%;
+	height: auto;
+	display: flex;
+}
+
+#column-left {
+	flex: 1;
+	order: 1;
+	text-align: center;
+	flex-basis: 45%;
+
+}
+
+#column-right {
+	flex: 1;
+	order: 2;
+	text-align: center;
+	flex-basis: 45%;
+	
+	
+}
+
+@media (min-width: 900px) {
+	.container {
+/*		qqqqqqqq*/
+		
+	}
 }
 
 #footer {
 	color: grey;
+	width: 100%;
 }
 
-#column-left {
-	float: left;
-	width: 600px;
-}
-
-#column-right {
-	float: right;
-	width: 600px;
-}
 
 .button {
 	background-color: #01577A;
@@ -70,28 +105,35 @@ a:link {
 	background-color: white;
 	border-radius: 1px 2px 0px 0px;
 	border: solid 1.5px #464648;
+	background: url(../images/inputbox.png) no-repeat;
 }
 
 input:-webkit-autofill { -webkit-box-shadow:200px 200px 100px white inset; box-shadow:200px 200px 100px white inset; }
 
-.email {
-	background: url(../images/login.png) no-repeat right 5px center;
-	background-size: 20px 20px; 
+.emailLogo {
+	
+	height: 20;
+	width: 20;
+	position: relative;
+	right: 30px;
+	top: 6px;
+	z-index: 99;
+
 }
 
-.password {
-	background: url(../images/slotje.png) no-repeat right 5px center;
-	background-size: 20px 20px; 
+.passwordLogo {
+	
+	height: 20;
+	width: 22;
+	position: relative;
+	right: 30px;
+	top: 6px;
+	z-index: 99;
+
 }
 
-#wit {
-	-moz-transform: rotate(20deg);
-	-ms-transform: rotate(20deg);
-	-webkit-transform: rotate(20deg);
-	transform: rotate(-20deg);
-	background-color: green;
-	width: 100%;
-	height: 200px;
+#logo {
+	
 }
 
 #footer {
