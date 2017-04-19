@@ -31,9 +31,16 @@ final class Connection {
 		$result = mysqli_query($connection, $stmt);
 		$connection = null;
 		if ($result !== false && $result !== true) {
-			return mysqli_fetch_assoc($result);
+			if (mysqli_num_rows($result) !== 1) {
+				while($row = $result->fetch_assoc()):
+					$data[] = $row;
+				endwhile;
+				return $data;
+			} else {
+				return mysqli_fetch_assoc($result);
+			}
 		} else {
-			return false;
+			return $result;
 		}
 	}
 }
