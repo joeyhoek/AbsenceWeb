@@ -18,7 +18,9 @@ if (isset($_POST["userId"]) && isset($_POST["token"]) && isset($_POST["classId"]
 		endforeach;
 		$present = 0;
 		$toLate = 0;
-		
+		$guests = $connection->query("SELECT COUNT(*) as number FROM users, lessons, presence WHERE lessons.id = presence.lessonId AND presence.lessonId = " . $_POST["classId"] . " AND presence.userId = users.id AND users.classId != " . $_POST["classId"])["number"];
+
+		// Check if one presence row in database or multiple
 		if (count($records) == 6):
 			if ($records["present"] == 1):
 				if ($records["toLate"] == 0 || $records["toLate"] == NULL):
@@ -39,7 +41,7 @@ if (isset($_POST["userId"]) && isset($_POST["token"]) && isset($_POST["classId"]
 			endforeach;
 		endif;
 		
-		$absent = $total - ($present + $toLate);
+		$absent = $total - ($present + $toLate) + $guests;
 
 		echo json_encode([
 			"present" => $present,
