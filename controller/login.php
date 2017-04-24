@@ -11,25 +11,26 @@ session_start();
 $connection = new Connection('localhost', 'root', '', 'absence');
 
 // When user tries to login
-if (isset($_POST['login'])) {
+if (isset($_POST['email']) && isset($_POST["password"])) {
 	$email = $_POST['email'];
 	$password = $_POST['password'];
 	
-	$query = "SELECT * FROM gebruikers WHERE email='$email'";
+	$query = "SELECT * FROM users WHERE email='$email'";
 	$result = $connection->query($query);
-		
+		var_dump($result);
 		// Check if passwords match
-		if ($password == $result["wachtwoord"]) {
+		if ($password == $result["password"]) {
 			$_SESSION['email'] = $email;
 			
 			require_once("view/myAccount.php");
 		} else {
-			require_once("view/ken.php");
+			require_once("view/login.php");
 			echo "Wrong username or password!";
 		} 
 
 } else {
-	require_once("view/ken.php");
+	require_once("controller/qrCode.php");
+	require_once("view/login.php");
 }
 
 

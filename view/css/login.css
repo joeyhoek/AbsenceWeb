@@ -8,7 +8,7 @@ bottom:0px; border:5px solid #36F}
 */
 
 html {
-	background: url(../images/achtergrondGrijs.png) no-repeat center center fixed; 
+	background: url("../images/achtergrondGrijs.png") no-repeat center center fixed; 
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -26,11 +26,11 @@ html {
 	transform: rotate(-9deg);
 	background-color: white;
 	width: 120%;
-	height: 50%;
+	height: 330px;
 	position: absolute;
 	z-index: -1;
 	top: calc(50% - 165px);
-	left: -8%;
+	left: -100px;
 	
 	
 }
@@ -51,18 +51,17 @@ body {
 #column-left {
 	flex: 1;
 	order: 1;
-	text-align: right;
+	text-align: center;
 	flex-basis: 45%;
-	margin-right: 4%;
 
 }
 
 #column-right {
 	flex: 1;
 	order: 2;
-	text-align: left;
+	text-align: center;
 	flex-basis: 45%;
-	margin-left: 4%;
+	
 	
 }
 
@@ -73,15 +72,20 @@ body {
 	}
 }
 
+#footer {
+	color: grey;
+	width: 100%;
+}
+
+
 .button {
 	background-color: #01577A;
+	border: 0px;
 	color: white;
 	padding: 4px 18px 4px 18px;
 	font-size: 13px;
+	font-family: "";
 	margin-bottom: 5px;
-	position: relative;
-	left: 7.5%;
-	width: 15%;
 }
 
 a:link {
@@ -93,15 +97,15 @@ a:link {
 .button:active, .button:hover, .button:focus {
 	cursor: pointer;
 	outline: none;
-	
 }
 
 .input {
 	padding: 10px;
 	margin-bottom: 10px;
 	background-color: white;
+	border-radius: 1px 2px 0px 0px;
+	border: solid 1.5px #464648;
 	background: url(../images/inputbox.png) no-repeat;
-	width: 30%;
 }
 
 input:-webkit-autofill { -webkit-box-shadow:200px 200px 100px white inset; box-shadow:200px 200px 100px white inset; }
@@ -111,7 +115,7 @@ input:-webkit-autofill { -webkit-box-shadow:200px 200px 100px white inset; box-s
 	height: 20;
 	width: 20;
 	position: relative;
-	right: 4.5%;
+	right: 30px;
 	top: 6px;
 	z-index: 99;
 
@@ -119,30 +123,22 @@ input:-webkit-autofill { -webkit-box-shadow:200px 200px 100px white inset; box-s
 
 .passwordLogo {
 	
-	height: 21;
-	width: 23;
+	height: 20;
+	width: 22;
 	position: relative;
-	right: 4.5%;
+	right: 30px;
 	top: 6px;
 	z-index: 99;
 
 }
 
-.logo {
-	position: relative;
-	left: 7.5%;
-
-}
-
-.forgot_password {
-	position: relative;
-	left: 9%;
+#logo {
+	
 }
 
 #footer {
-	color: white;
 	width:100%;
-	height:30px;
+	height:100px;
 	position:absolute;
 	bottom:0;
 	left:0;

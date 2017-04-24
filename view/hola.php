@@ -2,11 +2,9 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Ingelogd enzo</title>
+<title>Naamloos document</title>
 </head>
 
 <body>
-
-<h1>INGELOGD ENZO</h1>
 </body>
 </html>
