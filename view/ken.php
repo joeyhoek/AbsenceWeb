@@ -7,7 +7,7 @@
 <body>
 	<div class="container">
 	<div id="column-left">
-		
+		<br><br><br><br><br><br><br><br><br><br><br><br><br> <!-- css fix later -->
 		<div id="qrcode">
 			<?php echo "<img src='$QRCodeLink'>";?>
 		</div>
@@ -15,8 +15,8 @@
 	</div>
 	
 	<div id="column-right">
-		
-		<div id="logo"> <img src="view/images/logo.png" alt="Logo"></div> <br><br>
+		<br><br><br><br><br><br><br><br><br><br><br><br>
+		<img class="logo" src="view/images/logo.png" alt="Logo"> <br><br>
 
 		<form method="POST">
 

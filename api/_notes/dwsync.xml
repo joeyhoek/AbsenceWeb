@@ -2,6 +2,11 @@
 <dwsync>
 <file name="desktopClient.php" server="ftp.team16j.p004.nl//domains/team16j.p004.nl/public_html/" local="131368508107788770" remote="131368507800000000" Dst="2" />
 <file name="mobileClient.php" server="ftp.team16j.p004.nl//domains/team16j.p004.nl/public_html/" local="131368360646214945" remote="131368360200000000" Dst="2" />
+<<<<<<< HEAD
 <file name="desktopClient.php" server="ftp.innovatewebdesign.nl" local="131372390400000000" remote="131372390400000000" Dst="2" />
 <file name="mobileClient.php" server="ftp.innovatewebdesign.nl" local="131372515347940798" remote="131369046000000000" Dst="2" />
+=======
+<file name="desktopClient.php" server="ftp.innovatewebdesign.nl" local="131371943349335631" remote="131371942800000000" Dst="2" />
+<file name="mobileClient.php" server="ftp.innovatewebdesign.nl" local="131368360646214945" remote="131369046000000000" Dst="2" />
+>>>>>>> origin/master
 </dwsync>

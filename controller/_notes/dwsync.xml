@@ -3,8 +3,14 @@
 <file name="requestHandler.php" server="ftp.team16j.p004.nl//domains/team16j.p004.nl/public_html/" local="131368372959902772" remote="131368372800000000" Dst="2" />
 <file name="require.php" server="ftp.team16j.p004.nl//domains/team16j.p004.nl/public_html/" local="131364918262304370" remote="131364919800000000" Dst="2" />
 <file name="qrCode.php" server="ftp.team16j.p004.nl//domains/team16j.p004.nl/public_html/" local="131364923783270980" remote="131364923400000000" Dst="2" />
+<<<<<<< HEAD
 <file name="qrCode.php" server="ftp.innovatewebdesign.nl" local="131369074844724379" remote="131369074200000000" Dst="2" />
 <file name="requestHandler.php" server="ftp.innovatewebdesign.nl" local="131370693490433942" remote="131372515800000000" Dst="2" />
 <file name="require.php" server="ftp.innovatewebdesign.nl" local="131364918262304370" remote="131369046000000000" Dst="2" />
 <file name="login.php" server="ftp.innovatewebdesign.nl" local="131370693490393867" remote="131372515800000000" Dst="2" />
+=======
+<file name="qrCode.php" server="ftp.innovatewebdesign.nl" local="131371053339011677" remote="131371053000000000" Dst="2" />
+<file name="requestHandler.php" server="ftp.innovatewebdesign.nl" local="131368372959902772" remote="131369046000000000" Dst="2" />
+<file name="require.php" server="ftp.innovatewebdesign.nl" local="131370992390732362" remote="131370991800000000" Dst="2" />
+>>>>>>> origin/master
 </dwsync>
