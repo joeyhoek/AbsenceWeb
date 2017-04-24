@@ -18,7 +18,7 @@
 			<div id="column-right">
 				<div id="container-right">
 					<div id="container-right2">
-						<div id="logo"> <img src="view/images/logo.png" alt="Logo"></div> <br><br>
+						<div id="logo"> <img class="logo" src="view/images/logo.png" alt="Logo"></div> <br><br>
 
 						<form method="POST">
 
