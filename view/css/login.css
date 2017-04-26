@@ -1,11 +1,8 @@
 /*#01577A Donkerblauw*/
 /*#464648 Donkergrijs*/
-
-/* FOR DOUBLE BORDER
-.borders{position:relative; z-index:10; padding:10px; background:#fff; border:2px solid #390; }
-.borders:before{content:""; display:block; position:absolute; z-index:-10; top:0px; left:0px; 
-bottom:0px; border:5px solid #36F}
-*/
+/* #0ba2dd Lichtblauw */
+/* #b32704 Rood*/
+/* #4cb002 Groen*/
 
 html {
 	background: url("../images/achtergrondGrijs.png") no-repeat center center fixed; 
@@ -14,25 +11,32 @@ html {
 	-o-background-size: cover;
 	background-attachment: fixed;
 	background-position: 100% 100%;
-	-moz-transform: scale(1.3); /* for Firefox, default 1*/
-    zoom:130%; /* For Chrome, IE, default 100%*/
+	-moz-transform: scale(1.0); /* for Firefox, default 1*/
+    zoom:100%; /* For Chrome, IE, default 100%*/
 	overflow-x: hidden;
 }
 
+@keyframes logInRecIn { from {  height: 1px; } to {  height: 400px; } }
+@-moz-keyframes logInRecIn { from {  height: 1px; } to {  height: 400px; } }
+@-webkit-keyframes logInRecIn { from {  height: 1px; } to {  height: 400px; } }
+@-ms-keyframes logInRecIn { from {  height: 1px; } to {  height: 400px; } }
+@-o-keyframes logInRecIn { from {  height: 1px; } to {  height: 400px; } }
+
 #wit {
-	-moz-transform: rotate(-9deg);
-	-ms-transform: rotate(-9deg);
-	-webkit-transform: rotate(-9deg);
-	transform: rotate(-9deg);
+	-moz-transform: translate(-50%, -50%) rotate(-9deg);
+	-ms-transform: translate(-50%, -50%) rotate(-9deg);
+	-webkit-transform: translate(-50%, -50%) rotate(-9deg);
+	transform: translate(-50%, -50%) rotate(-9deg);
 	background-color: white;
-	width: 120%;
-	height: 330px;
-	position: absolute;
+	width: 520%;
+	height: 0px;
+	position: fixed;
 	z-index: -1;
-	top: calc(50% - 165px);
-	left: -100px;
+	top: 50%;
+	left: 50%;
 	
-	
+	animation: logInRecIn 0.7s ease-in-out 0.3s;
+	 -webkit-animation-fill-mode: forwards;
 }
 
 body {
@@ -45,30 +49,101 @@ body {
 .container {
 	max-width: 100%;
 	height: auto;
+}
+
+.logo {
+	width: 90px;
+
+	opacity:0;  /* make things invisible upon start */
+	-webkit-animation:container2 ease-in 1;  /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
+	-moz-animation:container2 ease-in 1;
+	animation:container2 ease-in 1;
+ 
+	animation: container2 0.3s ease-in-out 0.7s;
+	-webkit-animation-fill-mode:forwards;  /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
+	-moz-animation-fill-mode:forwards;
+	animation-fill-mode:forwards;
+	
+}
+
+.container2 {
+	width: 60%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 	display: flex;
+	align-items: center;
 }
 
 #column-left {
-	flex: 1;
-	order: 1;
 	text-align: center;
-	flex-basis: 45%;
+	width: 50%;
+	float: left;
+	display: flex;
+	position: relative;
+	
+}
 
+#qrcode {
+	width: 100%;
+	min-height: 100px;
+}
+
+@keyframes logInQrIn { from { width: 1px; min-width: 0px; } to { 
+	width: 45%;
+	min-width: 230px; } }
+@-moz-keyframes logInQrIn { from { width: 1px; min-width: 0px; } to { 
+	width: 45%;
+	min-width: 230px; } }
+@-webkit-keyframes logInQrIn { from { width: 1px; min-width: 0px; } to { 
+	width: 45%;
+	min-width: 230px; } }
+@-ms-keyframes logInQrIn { from { width: 1px; min-width: 0px; } to { 
+	width: 45%;
+	min-width: 230px; } }
+@-o-keyframes logInQrIn { from { width: 1px; min-width: 0px; } to { 
+	width: 45%;
+	min-width: 230px; } }
+
+
+#qrcode img {
+	height: auto;
+	width: 1px;
+	float: right;
+	margin-right: 48px;
+	max-width: 260px;
+	
+	animation: logInQrIn 0.5s ease-in-out 0.6s;
+ -webkit-animation-fill-mode: forwards;
+}
+
+#container-right {
+	width: 100%;
+	min-height: 100px;
+}
+
+#container-right2 {
+	float: left;
+	width: 191px;
+	margin-left: 48px;
 }
 
 #column-right {
-	flex: 1;
-	order: 2;
 	text-align: center;
-	flex-basis: 45%;
-	
-	
+	width: 50%;
+	float: left;
 }
 
-@media (min-width: 900px) {
+
+form {
+	width: 191px;
+}
+
+@media (max-height: 900px) {
 	.container {
 /*		qqqqqqqq*/
-		
+	
 	}
 }
 
@@ -77,15 +152,27 @@ body {
 	width: 100%;
 }
 
-
 .button {
 	background-color: #01577A;
 	border: 0px;
 	color: white;
 	padding: 4px 18px 4px 18px;
-	font-size: 13px;
-	font-family: "";
-	margin-bottom: 5px;
+	font-size: 16px;
+	width: 100px;
+	height: 30px;
+	display: block;
+	margin: 0 auto 5px;
+	transition: background-color 0.2s ease-in-out 0s;
+	
+		opacity:0;  /* make things invisible upon start */
+	-webkit-animation:container2 ease-in 1;  /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
+	-moz-animation:container2 ease-in 1;
+	animation:container2 ease-in 1;
+ 
+	animation: container2 0.3s ease-in-out 0.7s;
+	-webkit-animation-fill-mode:forwards;  /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
+	-moz-animation-fill-mode:forwards;
+	animation-fill-mode:forwards;
 }
 
 a:link {
@@ -99,48 +186,185 @@ a:link {
 	outline: none;
 }
 
+.button:hover {
+	background-color: #0ba2dd;
+}
+
+button:active, button:focus {
+	background-color: #464648 !important;
+}
+
+@keyframes recInInput {
+ 0% {
+  opacity: 0;
+  width: 0px;
+  border-left: 0.5px solid #b8b7be;
+ }
+ 
+ 20%{
+  opacity: 1;
+  width: 0px;
+  border-left: 0.5px solid #b8b7be;
+ }
+ 
+ 45% {
+  opacity: 1;
+  width: 95.5px;
+  border-left: 5px solid #015679;
+ }
+ 
+ 70% {
+  opacity: 1;
+  width: 191px;
+  border-left: solid 10px #01577A;
+ }
+ 
+ 100% {
+  opacity: 1;
+  width: 191px;
+  border-left: solid 10px #01577A;
+	 z-index: -99;
+ }
+}
+
 .input {
-	padding: 10px;
-	margin-bottom: 10px;
-	background-color: white;
-	border-radius: 1px 2px 0px 0px;
-	border: solid 1.5px #464648;
-	background: url(../images/inputbox.png) no-repeat;
+	padding: 12px 40px 12px 8px;
+	border-radius: 1px 2px 0px 0px;	
+	display: block;
+	margin: 0 auto 10px;
+	outline: 0;
+	width: 191px;
+	
+animation: recInInput 0.5s ease-in-out 0.5s;
+ opacity: 0;
+ border-left: 0.5px solid #b8b7be;
+ border-right: 0.5px solid #b8b7be;
+ border-top: 0.5px solid #b8b7be;
+ border-bottom: 0.5px solid #b8b7be;
+ -webkit-animation-fill-mode: forwards;
+ animation-fill-mode: forwards;
+	
+	transition: border-left 0.3s ease 0s, width 0s ease 0s, opacity 0s ease 0s;
+}
+
+.input.loaded {
+ animation: none !important;
+ opacity: 1 !important;
+ width: 191px !important;
+border-left: solid 10px #015679;
+}
+
+input:focus {
+	border-left: solid 10px #0ba2dd !important;
+		 box-shadow: 0 0 5px 0 rgba(0,0,0,0.4);
+		 border-right: 0.5px solid #b8b7be;
+		 border-top: 0.5px solid #b8b7be;
+		 border-bottom: 0.5px solid #b8b7be;
+		 animation-play-state: paused;
+		 animation: none;
+		 opacity: 1;
+		 width: 191px;
 }
 
 input:-webkit-autofill { -webkit-box-shadow:200px 200px 100px white inset; box-shadow:200px 200px 100px white inset; }
 
-.emailLogo {
-	
-	height: 20;
-	width: 20;
-	position: relative;
-	right: 30px;
-	top: 6px;
-	z-index: 99;
+@-webkit-keyframes container2 { from { opacity:0; } to { opacity:1; } }
+@-moz-keyframes container2 { from { opacity:0; } to { opacity:1; } }
+@keyframes container2 { from { opacity:0; } to { opacity:1; } }
+@-ms-keyframes container2 { from { opacity:0; } to { opacity:1; } }
+@-o-keyframes container2 { from { opacity:0; } to { opacity:1; } }
 
-}
+.emailLogo {
+	height: auto;
+	width: 24;	
+	margin-left: 160px;
+	margin-top: -44px;
+	z-index: 99;
+	display: block;
+	margin-bottom: 18px;
+	position: relative;
+	
+	opacity:0;  /* make things invisible upon start */
+	-webkit-animation:container2 ease-in 1;  /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
+	-moz-animation:container2 ease-in 1;
+	animation:container2 ease-in 1;
+ 
+	animation: container2 0.3s ease-in-out 0.7s;
+	-webkit-animation-fill-mode:forwards;  /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
+	-moz-animation-fill-mode:forwards;
+	animation-fill-mode:forwards;
+ }
 
 .passwordLogo {
-	
-	height: 20;
-	width: 22;
-	position: relative;
-	right: 30px;
-	top: 6px;
+	height: auto;
+	width: 30;
+	display: block;
+	margin-left: 155.5px;	
+	margin-top: -47px;
 	z-index: 99;
-
-}
-
-#logo {
+	position: relative;
 	
+	opacity:0;  /* make things invisible upon start */
+	-webkit-animation:container2 ease-in 1;  /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
+	-moz-animation:container2 ease-in 1;
+	animation:container2 ease-in 1;
+ 
+	animation: container2 0.3s ease-in-out 0.7s;
+	-webkit-animation-fill-mode:forwards;  /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
+	-moz-animation-fill-mode:forwards;
+	animation-fill-mode:forwards;
 }
+
+.forgot_password a {
+	font-size: 11px;
+}
+
+@keyframes lijn { from {  height: 0px; } to {  height: 82%; } }
+@-moz-keyframes lijn { from {  height: 0px; } to {  height: 82%; } }
+@-webkit-keyframes lijn { from {  height: 0px; } to {  height: 82%; } }
+@-ms-keyframes lijn { from {  height: 0px; } to {  height: 82%; } }
+@-o-keyframes lijn { from {  height: 0px; } to {  height: 82%; } }
+
+/* KLEINE BOUNCE@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ LIJN PROCENTEN ENZO*/
+.lijn {
+	position: absolute;
+	display: block;
+    margin: auto;
+	left: 50%;
+	height: 0px;
+	top: 50%;	
+	transform: translate(-50%, -50%);	
+	
+	animation: lijn 0.7s ease-in-out 0.3s;
+	 -webkit-animation-fill-mode: forwards;
+}
+
+
 
 #footer {
-	width:100%;
-	height:100px;
+	width:100%;	
 	position:absolute;
-	bottom:0;
+	bottom:13px;
 	left:0;
+	color: white;
+	font-size: 12px;
 	
+		opacity:0;  /* make things invisible upon start */
+	-webkit-animation:container2 ease-in 1;  /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
+	-moz-animation:container2 ease-in 1;
+	animation:container2 ease-in 1;
+ 
+	animation: container2 0.3s ease-in-out 0.7s;
+	-webkit-animation-fill-mode:forwards;  /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
+	-moz-animation-fill-mode:forwards;
+	animation-fill-mode:forwards;
+	
+	transition: color 0.3s ease-in-out;
+}
+
+@media screen and (max-height: 500px) {
+	#footer {
+	color: rgba(0,0,0,0);
+	
+	}
 }
