@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
 <file name="login.php" server="ftp.team16j.p004.nl//domains/team16j.p004.nl/public_html/" local="131372497263589651" remote="131372517000000000" Dst="2" />
+<<<<<<< HEAD
 <file name="login.php" server="ftp.innovatewebdesign.nl" local="131375458745893479" remote="131375370000000000" Dst="2" />
+=======
+<file name="login.php" server="ftp.innovatewebdesign.nl" local="131375466156464494" remote="131375466600000000" Dst="2" />
+>>>>>>> origin/master
 <file name="echoQRCode.php" server="ftp.team16j.p004.nl//domains/team16j.p004.nl/public_html/" local="131364946254828701" remote="131372514600000000" Dst="2" />
 <file name="hola.php" server="ftp.team16j.p004.nl//domains/team16j.p004.nl/public_html/" local="131370851121166017" remote="131372514600000000" Dst="2" />
 <file name="myAccount.php" server="ftp.team16j.p004.nl//domains/team16j.p004.nl/public_html/" local="131372494513644406" remote="131372514600000000" Dst="2" />
