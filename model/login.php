@@ -1,13 +1,30 @@
 <?php
 
 namespace Team10\Absence\Model;
-use Team10\Absence\Model\login as login;
+use Team10\Absence\Model\Encryption as Encryption;
+use Team10\Absence\Model\User as User;
 
-function loggedIn() {
-	if (isset($_SESSION['username'])) {
-		return true;
-	} else {
-		return false;
+class Login {
+	public function checkLogin($username, $password) {
+		$user = new User;
+		if (strpos($username, "@")) {
+			$id = $user->getIdFromEmail($username);
+		} else {
+			$id = $username;
+		}
+		
+		$hashedPassword = $user->getPassword($id);
+		
+		// Check if user exists and passwords match
+		if ($hashedPassword && (new Encryption)->match_hash($password, $hashedPassword)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public function checkToken($id, $token) {
+		
 	}
 }
 

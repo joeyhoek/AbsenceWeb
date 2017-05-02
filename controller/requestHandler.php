@@ -2,6 +2,7 @@
 
 namespace Team10\Absence\Controller;
 use Team10\Absence\Model\Connection as Connection;
+use Team10\Absence\Model\Login as Login;
 
 require_once("controller/require.php");
 
@@ -22,27 +23,12 @@ if (isset($_POST['reset'])) {
 	echo "<br>" . $email;
 }
 
-
-
 if (isset($_POST['email']) && isset($_POST["password"])) {
-	$email = $_POST['email'];
-	$password = $_POST['password'];
-	
-	$query = "SELECT * FROM users WHERE email='$email'";
-	$connection = new Connection(DBHOST, DBUSER, DBPASS, DBNAME);
-	$result = $connection->query($query);
-		// Check if passwords match
-		if ($password == $result["password"]) {
-			$_SESSION['email'] = $email;
-			
-			require_once("view/myAccount.php");
-		} else {
-			// If no url go to login page
-			$page = "login";
-			require_once("controller/qrCode.php");
-			echo "Wrong username or password!";
-		}
-
+	if ((new Login)->checkLogin($_POST["email"], $_POST["password"])) {
+		$page = "myAccount";
+	} else {
+		$page = "login";
+	}
 } else if (isset($_GET["url"])) {
 	$page = $_GET["url"];
 	switch ($page) {
@@ -55,6 +41,9 @@ if (isset($_POST['email']) && isset($_POST["password"])) {
 		case "mainOverview":
 			require_once("");
 			break;
+		case "test":
+			$page = "test";
+			break;
 		default:
 			echo "not found";
 	}
@@ -63,6 +52,9 @@ if (isset($_POST['email']) && isset($_POST["password"])) {
 } else {
 	// If no url go to login page
 	$page = "login";
+}
+
+if ($page == "login") {
 	require_once("controller/qrCode.php");
 }
 

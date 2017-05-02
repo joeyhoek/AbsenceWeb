@@ -18,4 +18,6 @@
 <file name="qrCode.php" server="ftp.innovatewebdesign.nl" local="131370693490484080" remote="131372522400000000" Dst="2" />
 <file name="sha3.php" server="ftp.innovatewebdesign.nl" local="131364919800000000" remote="131372522400000000" Dst="2" />
 <file name="passwordReset.php" server="ftp.innovatewebdesign.nl" local="131382146309788152" remote="131382146400000000" Dst="2" />
+<file name="user.php" server="ftp.innovatewebdesign.nl" local="131382298483153070" remote="131382298200000000" Dst="2" />
+<file name="login.php" server="ftp.innovatewebdesign.nl" local="131382307033399327" remote="131382306600000000" Dst="2" />
 </dwsync>
