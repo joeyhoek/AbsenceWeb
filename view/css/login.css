@@ -11,25 +11,35 @@ html {
 	-o-background-size: cover;
 	background-attachment: fixed;
 	background-position: 100% 100%;
-	-moz-transform: scale(1.0); /* for Firefox, default 1*/
+	-moz-transform: scaleY(1.0); /* for Firefox, default 1*/
     zoom:100%; /* For Chrome, IE, default 100%*/
 	overflow-x: hidden;
 }
 
-@keyframes logInRecIn { from {  height: 1px; } to {  height: 400px; } }
-@-moz-keyframes logInRecIn { from {  height: 1px; } to {  height: 400px; } }
-@-webkit-keyframes logInRecIn { from {  height: 1px; } to {  height: 400px; } }
-@-ms-keyframes logInRecIn { from {  height: 1px; } to {  height: 400px; } }
-@-o-keyframes logInRecIn { from {  height: 1px; } to {  height: 400px; } }
+@keyframes logInRecIn { 
+	from {  
+		-moz-transform: translate(-50%, -50%) rotate(-9deg) scaleY(0);
+		-ms-transform: translate(-50%, -50%) rotate(-9deg) scaleY(0);
+		-webkit-transform: translate(-50%, -50%) rotate(-9deg) scaleY(0);
+		transform: translate(-50%, -50%) rotate(-9deg) scaleY(0); 
+	} 
+	
+	to {  
+		-moz-transform: translate(-50%, -50%) rotate(-9deg) scaleY(1);
+		-ms-transform: translate(-50%, -50%) rotate(-9deg) scaleY(1);
+		-webkit-transform: translate(-50%, -50%) rotate(-9deg) scaleY(1);
+		transform: translate(-50%, -50%) rotate(-9deg) scaleY(1); 
+	} 
+}
 
 #wit {
-	-moz-transform: translate(-50%, -50%) rotate(-9deg);
-	-ms-transform: translate(-50%, -50%) rotate(-9deg);
-	-webkit-transform: translate(-50%, -50%) rotate(-9deg);
-	transform: translate(-50%, -50%) rotate(-9deg);
+	-moz-transform: translate(-50%, -50%) rotate(-9deg) scaleY(0);
+	-ms-transform: translate(-50%, -50%) rotate(-9deg) scaleY(0);
+	-webkit-transform: translate(-50%, -50%) rotate(-9deg) scaleY(0);
+	transform: translate(-50%, -50%) rotate(-9deg) scaleY(0);
 	background-color: white;
 	width: 520%;
-	height: 0px;
+	height: 400px;
 	position: fixed;
 	z-index: -1;
 	top: 50%;
@@ -37,6 +47,10 @@ html {
 	
 	animation: logInRecIn 0.7s ease-in-out 0.3s;
 	 -webkit-animation-fill-mode: forwards;
+}
+
+#wit.small {
+	height: 270px; 
 }
 
 body {
@@ -88,34 +102,38 @@ body {
 #qrcode {
 	width: 100%;
 	min-height: 100px;
+	
 }
 
-@keyframes logInQrIn { from { width: 1px; min-width: 0px; } to { 
-	width: 45%;
-	min-width: 230px; } }
-@-moz-keyframes logInQrIn { from { width: 1px; min-width: 0px; } to { 
-	width: 45%;
-	min-width: 230px; } }
-@-webkit-keyframes logInQrIn { from { width: 1px; min-width: 0px; } to { 
-	width: 45%;
-	min-width: 230px; } }
-@-ms-keyframes logInQrIn { from { width: 1px; min-width: 0px; } to { 
-	width: 45%;
-	min-width: 230px; } }
-@-o-keyframes logInQrIn { from { width: 1px; min-width: 0px; } to { 
-	width: 45%;
-	min-width: 230px; } }
-
+@keyframes logInQrIn { 
+	from { 
+		-moz-transform: scale(0);
+		-ms-transform: scale(0);
+		-webkit-transform: scale(0);
+		transform: scale(0);
+	} to { 
+		-moz-transform: scale(1);
+		-ms-transform: scale(1);
+		-webkit-transform: scale(1);
+		transform: scale(1);
+	} 
+}
 
 #qrcode img {
+	width: 45%;
 	height: auto;
-	width: 1px;
 	float: right;
 	margin-right: 48px;
 	max-width: 260px;
+	min-width: 230px; 
+	animation: logInQrIn 0.5s ease-in-out 0.45s;
+ 	-webkit-animation-fill-mode: forwards;
 	
-	animation: logInQrIn 0.5s ease-in-out 0.6s;
- -webkit-animation-fill-mode: forwards;
+	-moz-transform: scale(0);
+	-ms-transform: scale(0);
+	-webkit-transform: scale(0);
+	transform: scale(0);
+	
 }
 
 #container-right {
@@ -235,7 +253,7 @@ button:active, button:focus {
 	outline: 0;
 	width: 191px;
 	
-animation: recInInput 0.5s ease-in-out 0.5s;
+animation: recInInput 0.8s ease-in-out 0.1s;
  opacity: 0;
  border-left: 0.5px solid #b8b7be;
  border-right: 0.5px solid #b8b7be;
@@ -252,6 +270,34 @@ animation: recInInput 0.5s ease-in-out 0.5s;
  opacity: 1 !important;
  width: 191px !important;
 border-left: solid 10px #015679;
+}
+
+.submitted .input:invalid {
+	border-left: 10px solid #b32704 !important;
+	transition: border-left 0.3s ease 0s, width 0s ease 0s, opacity 0s ease 0s;
+}
+
+form .input.loaded.shake-horizontal.shake-constant, .emailLogo.shake-horizontal.shake-constant, .passwordLogo.shake-horizontal.shake-constant {
+	animation-name: shake-horizontal !important;
+    animation-duration: 2800ms !important;
+    animation-timing-function: ease-in-out !important;
+    animation-iteration-count: infinite !important;
+	animation-delay: 0s !important;
+	opacity: 1 !important;
+}
+
+.emailLogo.shake-horizontal.shake-constant, .passwordLogo.shake-horizontal.shake-constant {
+	opacity: 1 !important;
+}
+
+.input:valid {
+	border-left: 10px solid #4cb002 !important;
+	transition: border-left 0.3s ease 0s, width 0s ease 0s, opacity 0s ease 0s;
+}
+
+.error #username, .error #password {
+	border-left: 20px solid #b32704 !important;
+	transition: border-left 0.3s ease 0s, width 0s ease 0s, opacity 0s ease 0s;
 }
 
 input:focus {
@@ -317,6 +363,15 @@ input:-webkit-autofill { -webkit-box-shadow:200px 200px 100px white inset; box-s
 
 .forgot_password a {
 	font-size: 11px;
+	opacity:0;  /* make things invisible upon start */
+	-webkit-animation:container2 ease-in 1;  /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
+	-moz-animation:container2 ease-in 1;
+	animation:container2 ease-in 1;
+ 
+	animation: container2 0.3s ease-in-out 0.7s;
+	-webkit-animation-fill-mode:forwards;  /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
+	-moz-animation-fill-mode:forwards;
+	animation-fill-mode:forwards;
 }
 
 @keyframes lijn { from {  height: 0px; } to {  height: 82%; } }
@@ -367,4 +422,38 @@ input:-webkit-autofill { -webkit-box-shadow:200px 200px 100px white inset; box-s
 	color: rgba(0,0,0,0);
 	
 	}
+}
+
+.container-middle {
+	display: block;
+	position: absolute;
+	margin: 0 auto;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.back_to_login {
+	font-size: 11px;
+	opacity:0;  /* make things invisible upon start */
+	-webkit-animation:container2 ease-in 1;  /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
+	-moz-animation:container2 ease-in 1;
+	animation:container2 ease-in 1;
+ 
+	animation: container2 0.3s ease-in-out 0.7s;
+	-webkit-animation-fill-mode:forwards;  /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
+	-moz-animation-fill-mode:forwards;
+	animation-fill-mode:forwards;
+}
+
+h4 {
+	opacity:0;  /* make things invisible upon start */
+	-webkit-animation:container2 ease-in 1;  /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
+	-moz-animation:container2 ease-in 1;
+	animation:container2 ease-in 1;
+ 
+	animation: container2 0.3s ease-in-out 0.7s;
+	-webkit-animation-fill-mode:forwards;  /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
+	-moz-animation-fill-mode:forwards;
+	animation-fill-mode:forwards;
 }

@@ -1,6 +1,7 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="view/css/login.css" media="screen and (min-width:10px)">
+	<link rel="stylesheet" href="view/css/login.css?v=1" media="screen and (min-width:10px)">
+	<link rel="stylesheet" href="view/css/shake.css">
 </head>
 
 
@@ -22,7 +23,7 @@
 
 						<form method="POST">
 
-							<input class="input email" type="text" name="email" required autocorrect="off" autocapitalize="off" spellcheck="false" autocomplete="new-password">
+							<input class="input email" type="email" name="email" required autocorrect="off" autocapitalize="off" spellcheck="false" autocomplete="new-password">
 							<img class="emailLogo" src="view/images/login.png">
 							
 							<input class="input password" type="password" name="password" required autocorrect="off" autocapitalize="off" spellcheck="false" autocomplete="new-password">
@@ -30,7 +31,7 @@
 							<br>
 
 							<button class="button" type="submit" name="login">Sign In</button>	
-							<span class="forgot_password"><a href="../controller/forgot_password.php">Forgot Password?</a></span>
+							<span class="forgot_password"><a href="/forgotPassword">Forgot Password?</a></span>
 						</form>	
 					</div>
 				</div>
