@@ -15,7 +15,7 @@
 							<input class="input email" type="email" name="email" required autocorrect="off" autocapitalize="off" spellcheck="false" autocomplete="new-password">
 							<img class="emailLogo" src="view/images/login.png">
 							
-							<button class="button" type="submit" name="reset">Reset</button>	
+							<button class="button" type="submit">Reset</button>	
 							<span class="back_to_login"><a href="/">Back to Login</a></span>
 						</form>	
 			</div>						

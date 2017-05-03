@@ -3,25 +3,9 @@
 namespace Team10\Absence\Controller;
 use Team10\Absence\Model\Connection as Connection;
 use Team10\Absence\Model\Login as Login;
+use Team10\Absence\Model\Token as Token;
 
 require_once("controller/require.php");
-
-if (isset($_POST['reset'])) {
-	$email = $_POST['email'];
-
-	$query = "SELECT * FROM users WHERE email='$email'";
-	$connection = new Connection(DBHOST, DBUSER, DBPASS, DBNAME);
-	$result = $connection->query($query);
-
-	if ($email == $result["email"] && $email !== null) {
-		echo "staat erin";
-		
-		echo $email;
-	} else {
-		echo "staat er niii in";
-		}
-	echo "<br>" . $email;
-}
 
 if (isset($_POST['email']) && isset($_POST["password"])) {
 	if ((new Login)->checkLogin($_POST["email"], $_POST["password"])) {
@@ -37,6 +21,17 @@ if (isset($_POST['email']) && isset($_POST["password"])) {
 			break;
 		case "forgotPassword":
 			$page = "forgotPassword";
+			if (isset($_POST["email"])) {
+				$email = $_POST['email'];
+				$token = (new Token)->generateToken();
+				$title = "Password Recovery";
+				$message = "Click <a href='" . PROTOCOL . DOMAIN . ROOT . "forgotPassword?token=$token'>here</a> to reset your password.";
+				$headers = "From: Ken@ken.com\r\n";
+				$headers .= "MIME-Version: 1.0\r\n";
+				$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+				mail($email, $title, $message, $headers);
+				echo $email;
+			}
 			break;
 		case "mainOverview":
 			require_once("");
@@ -44,8 +39,17 @@ if (isset($_POST['email']) && isset($_POST["password"])) {
 		case "test":
 			$page = "test";
 			break;
+			
+			
+			case "resetPassword":
+			$page = "resetPassword";
+			break;
+			
+			
+			
+			
 		default:
-			echo "not found";
+			$page = "404";
 	}
 	
 	

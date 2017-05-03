@@ -8,6 +8,7 @@
 <file name="echoQRCode.php" server="ftp.innovatewebdesign.nl" local="131364946254828701" remote="131372521200000000" Dst="2" />
 <file name="hola.php" server="ftp.innovatewebdesign.nl" local="131370851121166017" remote="131372521200000000" Dst="2" />
 <file name="myAccount.php" server="ftp.innovatewebdesign.nl" local="131372494513644406" remote="131372521200000000" Dst="2" />
-<file name="forgotPassword.php" server="ftp.innovatewebdesign.nl" local="131381174984621606" remote="131381175000000000" Dst="2" />
+<file name="forgotPassword.php" server="ftp.innovatewebdesign.nl" local="131382951415817715" remote="131382951000000000" Dst="2" />
 <file name="test.php" server="ftp.innovatewebdesign.nl" local="131382275236751586" remote="131382274800000000" Dst="2" />
+<file name="resetPassword.php" server="ftp.innovatewebdesign.nl" local="131382962821421120" remote="131382962400000000" Dst="2" />
 </dwsync>
