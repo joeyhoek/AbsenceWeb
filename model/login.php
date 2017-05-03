@@ -17,7 +17,8 @@ class Login {
 			}
 		}
 		
-		$hashedPassword = $user->getPassword($id);
+		$user = new User($id);
+		$hashedPassword = $user->getPassword();
 		
 		// Check if user exists and passwords match
 		if ($hashedPassword && (new Encryption)->match_hash($password, $hashedPassword)) {
