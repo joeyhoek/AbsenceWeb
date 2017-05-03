@@ -5,8 +5,8 @@
 <file name="sha3.php" server="C:/xampp/htdocs/" local="131338189692468441" remote="131338189690000000" Dst="2" />
 <file name="config.php" server="C:/xampp/htdocs/" local="131341482612646580" remote="131341482610000000" Dst="1" />
 <file name="keys.php" server="C:/xampp/htdocs/" local="131340782067624421" remote="131340782060000000" Dst="2" />
-<file name="config.php" server="ftp.team16j.p004.nl//domains/team16j.p004.nl/public_html/" local="131372499874663087" remote="131372514600000000" Dst="2" />
-<file name="connection.php" server="ftp.team16j.p004.nl//domains/team16j.p004.nl/public_html/" local="131364919800000000" remote="131364919800000000" Dst="2" />
+<file name="config.php" server="ftp.team16j.p004.nl//domains/team16j.p004.nl/public_html/" local="131381153532198589" remote="131381154000000000" Dst="2" />
+<file name="connection.php" server="ftp.team16j.p004.nl//domains/team16j.p004.nl/public_html/" local="131381153532443754" remote="131381154000000000" Dst="2" />
 <file name="encryption.php" server="ftp.team16j.p004.nl//domains/team16j.p004.nl/public_html/" local="131368362000000000" remote="131368362000000000" Dst="2" />
 <file name="qrCode.php" server="ftp.team16j.p004.nl//domains/team16j.p004.nl/public_html/" local="131364919164944317" remote="131364919800000000" Dst="2" />
 <file name="sha3.php" server="ftp.team16j.p004.nl//domains/team16j.p004.nl/public_html/" local="131364919800000000" remote="131364919800000000" Dst="2" />
@@ -17,7 +17,5 @@
 <file name="keys.php" server="ftp.innovatewebdesign.nl" local="131364946254774456" remote="131372522400000000" Dst="2" />
 <file name="qrCode.php" server="ftp.innovatewebdesign.nl" local="131370693490484080" remote="131372522400000000" Dst="2" />
 <file name="sha3.php" server="ftp.innovatewebdesign.nl" local="131364919800000000" remote="131372522400000000" Dst="2" />
-<file name="passwordReset.php" server="ftp.innovatewebdesign.nl" local="131382146309788152" remote="131382146400000000" Dst="2" />
-<file name="user.php" server="ftp.innovatewebdesign.nl" local="131382298483153070" remote="131382298200000000" Dst="2" />
-<file name="login.php" server="ftp.innovatewebdesign.nl" local="131382307033399327" remote="131382306600000000" Dst="2" />
+<file name="login.php" server="ftp.team16j.p004.nl//domains/team16j.p004.nl/public_html/" local="131382750864860029" remote="131382750600000000" Dst="2" />
 </dwsync>

@@ -10,7 +10,11 @@ class Login {
 		if (strpos($username, "@")) {
 			$id = $user->getIdFromEmail($username);
 		} else {
-			$id = $username;
+			if ($username[0] !== "s" && is_int($username)) {
+				$id = "s" . $username;
+			} else {
+				$id = $username;
+			}
 		}
 		
 		$hashedPassword = $user->getPassword($id);
