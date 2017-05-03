@@ -10,7 +10,7 @@ class Login {
 		if (strpos($username, "@")) {
 			$id = $user->getIdFromEmail($username);
 		} else {
-			if ($username[0] !== "s" && is_int($username)) {
+			if ($username[0] !== "s" && is_numeric($username)) {
 				$id = "s" . $username;
 			} else {
 				$id = $username;

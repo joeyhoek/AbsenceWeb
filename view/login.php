@@ -23,7 +23,7 @@
 
 						<form method="POST">
 
-							<input class="input email" type="email" name="email" required autocorrect="off" autocapitalize="off" spellcheck="false" autocomplete="new-password">
+							<input class="input email" type="text" name="email" required autocorrect="off" autocapitalize="off" spellcheck="false" autocomplete="new-password">
 							<img class="emailLogo" src="view/images/login.png">
 							
 							<input class="input password" type="password" name="password" required autocorrect="off" autocapitalize="off" spellcheck="false" autocomplete="new-password">
