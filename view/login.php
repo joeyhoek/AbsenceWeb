@@ -1,6 +1,6 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="view/css/login.css?v=1" media="screen and (min-width:10px)">
+	<link rel="stylesheet" href="view/css/login.css?v=4" media="screen and (min-width:10px)">
 	<link rel="stylesheet" href="view/css/shake.css">
 </head>
 

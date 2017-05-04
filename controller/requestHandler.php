@@ -41,6 +41,12 @@ if (isset($_POST['email']) && isset($_POST["password"])) {
 				$page = "404";
 			}
 			break;
+		case "desktopClient":
+			$page = "desktopClient";
+			break;
+		case "mobileClient":
+			$page = "mobileClient";
+			break;
 		default:
 			$page = "404";
 	}
@@ -54,8 +60,11 @@ if (isset($_POST['email']) && isset($_POST["password"])) {
 if ($page == "login") {
 	require_once("controller/qrCode.php");
 }
-
+if ($page !== "desktopClient" && $page !== "mobileClient") {
 header("Content-Type: text/html; charset=utf-8");
 require_once("view/" . $page . ".php");
+} else {
+	require_once("api/" . $page . ".php");
+}
 
 ?>
