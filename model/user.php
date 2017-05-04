@@ -23,7 +23,11 @@ class User {
 	
 	public function getFirstname() {
 		$firstname = $this->connection->query("SELECT firstname FROM users WHERE id = '" . $this->id . "'")["firstname"];
-		return $this->encryption->decrypt($firstname);
+		if ($firstname !== false && $firstname !== NULL) {
+			return $this->encryption->decrypt($firstname);
+		} else {
+			return false;
+		}
 	}
 	
 	public function getLastname() {
@@ -63,7 +67,11 @@ class User {
 	
 	public function getForgotToken() {
 		$forgotToken = $this->connection->query("SELECT forgotToken FROM users WHERE id = '" . $this->id . "'")["forgotToken"];
-		return $forgotToken;
+		if ($forgotToken !== false && $forgotToken !== NULL && $forgotToken !== "0") {
+			return $forgotToken;
+		} else {
+			return false;
+		}
 	}
 	
 	public function getYear() {
@@ -92,8 +100,22 @@ class User {
 		
 	}
 	
-	public function changePassword() {
-		
+	public function storeForgotToken($token) {
+		return $this->connection->query("UPDATE users SET forgotToken='" . $token . "' WHERE id = '" . $this->id . "'");
+	}
+	
+	public function changePassword($newPassword, $confirmPassword, $token = false) {
+		if ($newPassword === $confirmPassword) {
+			$password = (new Encryption)->encrypt((new Encryption)->hash($newPassword));
+			if ($token !== false) {
+				$this->connection->query("UPDATE users SET password = '" . $password . "' WHERE forgotToken = '" . $token . "'");
+				$this->connection->query("UPDATE users SET forgotToken = '0' WHERE forgotToken = '" . $token . "'");
+			} else {
+				$this->connection->query("UPDATE users SET password = '" . $password . '" WHERE id = "' . $this->id . "'");
+			}
+		} else {
+			echo "Passwords do not match";
+		}			
 	}
 	
 	public function changeClass() {

@@ -3,6 +3,9 @@
 namespace Team10\Absence\Model;
 use Team10\Absence\Model\Encryption as Encryption;
 use Team10\Absence\Model\User as User;
+echo (new Encryption)->encrypt((new Encryption)->hash("hallo"));
+echo "<br/>";
+echo (new Encryption)->encrypt("Jeffrey");
 
 class Login {
 	public function checkLogin($username, $password) {

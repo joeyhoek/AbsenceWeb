@@ -4,6 +4,7 @@ namespace Team10\Absence\Controller;
 use Team10\Absence\Model\Connection as Connection;
 use Team10\Absence\Model\Login as Login;
 use Team10\Absence\Model\Token as Token;
+use Team10\Absence\Model\User as User;
 
 require_once("controller/require.php");
 
@@ -22,32 +23,24 @@ if (isset($_POST['email']) && isset($_POST["password"])) {
 		case "forgotPassword":
 			$page = "forgotPassword";
 			if (isset($_POST["email"])) {
-				$email = $_POST['email'];
-				$token = (new Token)->generateToken();
-				$title = "Password Recovery";
-				$message = "Click <a href='" . PROTOCOL . DOMAIN . ROOT . "forgotPassword?token=$token'>here</a> to reset your password.";
-				$headers = "From: Ken@ken.com\r\n";
-				$headers .= "MIME-Version: 1.0\r\n";
-				$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-				mail($email, $title, $message, $headers);
-				echo $email;
+				(new Token)->sendToken($_POST['email']);
 			}
-			break;
-		case "mainOverview":
-			require_once("");
 			break;
 		case "test":
 			$page = "test";
 			break;
-			
-			
-			case "resetPassword":
-			$page = "resetPassword";
+		case "resetPassword":
+			if (isset($_GET["token"]) && (new Token)->checkToken($_GET["token"])) {
+				$page = "resetPassword";
+				echo $_POST["newPassword"] . $_POST["confirmPassword"];
+				if (isset($_POST["newPassword"]) && isset($_POST["confirmPassword"])) {
+					(new User)->changePassword($_POST["newPassword"], $_POST["confirmPassword"], $_GET["token"]);
+					header("Location: /");
+				}
+			} else {
+				$page = "404";
+			}
 			break;
-			
-			
-			
-			
 		default:
 			$page = "404";
 	}

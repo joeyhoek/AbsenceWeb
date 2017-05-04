@@ -11,14 +11,14 @@
 <file name="qrCode.php" server="ftp.team16j.p004.nl//domains/team16j.p004.nl/public_html/" local="131364919164944317" remote="131364919800000000" Dst="2" />
 <file name="sha3.php" server="ftp.team16j.p004.nl//domains/team16j.p004.nl/public_html/" local="131364919800000000" remote="131364919800000000" Dst="2" />
 <file name="keys.php" server="ftp.team16j.p004.nl//domains/team16j.p004.nl/public_html/" local="131364946254774456" remote="131372514600000000" Dst="2" />
-<file name="config.php" server="ftp.innovatewebdesign.nl" local="131372552704986924" remote="131372552400000000" Dst="2" />
-<file name="connection.php" server="ftp.innovatewebdesign.nl" local="131372553849303258" remote="131372553600000000" Dst="2" />
+<file name="config.php" server="ftp.innovatewebdesign.nl" local="131375176170000000" remote="131383809000000000" Dst="2" />
+<file name="connection.php" server="ftp.innovatewebdesign.nl" local="131383757753170848" remote="131383757400000000" Dst="2" />
 <file name="encryption.php" server="ftp.innovatewebdesign.nl" local="131368362000000000" remote="131372522400000000" Dst="2" />
 <file name="keys.php" server="ftp.innovatewebdesign.nl" local="131364946254774456" remote="131372522400000000" Dst="2" />
 <file name="qrCode.php" server="ftp.innovatewebdesign.nl" local="131370693490484080" remote="131372522400000000" Dst="2" />
 <file name="sha3.php" server="ftp.innovatewebdesign.nl" local="131364919800000000" remote="131372522400000000" Dst="2" />
 <file name="login.php" server="ftp.team16j.p004.nl//domains/team16j.p004.nl/public_html/" local="131382755238023518" remote="131382754800000000" Dst="2" />
-<file name="login.php" server="ftp.innovatewebdesign.nl" local="131383221368800591" remote="131383221000000000" Dst="2" />
-<file name="passwordReset.php" server="ftp.innovatewebdesign.nl" local="131382946418169908" remote="131382946200000000" Dst="2" />
-<file name="user.php" server="ftp.innovatewebdesign.nl" local="131383223881859260" remote="131383223400000000" Dst="2" />
+<file name="login.php" server="ftp.innovatewebdesign.nl" local="131383740615081406" remote="131383740000000000" Dst="2" />
+<file name="user.php" server="ftp.innovatewebdesign.nl" local="131383828937670219" remote="131383828800000000" Dst="2" />
+<file name="token.php" server="ftp.innovatewebdesign.nl" local="131383819666714225" remote="131383927800000000" Dst="2" />
 </dwsync>
