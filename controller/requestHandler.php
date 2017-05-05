@@ -71,13 +71,13 @@ if (isset($_POST['email']) && isset($_POST["password"])) {
 	$page = "login";
 }
 
-if ($page == "login") {
-	require_once("controller/qrCode.php");
-}
-
 if ($page !== "desktopClient" && $page !== "mobileClient") {
-	header("Content-Type: text/html; charset=utf-8");
+	require_once("view/head.php");
+	if ($page == "login") {
+		require_once("controller/qrCode.php");
+	}		
 	require_once("view/" . $page . ".php");
+	require_once("view/footer.php");
 } else {
 	require_once("api/" . $page . ".php");
 }

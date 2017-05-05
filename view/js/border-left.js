@@ -1,3 +1,5 @@
+window.onload = function () {
+
 function shake() {
 	var loginUsername = document.getElementsByClassName('username')[0];
 	var loginPassword = document.getElementsByClassName('password')[0];
@@ -38,7 +40,7 @@ function shakeFix(delay) {
 	}, delay);
 }
 
-window.onload = function () {
+
 	setTimeout(function(){
 		document.getElementsByClassName('input')[0].classList.add("loaded");
 		document.getElementsByClassName('input')[1].classList.add("loaded");
