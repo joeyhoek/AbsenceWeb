@@ -58,6 +58,4 @@
 			</div>
 			<div id="container2"><div id="wit"></div></div>
 	</div>
-		<span id="footer">Copyright 2017 © Windesheim Flevoland</span>
-
 </div>

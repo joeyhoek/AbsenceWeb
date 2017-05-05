@@ -41,11 +41,6 @@ html {
 	overflow-x: hidden;
 }
 
-
-html, body {
-    height: 100%
-}
-
 @keyframes logInRecIn { 
 	from {  
 		-moz-transform: translate(-50%, -50%) rotate(-9deg) scaleY(0);
