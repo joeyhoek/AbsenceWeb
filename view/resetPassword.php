@@ -1,6 +1,6 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="view/css/login.css?v=1" media="screen and (min-width:10px)">
+	<link rel="stylesheet" href="view/css/login.css?v=2" media="screen and (min-width:10px)">
 </head>
 
 
@@ -12,11 +12,11 @@
 						<h4>Reset Password</h4>
 						<form method="POST">
 
-							<input class="input email" type="password" name="newPassword" required autocorrect="off" autocapitalize="off" spellcheck="false" autocomplete="new-password" placeholder="New Password">
-							<img class="emailLogo" src="view/images/slotje.png">
+							<input class="input email reset" type="password" name="newPassword" required autocorrect="off" autocapitalize="off" spellcheck="false" autocomplete="new-password" placeholder="New Password">
+							<img class="emailLogo resetLogo" src="view/images/slotje.png">
 													
-							<input class="input email" type="password" name="confirmPassword" required autocorrect="off" autocapitalize="off" spellcheck="false" autocomplete="new-password" placeholder="Confirm Password">
-							<img class="emailLogo" src="view/images/slotje.png">
+							<input class="input email reset" type="password" name="confirmPassword" required autocorrect="off" autocapitalize="off" spellcheck="false" autocomplete="new-password" placeholder="Confirm Password">
+							<img class="emailLogo resetLogo" src="view/images/slotje.png">
 							
 							<button class="button" type="submit">Change</button>	
 						

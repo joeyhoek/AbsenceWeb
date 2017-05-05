@@ -4,6 +4,31 @@
 /* #b32704 Rood*/
 /* #4cb002 Groen*/
 
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0); / make transparent link selection, adjust last value opacity 0 to 1.0 /
+  -webkit-user-select: none;
+ -khtml-user-select: none;
+ -moz-user-select: none;
+ -ms-user-select: none;
+ user-select: none;
+ -webkit-touch-callout: none;
+ -moz-touch-callout: none;
+ -ms-touch-callout: none;
+ touch-callout: none;
+ -webkit-user-drag: none;
+ -moz-user-drag: none;
+ -ms-user-drag: none;
+ user-drag: none;
+}
+
+input[type="text"], textearea {
+ -webkit-user-select: auto !important;
+ -khtml-user-select: auto !important;
+ -moz-user-select: auto !important;
+ -ms-user-select: auto !important;
+ user-select: auto !important;
+}
+
 html {
 	background: url("../images/achtergrondGrijs.png") no-repeat center center fixed; 
 	-webkit-background-size: cover;
@@ -68,13 +93,13 @@ body {
 .logo {
 	width: 90px;
 
-	opacity:0;  /* make things invisible upon start */
-	-webkit-animation:container2 ease-in 1;  /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
+	opacity:0;  
+	-webkit-animation:container2 ease-in 1;  
 	-moz-animation:container2 ease-in 1;
 	animation:container2 ease-in 1;
  
 	animation: container2 0.3s ease-in-out 0.7s;
-	-webkit-animation-fill-mode:forwards;  /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
+	-webkit-animation-fill-mode:forwards; 
 	-moz-animation-fill-mode:forwards;
 	animation-fill-mode:forwards;
 	
@@ -88,6 +113,7 @@ body {
 	transform: translate(-50%, -50%);
 	display: flex;
 	align-items: center;
+	
 }
 
 #column-left {
@@ -182,13 +208,13 @@ form {
 	margin: 0 auto 5px;
 	transition: background-color 0.2s ease-in-out 0s;
 	
-		opacity:0;  /* make things invisible upon start */
-	-webkit-animation:container2 ease-in 1;  /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
+		opacity:0; 
+	-webkit-animation:container2 ease-in 1; 
 	-moz-animation:container2 ease-in 1;
 	animation:container2 ease-in 1;
  
 	animation: container2 0.3s ease-in-out 0.7s;
-	-webkit-animation-fill-mode:forwards;  /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
+	-webkit-animation-fill-mode:forwards;  
 	-moz-animation-fill-mode:forwards;
 	animation-fill-mode:forwards;
 }
@@ -253,7 +279,7 @@ button:active, button:focus {
 	outline: 0;
 	width: 191px;
 	
-animation: recInInput 0.8s ease-in-out 0.1s;
+animation: recInInput 0.4s ease-in-out 0.6s;
  opacity: 0;
  border-left: 0.5px solid #b8b7be;
  border-right: 0.5px solid #b8b7be;
@@ -330,13 +356,13 @@ input:-webkit-autofill { -webkit-box-shadow:200px 200px 100px white inset; box-s
 	margin-bottom: 18px;
 	position: relative;
 	
-	opacity:0;  /* make things invisible upon start */
-	-webkit-animation:container2 ease-in 1;  /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
+	opacity:0;  
+	-webkit-animation:container2 ease-in 1; 
 	-moz-animation:container2 ease-in 1;
 	animation:container2 ease-in 1;
  
-	animation: container2 0.3s ease-in-out 0.7s;
-	-webkit-animation-fill-mode:forwards;  /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
+	animation: container2 0.5s ease-in-out 0.7s;
+	-webkit-animation-fill-mode:forwards;  
 	-moz-animation-fill-mode:forwards;
 	animation-fill-mode:forwards;
  }
@@ -351,12 +377,12 @@ input:-webkit-autofill { -webkit-box-shadow:200px 200px 100px white inset; box-s
 	position: relative;
 	
 	opacity:0;  /* make things invisible upon start */
-	-webkit-animation:container2 ease-in 1;  /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
+	-webkit-animation:container2 ease-in 1;  
 	-moz-animation:container2 ease-in 1;
 	animation:container2 ease-in 1;
  
-	animation: container2 0.3s ease-in-out 0.7s;
-	-webkit-animation-fill-mode:forwards;  /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
+	animation: container2 0.5s ease-in-out 0.7s;
+	-webkit-animation-fill-mode:forwards;  
 	-moz-animation-fill-mode:forwards;
 	animation-fill-mode:forwards;
 }
@@ -364,12 +390,12 @@ input:-webkit-autofill { -webkit-box-shadow:200px 200px 100px white inset; box-s
 .forgot_password a {
 	font-size: 11px;
 	opacity:0;  /* make things invisible upon start */
-	-webkit-animation:container2 ease-in 1;  /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
+	-webkit-animation:container2 ease-in 1; 
 	-moz-animation:container2 ease-in 1;
 	animation:container2 ease-in 1;
  
 	animation: container2 0.3s ease-in-out 0.7s;
-	-webkit-animation-fill-mode:forwards;  /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
+	-webkit-animation-fill-mode:forwards;  
 	-moz-animation-fill-mode:forwards;
 	animation-fill-mode:forwards;
 }
@@ -404,13 +430,13 @@ input:-webkit-autofill { -webkit-box-shadow:200px 200px 100px white inset; box-s
 	color: white;
 	font-size: 12px;
 	
-		opacity:0;  /* make things invisible upon start */
-	-webkit-animation:container2 ease-in 1;  /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
+		opacity:0;  
+	-webkit-animation:container2 ease-in 1;  
 	-moz-animation:container2 ease-in 1;
 	animation:container2 ease-in 1;
  
 	animation: container2 0.3s ease-in-out 0.7s;
-	-webkit-animation-fill-mode:forwards;  /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
+	-webkit-animation-fill-mode:forwards; 
 	-moz-animation-fill-mode:forwards;
 	animation-fill-mode:forwards;
 	
@@ -430,30 +456,42 @@ input:-webkit-autofill { -webkit-box-shadow:200px 200px 100px white inset; box-s
 	margin: 0 auto;
 	top: 50%;
 	left: 50%;
+	-moz-transform: translate(-50%, -50%);
+	-o-transform: translate(-50%, -50%);
+	-webkit-transform: translate(-50%, -50%);
 	transform: translate(-50%, -50%);
 }
 
 .back_to_login {
 	font-size: 11px;
-	opacity:0;  /* make things invisible upon start */
-	-webkit-animation:container2 ease-in 1;  /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
+	opacity:0;  
+	-webkit-animation:container2 ease-in 1;  
 	-moz-animation:container2 ease-in 1;
 	animation:container2 ease-in 1;
  
 	animation: container2 0.3s ease-in-out 0.7s;
-	-webkit-animation-fill-mode:forwards;  /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
+	-webkit-animation-fill-mode:forwards;  
 	-moz-animation-fill-mode:forwards;
 	animation-fill-mode:forwards;
 }
 
 h4 {
-	opacity:0;  /* make things invisible upon start */
-	-webkit-animation:container2 ease-in 1;  /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
+	opacity:0;  
+	-webkit-animation:container2 ease-in 1;  
 	-moz-animation:container2 ease-in 1;
 	animation:container2 ease-in 1;
  
 	animation: container2 0.3s ease-in-out 0.7s;
-	-webkit-animation-fill-mode:forwards;  /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
+	-webkit-animation-fill-mode:forwards;  
 	-moz-animation-fill-mode:forwards;
 	animation-fill-mode:forwards;
 }
+
+.reset {
+	animation-duration: 0.35s !important;
+}
+
+.slower {
+	animation-duration: 0.5s !important;
+}
+
