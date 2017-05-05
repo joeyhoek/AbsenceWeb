@@ -56,6 +56,15 @@ class Token {
 		}
 	}
 	
+	public function checkSessionId($sessionId) {
+		$result = (new Connection(DBHOST, DBUSER, DBPASS, DBNAME))->query("SELECT * FROM sessions WHERE sessionId = '" . $sessionId . "'");
+		if ($result !== false && $result !== NULL) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	public function verifySessionToken($userId, $token, $client) {
 		$result = (new Connection(DBHOST, DBUSER, DBPASS, DBNAME))->query("SELECT token FROM sessions WHERE userId = '" . $userId . "' AND client = '" . $client . "'")["token"];
 		if ($result !== false && $result !== NULL && $result == $token) {

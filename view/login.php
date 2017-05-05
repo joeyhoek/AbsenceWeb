@@ -17,7 +17,7 @@
 					function checkIfScanned(sessionid) {
 						var xhttp = new XMLHttpRequest();
 						var url = "<?php echo PROTOCOL . DOMAIN . ROOT; ?>mobileClient";
-						var params = "clientid=" + sessionid;
+						var params = "clientId=" + sessionid;
 						xhttp.open("POST", url, true);
 
 						xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");

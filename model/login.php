@@ -38,10 +38,6 @@ class Login {
 			return false;
 		}
 	}
-	
-	public function checkToken($id, $token) {
-		
-	}
 }
 
 ?>

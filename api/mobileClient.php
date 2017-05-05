@@ -57,7 +57,7 @@ elseif (isset($_POST["username"]) && isset($_POST["action"]) && $_POST["action"]
 	else:
 		header("HTTP/1.0 403 Forbidden");
 	endif;
-elseif (isset($_POST["userid"]) && isset($_POST["token"]) && isset($_POST["clientid"])):
+elseif (isset($_POST["userId"]) && isset($_POST["token"]) && isset($_POST["clientId"])):
 	$connection = new Connection("localhost", "innovate_absence", "TDz8e0lOmL", "innovate_absence");
 	$userid = $connection->query("SELECT * FROM tokens WHERE userid = " . $_POST["userid"]);
 	$token = $connection->query("SELECT * FROM tokens WHERE token = '" . $_POST["token"] . "'");
