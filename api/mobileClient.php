@@ -4,11 +4,13 @@ use Team10\Absence\Model\Login as Login;
 use Team10\Absence\Model\Token as Token;
 use Team10\Absence\Model\User as User;
 
+$tokenObj = new Token;
+
 if (isset($_POST["username"]) && isset($_POST["password"])):
 	if ((new Login)->checkLogin($_POST["username"], $_POST["password"])):
 		$username = $_POST["username"];
 		if (strpos($username, "@")):
-			$id = $user->getIdFromEmail($username);
+			$id = (new User)->getIdFromEmail($username);
 		else:
 			if ($username[0] !== "s" && is_numeric($username)):
 				$id = "s" . $username;
@@ -16,13 +18,13 @@ if (isset($_POST["username"]) && isset($_POST["password"])):
 				$id = $username;
 			endif;
 		endif;
-
-		if ((new Token)->checkSessionToken($id, "mobile") !== false):
-			(new Token)->deleteSessionToken($id, "mobile");
+		
+		if ($tokenObj->checkSessionToken($id, "mobile") !== false):
+			$tokenObj->deleteSessionToken($id, "mobile");
 		endif;
 
-		$token = (new Token)->generateToken();
-		(new Token)->addSessionToken($id, $token, "mobile");
+		$token = $tokenObj->generateToken();
+		$tokenObj->addSessionToken($id, $token, "mobile");
 
 		$user = new User($id);
 
@@ -37,8 +39,20 @@ if (isset($_POST["username"]) && isset($_POST["password"])):
 		header("HTTP/1.0 403 Forbidden");
 	endif;
 elseif (isset($_POST["username"]) && isset($_POST["action"]) && $_POST["action"] == "resetPass"):
-	if ((new Token)->sendToken($_POST["username"])):
-		http_response_code(200);
+	$username = $_POST["username"];
+	if (strpos($username, "@")):
+		$email = $username;
+	else:
+		if ($username[0] !== "s" && is_numeric($username)):
+			$email = "s" . $username . "@student.windesheim.nl";
+		elseif ($username[0] == "s"):
+			$email = $username . "@student.windesheim.nl";
+		else:
+			$id = $username . "@docent.windesheim.nl";
+		endif;
+	endif;
+
+	if ((new Token)->sendToken($email)):
 		echo 1;
 	else:
 		header("HTTP/1.0 403 Forbidden");
@@ -56,14 +70,18 @@ elseif (isset($_POST["userid"]) && isset($_POST["token"]) && isset($_POST["clien
 	else:
 		header("HTTP/1.0 403 Forbidden");
 	endif;
-elseif (isset($_POST["userid"]) && isset($_POST["token"]) && isset ($_POST["action"]) && $_POST["action"] == "logout"):
-	$connection = new Connection("localhost", "innovate_absence", "TDz8e0lOmL", "innovate_absence");
-	$connection->query("DELETE FROM appclients WHERE userid = '" . $_POST["userid"] . "' AND token = '" . $_POST["token"] . "'");
-elseif (isset($_POST["userid"]) && isset($_POST["token"])):
-	$connection = new Connection("localhost", "innovate_absence", "TDz8e0lOmL", "innovate_absence");
-	$result = $connection->query("SELECT * FROM users, appclients WHERE users.userid = appclients.userid AND users.userid = " . $_POST["userid"]);
-	if ($result !== false && $result["token"] == $_POST["token"]):
-		unset($result["password"]);
+elseif (isset($_POST["userId"]) && isset($_POST["token"]) && isset ($_POST["action"]) && $_POST["action"] == "logout"):
+	$tokenObj->deleteSessionToken($_POST["userId"], "mobile", $_POST["token"]);
+elseif (isset($_POST["userId"]) && isset($_POST["token"])):
+	if ((new Token)->verifySessionToken($_POST["userId"], $_POST["token"], "mobile")):
+		$user = new User($_POST["userId"]);
+
+		$result = [
+			"userId" => $_POST["userId"],
+			"token" => $_POST["token"],
+			"firstname" => $user->getFirstname(),
+			"lastname" => $user->getLastname()
+		];
 		echo json_encode($result);
 	else:
 		header("HTTP/1.0 403 Forbidden");
@@ -76,6 +94,8 @@ elseif (isset($_POST["clientid"])):
 	else:
 		echo 0;
 	endif;
+else:
+	header("HTTP/1.0 404 Not Found");
 endif;
 
 ?>

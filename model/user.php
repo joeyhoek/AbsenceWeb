@@ -8,7 +8,7 @@ class User {
 	public function __construct($id = false) {
 		$this->connection = (new Connection(DBHOST, DBUSER, DBPASS, DBNAME));
 		$this->encryption = new Encryption;
-		$this->id = $id;
+		$this->id = $this->connection->escape($id);
 	}
 	
 	public function getEmail() {
@@ -82,7 +82,7 @@ class User {
 	public function getIdFromEmail($email) {
 		if (strpos($email, "@")) {
 			$email = explode("@", $email);
-			if ($email[1] == "student.windesheim.nl" && $email[0][0] == "s") {
+			if (($email[1] == "student.windesheim.nl" && $email[0][0] == "s") || $email[1] == "docent.windesheim.nl") {
 				return $email[0];
 			} else {
 				return false;
@@ -108,8 +108,8 @@ class User {
 		if ($newPassword === $confirmPassword) {
 			$password = (new Encryption)->encrypt((new Encryption)->hash($newPassword));
 			if ($token !== false) {
-				$this->connection->query("UPDATE users SET password = '" . $password . "' WHERE forgotToken = '" . $token . "'");
-				$this->connection->query("UPDATE users SET forgotToken = '0' WHERE forgotToken = '" . $token . "'");
+				$this->connection->query("UPDATE users SET password = '" . $password . "' WHERE forgotToken = '" . $this->connection->escape($token) . "'");
+				$this->connection->query("UPDATE users SET forgotToken = '0' WHERE forgotToken = '" .$this->connection->escape($token) . "'");
 			} else {
 				$this->connection->query("UPDATE users SET password = '" . $password . '" WHERE id = "' . $this->id . "'");
 			}

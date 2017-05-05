@@ -25,6 +25,10 @@ final class Connection {
 		return $connection;
 	}
 	
+	public function escape($value) {
+		return mysqli_real_escape_string($this->connect(), $value);
+	}
+	
 	public function query($query) {
 		$connection = $this->connect();
 		$stmt = utf8_encode($query);

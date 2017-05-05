@@ -6,6 +6,7 @@ use Team10\Absence\Model\Login as Login;
 use Team10\Absence\Model\Token as Token;
 use Team10\Absence\Model\User as User;
 
+session_start();
 require_once("controller/require.php");
 
 if (isset($_POST['email']) && isset($_POST["password"])) {
@@ -23,7 +24,22 @@ if (isset($_POST['email']) && isset($_POST["password"])) {
 		case "forgotPassword":
 			$page = "forgotPassword";
 			if (isset($_POST["email"])) {
-				(new Token)->sendToken($_POST['email']);
+				$username = $_POST["email"];
+				if (strpos($username, "@")):
+					$email = $username;
+				else:
+					if ($username[0] !== "s" && is_numeric($username)):
+						$email = "s" . $username . "@student.windesheim.nl";
+					elseif ($username[0] == "s"):
+						$email = $username . "@student.windesheim.nl";
+					else:
+						$id = $username . "@docent.windesheim.nl";
+					endif;
+				endif;
+				
+				if ((new Token)->sendToken($email)) {
+					header("Location: /");
+				}
 			}
 			break;
 		case "test":
@@ -50,8 +66,6 @@ if (isset($_POST['email']) && isset($_POST["password"])) {
 		default:
 			$page = "404";
 	}
-	
-	
 } else {
 	// If no url go to login page
 	$page = "login";
