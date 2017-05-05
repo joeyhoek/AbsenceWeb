@@ -13,7 +13,30 @@
 				<div id="qrcode">
 					<?php echo "<img src='$QRCodeLink'>";?>
 				</div>
+				<script>
+					function checkIfScanned(sessionid) {
+						var xhttp = new XMLHttpRequest();
+						var url = "<?php echo PROTOCOL . DOMAIN . ROOT; ?>mobileClient";
+						var params = "clientid=" + sessionid;
+						xhttp.open("POST", url, true);
 
+						xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+						xhttp.onreadystatechange = function() {
+							if(xhttp.readyState == 4 && xhttp.status == 200) {
+								if (xhttp.responseText !== "0") {
+									setTimeout(function(){ window.location.reload(); }, 1);
+								}
+								xhttp = null;
+								setTimeout(checkIfScanned(sessionid), 500);
+							}
+						};
+						xhttp.send(params);
+					}
+
+					window.onload = function () {
+						checkIfScanned("<?php echo session_id(); ?>");
+					};
+				</script>
 			</div>
 		
 			<div id="column-right">
