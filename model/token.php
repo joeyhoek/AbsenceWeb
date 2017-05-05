@@ -28,7 +28,13 @@ class Token {
 			$headers = "From: Absence <info@absence.com>\r\n";
 			$headers .= "MIME-Version: 1.0\r\n";
 			$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-			mail($email, $title, $message, $headers);
+			if (mail($email, $title, $message, $headers)) {
+				return 1;
+			} else {
+				return 0;
+			}
+		} else {
+			return 0;
 		}
 	}
 	
@@ -40,6 +46,24 @@ class Token {
 			return false;
 		}
 	}
+	
+	public function checkSessionToken($userId, $client) {
+		$result = (new Connection(DBHOST, DBUSER, DBPASS, DBNAME))->query("SELECT * FROM sessions WHERE userId = '" . $userId . "' AND client = '" . $client . "'");
+		if ($result !== false && $result !== NULL) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public function deleteSessionToken($userId, $client) {
+		$result = (new Connection(DBHOST, DBUSER, DBPASS, DBNAME))->query("DELETE FROM sessions WHERE userid = '" . $userid . "' AND client = '" . $client . "'");
+	}
+	
+	public function addSessionToken($userId, $token, $client, $sessionId = NULL) {
+		$result = (new Connection(DBHOST, DBUSER, DBPASS, DBNAME))->query("INSERT INTO sessions (userId, sessionId, token, client) VALUES (" . $userId . ", '" . $sessionId . "', '" . $token . "', '" . $client . "')");
+	}
+	
 }
 
 	
