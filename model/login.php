@@ -16,7 +16,7 @@ echo "<br> notes: " . (new Encryption)->encrypt("IAMGIRL");
 */
 
 class Login {
-	public function checkLogin($username, $password) {
+	public function checkLogin($username, $password, $login = true) {
 		$user = new User;
 		if (strpos($username, "@")) {
 			$id = $user->getIdFromEmail($username);
@@ -33,6 +33,9 @@ class Login {
 		
 		// Check if user exists and passwords match
 		if ($hashedPassword && (new Encryption)->match_hash($password, $hashedPassword)) {
+			if ($login == true) {
+				$this->login($id);
+			}
 			return true;
 		} else {
 			return false;
@@ -55,6 +58,19 @@ class Login {
 		session_start();
 		header("Location: /");
 	}
+	
+	private function login($id) {
+		if ((new Token)->checkSessionToken($id, "web") !== false) {
+			(new Token)->deleteSessionToken($id, "web");
+		}
+		$token = (new Token)->generateToken();
+		(new Token)->addSessionToken($id, $token, "web");
+		$_SESSION["userId"] = $id;
+		$_SESSION["token"] = $token;
+
+	}
+	
+	
 }
 
 ?>
