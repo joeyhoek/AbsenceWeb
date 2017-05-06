@@ -6,6 +6,8 @@ use Team10\Absence\Model\Login as Login;
 use Team10\Absence\Model\Token as Token;
 use Team10\Absence\Model\User as User;
 
+//session_start();
+//session_destroy();
 session_start();
 require_once("controller/require.php");
 
@@ -15,7 +17,32 @@ if (isset($_POST['email']) && isset($_POST["password"])) {
 	} else {
 		$page = "login";
 	}
-} else if (isset($_GET["url"])) {
+} elseif (!isset($_SESSION["userId"])) {
+	$result = (new Token)->checkSessionIdAndGive(session_id());
+
+	if ($result !== false):
+		$_SESSION["userId"] = $result["userId"];
+		$_SESSION["token"] = $result["token"];
+
+		(new Token)->deleteSessionId(session_id());
+	endif;
+} elseif (isset($_SESSION['userId']) && isset($_SESSION["token"])) {
+	if (!(new Token)->verifySessionToken($_SESSION['userId'], $_SESSION["token"], "web")) {
+		$page = "login";
+	}
+	
+	if (isset($_GET["url"]) && !isset($page)) {
+		$page = $_GET["url"];
+		switch ($page) {
+			default:
+				$page = "404";
+		}
+	} else {
+		$page = "myAccount";
+	}
+}
+	
+if (isset($_GET["url"]) && !isset($page)) {
 	$page = $_GET["url"];
 	switch ($page) {
 		case "EULA":
@@ -36,14 +63,11 @@ if (isset($_POST['email']) && isset($_POST["password"])) {
 						$id = $username . "@docent.windesheim.nl";
 					endif;
 				endif;
-				
+
 				if ((new Token)->sendToken($email)) {
 					header("Location: /");
 				}
 			}
-			break;
-		case "test":
-			$page = "test";
 			break;
 		case "resetPassword":
 			if (isset($_GET["token"]) && (new Token)->checkToken($_GET["token"])) {
@@ -66,20 +90,22 @@ if (isset($_POST['email']) && isset($_POST["password"])) {
 		default:
 			$page = "404";
 	}
-} else {
+} elseif (!isset($page)) {
 	// If no url go to login page
 	$page = "login";
 }
 
-if ($page == "login") {
-	require_once("controller/qrCode.php");
-}
-
 if ($page !== "desktopClient" && $page !== "mobileClient") {
-	header("Content-Type: text/html; charset=utf-8");
+	require_once("view/head.php");
+	if ($page == "login") {
+		require_once("controller/qrCode.php");
+	}		
 	require_once("view/" . $page . ".php");
+	require_once("view/footer.php");
 } else {
 	require_once("api/" . $page . ".php");
 }
+
+session_write_close();
 
 ?>

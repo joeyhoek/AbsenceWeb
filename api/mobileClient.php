@@ -52,20 +52,19 @@ elseif (isset($_POST["username"]) && isset($_POST["action"]) && $_POST["action"]
 		endif;
 	endif;
 
-	if ((new Token)->sendToken($email)):
+	if ($tokenObj->sendToken($email)):
 		echo 1;
 	else:
 		header("HTTP/1.0 403 Forbidden");
 	endif;
 elseif (isset($_POST["userId"]) && isset($_POST["token"]) && isset($_POST["clientId"])):
-	$connection = new Connection("localhost", "innovate_absence", "TDz8e0lOmL", "innovate_absence");
-	$userid = $connection->query("SELECT * FROM tokens WHERE userid = " . $_POST["userid"]);
-	$token = $connection->query("SELECT * FROM tokens WHERE token = '" . $_POST["token"] . "'");
-	if ($userid !== false && $token !== false):
-		if ($connection->query("SELECT * FROM tokens WHERE clientid = '" . $_POST["clientid"] . "'") !== false):
-			$connection->query("DELETE FROM tokens WHERE clientid = '" . $_POST["clientid"] . "'");
+	$userId = $_POST["userId"]; 
+	if ($tokenObj->verifySessionToken($userId, $_POST["token"], "mobile")):
+		if ($tokenObj->checkSessionToken($userId, "web") !== false):
+			$tokenObj->deleteSessionToken($userId, "web");
 		endif;
-		$connection->query("INSERT INTO tokens (userid, token, clientid) VALUES (" . $_POST["userid"] . ", '" . bin2hex(openssl_random_pseudo_bytes(20)) . "', '" . $_POST["clientid"] . "')");
+		
+		$tokenObj->addSessionToken($userId, $tokenObj->generateToken(), "web", $_POST["clientId"]);
 		echo 1;
 	else:
 		header("HTTP/1.0 403 Forbidden");
@@ -86,10 +85,8 @@ elseif (isset($_POST["userId"]) && isset($_POST["token"])):
 	else:
 		header("HTTP/1.0 403 Forbidden");
 	endif;
-elseif (isset($_POST["clientid"])):
-	$connection = new Connection("localhost", "innovate_absence", "TDz8e0lOmL", "innovate_absence");
-	$result = $connection->query("SELECT * FROM tokens WHERE clientid = '" . $_POST["clientid"] . "'");
-	if ($result !== NULL):
+elseif (isset($_POST["clientId"])):
+	if ((new Token)->checkSessionId($_POST["clientId"])):
 		echo 1;
 	else:
 		echo 0;

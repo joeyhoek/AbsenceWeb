@@ -1,11 +1,3 @@
-<head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="view/css/login.css?v=4" media="screen and (min-width:10px)">
-	<link rel="stylesheet" href="view/css/shake.css">
-</head>
-
-
-<body>
 	<div class="container">
 		<div class="container2">
 			<div id="column-left">
@@ -14,10 +6,10 @@
 					<?php echo "<img src='$QRCodeLink'>";?>
 				</div>
 				<script>
-					function checkIfScanned(sessionid) {
+					function checkIfScanned(sessionId) {
 						var xhttp = new XMLHttpRequest();
 						var url = "<?php echo PROTOCOL . DOMAIN . ROOT; ?>mobileClient";
-						var params = "clientId=" + sessionid;
+						var params = "clientId=" + sessionId;
 						xhttp.open("POST", url, true);
 
 						xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -26,16 +18,14 @@
 								if (xhttp.responseText !== "0") {
 									setTimeout(function(){ window.location.reload(); }, 1);
 								}
+								setTimeout(function(){ checkIfScanned(sessionId) ; }, 500);
 								xhttp = null;
-								setTimeout(checkIfScanned(sessionid), 500);
 							}
 						};
 						xhttp.send(params);
 					}
 
-					window.onload = function () {
-						checkIfScanned("<?php echo session_id(); ?>");
-					};
+					checkIfScanned("<?php echo session_id(); ?>");
 				</script>
 			</div>
 		
@@ -68,5 +58,3 @@
 			<span id="footer">Copyright 2017 © Windesheim Flevoland</span>
 		
 	</div>
-	<script src="view/js/border-left.js"></script>
-</body>

@@ -65,6 +65,15 @@ class Token {
 		}
 	}
 	
+	public function checkSessionIdAndGive($sessionId) {
+		$result = (new Connection(DBHOST, DBUSER, DBPASS, DBNAME))->query("SELECT * FROM sessions WHERE sessionId = '" . $sessionId . "'");
+		if ($result !== false && $result !== NULL) {
+			return $result;
+		} else {
+			return false;
+		}
+	}
+	
 	public function verifySessionToken($userId, $token, $client) {
 		$result = (new Connection(DBHOST, DBUSER, DBPASS, DBNAME))->query("SELECT token FROM sessions WHERE userId = '" . $userId . "' AND client = '" . $client . "'")["token"];
 		if ($result !== false && $result !== NULL && $result == $token) {
@@ -82,8 +91,16 @@ class Token {
 		}
 	}
 	
+	public function deleteSessionId($sessionId) {
+		(new Connection(DBHOST, DBUSER, DBPASS, DBNAME))->query("UPDATE sessions SET sessionId = NULL WHERE sessionId = '" . $sessionId . "'");
+	}
+	
 	public function addSessionToken($userId, $token, $client, $sessionId = NULL) {
-		(new Connection(DBHOST, DBUSER, DBPASS, DBNAME))->query("INSERT INTO sessions (userId, sessionId, token, client) VALUES ('" . $userId . "', '" . $sessionId . "', '" . $token . "', '" . $client . "')");
+		if ($sessionId == NULL) {
+			(new Connection(DBHOST, DBUSER, DBPASS, DBNAME))->query("INSERT INTO sessions (userId, sessionId, token, client) VALUES ('" . $userId . "', NULL, '" . $token . "', '" . $client . "')");
+		} else {
+			(new Connection(DBHOST, DBUSER, DBPASS, DBNAME))->query("INSERT INTO sessions (userId, sessionId, token, client) VALUES ('" . $userId . "', '" . $sessionId . "', '" . $token . "', '" . $client . "')");
+		}
 	}
 	
 }

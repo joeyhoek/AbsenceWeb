@@ -1,3 +1,5 @@
+window.onload = function () {
+
 function shake() {
 	var loginUsername = document.getElementsByClassName('username')[0];
 	var loginPassword = document.getElementsByClassName('password')[0];
@@ -25,20 +27,20 @@ function shake() {
 
 // Shake Animation Fixes
 function shakeFix(delay) {
-	var loginUsername = document.getElementsByClassName('username')[0];
-	var loginPassword = document.getElementsByClassName('password')[0];
+	//var loginUsername = document.getElementsByClassName('username')[0];
+	//var loginPassword = document.getElementsByClassName('password')[0];
 	var userIcon = document.getElementsByClassName('emailLogo')[0];
 	var lockIcon = document.getElementsByClassName('passwordLogo')[0];
 
 	setTimeout(function(){
-		loginUsername.classList.add("loaded");
-		loginPassword.classList.add("loaded");
+		//loginUsername.classList.add("loaded");
+		//loginPassword.classList.add("loaded");
 		userIcon.classList.add("loaded");
 		lockIcon.classList.add("loaded");
 	}, delay);
 }
 
-window.onload = function () {
+
 	setTimeout(function(){
 		document.getElementsByClassName('input')[0].classList.add("loaded");
 		document.getElementsByClassName('input')[1].classList.add("loaded");
