@@ -60,6 +60,9 @@ if (isset($_POST['email']) && isset($_POST["password"])) {
 		} elseif ($userRole == 4) {
 			// TEAMLEADER
 			switch ($page) {
+				case "uploadCSV";
+					$page = "uploadCSV";
+					break;
 				default:
 					$page = "404";
 			}
@@ -103,6 +106,7 @@ if (isset($_GET["url"]) && !isset($page)) {
 				echo $_POST["newPassword"] . $_POST["confirmPassword"];
 				if (isset($_POST["newPassword"]) && isset($_POST["confirmPassword"])) {
 					(new User)->changePassword($_POST["newPassword"], $_POST["confirmPassword"], $_GET["token"]);
+					(new User)->deleteForgotToken($_GET["token"]);
 					header("Location: /");
 				}
 			} else {

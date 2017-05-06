@@ -7,7 +7,7 @@ use Team10\Absence\Model\User as User;
 $tokenObj = new Token;
 
 if (isset($_POST["username"]) && isset($_POST["password"])):
-	if ((new Login)->checkLogin($_POST["username"], $_POST["password"])):
+	if ((new Login)->checkLogin($_POST["username"], $_POST["password"], false)):
 		$username = $_POST["username"];
 		if (strpos($username, "@")):
 			$id = (new User)->getIdFromEmail($username);
