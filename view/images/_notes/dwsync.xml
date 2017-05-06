@@ -5,8 +5,16 @@
 <file name="login.png" server="ftp.team16j.p004.nl//domains/team16j.p004.nl/public_html/" local="131370693490534209" remote="131372514600000000" Dst="2" />
 <file name="logo.png" server="ftp.team16j.p004.nl//domains/team16j.p004.nl/public_html/" local="131370693490544232" remote="131372514600000000" Dst="2" />
 <file name="slotje.png" server="ftp.team16j.p004.nl//domains/team16j.p004.nl/public_html/" local="131370693490554267" remote="131372514600000000" Dst="2" />
-<file name="inputbox.png" server="ftp.innovatewebdesign.nl" local="131372368510842954" remote="131372521200000000" Dst="2" />
-<file name="login.png" server="ftp.innovatewebdesign.nl" local="131370693490534209" remote="131372521200000000" Dst="2" />
-<file name="logo.png" server="ftp.innovatewebdesign.nl" local="131370693490544232" remote="131372521200000000" Dst="2" />
-<file name="slotje.png" server="ftp.innovatewebdesign.nl" local="131370693490554267" remote="131372521200000000" Dst="2" />
+<file name="inputbox.png" server="ftp.innovatewebdesign.nl" local="131370159790000000" remote="131385783000000000" Dst="2" />
+<file name="login.png" server="ftp.innovatewebdesign.nl" local="131369336120000000" remote="131385783000000000" Dst="2" />
+<file name="logo.png" server="ftp.innovatewebdesign.nl" local="131369332480000000" remote="131385783000000000" Dst="2" />
+<file name="slotje.png" server="ftp.innovatewebdesign.nl" local="131369336550000000" remote="131385783000000000" Dst="2" />
+<file name="questionMark.png" server="ftp.innovatewebdesign.nl" local="131385764999585487" remote="131385783000000000" Dst="2" />
+<file name="profile.png" server="ftp.innovatewebdesign.nl" local="131385766848678600" remote="131385783000000000" Dst="2" />
+<file name="achtergrondGrijs.png" server="ftp.innovatewebdesign.nl" local="131369333430000000" remote="131385783000000000" Dst="2" />
+<file name="lijn.png" server="ftp.innovatewebdesign.nl" local="131375207120000000" remote="131385783000000000" Dst="2" />
+<file name="dashboard.png" server="ftp.innovatewebdesign.nl" local="131385765898924375" remote="131385783000000000" Dst="2" />
+<file name="manage.png" server="ftp.innovatewebdesign.nl" local="131385764675783172" remote="131385783000000000" Dst="2" />
+<file name="logout.png" server="ftp.innovatewebdesign.nl" local="131385766689309174" remote="131385783000000000" Dst="2" />
+<file name="overview.png" server="ftp.innovatewebdesign.nl" local="131385765135765436" remote="131385783000000000" Dst="2" />
 </dwsync>

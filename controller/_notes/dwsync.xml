@@ -4,6 +4,10 @@
 <file name="require.php" server="ftp.team16j.p004.nl//domains/team16j.p004.nl/public_html/" local="131372507769302768" remote="131372514600000000" Dst="2" />
 <file name="qrCode.php" server="ftp.team16j.p004.nl//domains/team16j.p004.nl/public_html/" local="131364923783270980" remote="131364923400000000" Dst="2" />
 <file name="qrCode.php" server="ftp.innovatewebdesign.nl" local="131384956327163954" remote="131384956200000000" Dst="2" />
+<<<<<<< HEAD
 <file name="requestHandler.php" server="ftp.innovatewebdesign.nl" local="131385797528809019" remote="131385797400000000" Dst="2" />
+=======
+<file name="requestHandler.php" server="ftp.innovatewebdesign.nl" local="131385793347163248" remote="131385793200000000" Dst="2" />
+>>>>>>> origin/master
 <file name="require.php" server="ftp.innovatewebdesign.nl" local="131383928235132812" remote="131383927800000000" Dst="2" />
 </dwsync>
