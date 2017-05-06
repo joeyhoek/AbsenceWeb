@@ -34,17 +34,7 @@ class User {
 		$lastname = $this->connection->query("SELECT lastname FROM users WHERE id = '" . $this->id . "'")["lastname"];
 		return $this->encryption->decrypt($lastname);
 	}
-	
-	public function getSex() {
-		$sex = $this->connection->query("SELECT sex FROM users WHERE id = '" . $this->id . "'")["sex"];
-		return $this->encryption->decrypt($sex);
-	}
-	
-	public function getDayOfBirth() {
-		$dayOfBirth = $this->connection->query("SELECT dayOfBirth FROM users WHERE id = '" . $this->id . "'")["dayOfBirth"];
-		return $this->encryption->decrypt($dayOfBirth);
-	}
-	
+
 	public function getNotes() {
 		$notes = $this->connection->query("SELECT notes FROM users WHERE id = '" . $this->id . "'")["notes"];
 		return $this->encryption->decrypt($notes);
@@ -102,6 +92,10 @@ class User {
 	
 	public function storeForgotToken($token) {
 		return $this->connection->query("UPDATE users SET forgotToken='" . $token . "' WHERE id = '" . $this->id . "'");
+	}
+	
+	public function deleteForgotToken($token) {
+		return $this->connection->query("UPDATE users SET forgotToken='0' WHERE forgotToken = '" . $token . "'");
 	}
 	
 	public function changePassword($newPassword, $confirmPassword, $token = false) {

@@ -1,2 +1,5 @@
 [_]notes/
 .xml
+*.xml
+model/_notes/dwsync.xml
+*.xml
