@@ -279,7 +279,7 @@ button:active, button:focus {
 	outline: 0;
 	width: 191px;
 	
-animation: recInInput 0.4s ease-in-out 0.6s;
+animation: recInInput 0.4s ease-in-out 0.65s;
  opacity: 0;
  border-left: 0.5px solid #b8b7be;
  border-right: 0.5px solid #b8b7be;
