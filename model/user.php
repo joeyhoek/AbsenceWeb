@@ -51,7 +51,7 @@ class User {
 	}
 	
 	public function getRole() {
-		$role = $this->connection->query("SELECT roleId FROM users WHERE id = '" . $this->id . "'")["role"];
+		$role = $this->connection->query("SELECT roleId FROM users WHERE id = '" . $this->id . "'")["roleId"];
 		return $role;
 	}
 	

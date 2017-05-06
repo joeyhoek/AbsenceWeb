@@ -11,6 +11,10 @@ use Team10\Absence\Model\User as User;
 session_start();
 require_once("controller/require.php");
 
+if (isset($_GET["action"]) && $_GET["action"] ==  "logout") {
+	(new Login)->logout();
+}
+
 if (isset($_POST['email']) && isset($_POST["password"])) {
 	if ((new Login)->checkLogin($_POST["email"], $_POST["password"])) {
 		$page = "myAccount";
@@ -33,9 +37,32 @@ if (isset($_POST['email']) && isset($_POST["password"])) {
 	
 	if (isset($_GET["url"]) && !isset($page)) {
 		$page = $_GET["url"];
-		switch ($page) {
-			default:
-				$page = "404";
+		
+		$userRole = (new User($_SESSION["userId"]))->getRole();
+		if ($userRole == 1) {
+			// STUDENT
+			switch ($page) {
+				default:
+					$page = "404";
+			}
+		} elseif ($userRole == 2) {
+			// TEACHER
+			switch ($page) {
+				default:
+					$page = "404";
+			}
+		} elseif ($userRole == 3) {
+			// STUDENT COUNSELOR
+			switch ($page) {
+				default:
+					$page = "404";
+			}
+		} elseif ($userRole == 4) {
+			// TEAMLEADER
+			switch ($page) {
+				default:
+					$page = "404";
+			}
 		}
 	} else {
 		$page = "myAccount";
@@ -44,6 +71,7 @@ if (isset($_POST['email']) && isset($_POST["password"])) {
 	
 if (isset($_GET["url"]) && !isset($page)) {
 	$page = $_GET["url"];
+	// Without logging in
 	switch ($page) {
 		case "EULA":
 			echo "eula";

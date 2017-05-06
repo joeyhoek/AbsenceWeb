@@ -3,6 +3,7 @@
 namespace Team10\Absence\Model;
 use Team10\Absence\Model\Encryption as Encryption;
 use Team10\Absence\Model\User as User;
+use Team10\Absence\Model\Token as Token;
 
 /*
 echo "password: " . (new Encryption)->encrypt((new Encryption)->hash("ken"));
@@ -13,7 +14,6 @@ echo "<br> sex: " . (new Encryption)->encrypt("2");
 echo "<br> dayOfBirth: " . (new Encryption)->encrypt("1992-06-22");
 echo "<br> notes: " . (new Encryption)->encrypt("IAMGIRL");
 */
-
 
 class Login {
 	public function checkLogin($username, $password) {
@@ -37,6 +37,23 @@ class Login {
 		} else {
 			return false;
 		}
+	}
+	
+	public function logout() {
+		if (isset($_SESSION["userId"])) {
+			(new Token)->deleteSessionToken($_SESSION["userId"], "web");
+			unset($_SESSION["userId"]);
+			session_unset("userId");
+		}
+		
+		if (isset($_SESSION["token"])) {
+			unset($_SESSION["userId"]);
+			session_unset("userId");
+		}
+		
+		session_destroy();
+		session_start();
+		header("Location: /");
 	}
 }
 

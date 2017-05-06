@@ -7,6 +7,6 @@
 
 <body>
 
-<h1>INGELOGD ENZO</h1>
+	<h1>INGELOGD ENZO <a href="/?action=logout">Logout</a></h1>
 </body>
 </html>
