@@ -18,12 +18,7 @@
 <file name="qrCode.php" server="ftp.innovatewebdesign.nl" local="131370693490484080" remote="131372522400000000" Dst="2" />
 <file name="sha3.php" server="ftp.innovatewebdesign.nl" local="131383219052090961" remote="131383959000000000" Dst="2" />
 <file name="login.php" server="ftp.team16j.p004.nl//domains/team16j.p004.nl/public_html/" local="131382755238023518" remote="131382754800000000" Dst="2" />
-<<<<<<< HEAD
-<file name="login.php" server="ftp.innovatewebdesign.nl" local="131385621817268707" remote="131385621600000000" Dst="2" />
+<file name="login.php" server="ftp.innovatewebdesign.nl" local="131386574288924203" remote="131386573800000000" Dst="2" />
 <file name="user.php" server="ftp.innovatewebdesign.nl" local="131385791995297816" remote="131385791400000000" Dst="2" />
-=======
-<file name="login.php" server="ftp.innovatewebdesign.nl" local="131385734724817580" remote="131385734400000000" Dst="2" />
-<file name="user.php" server="ftp.innovatewebdesign.nl" local="131385626128417627" remote="131385625800000000" Dst="2" />
->>>>>>> origin/master
 <file name="token.php" server="ftp.innovatewebdesign.nl" local="131385489829272104" remote="131385489600000000" Dst="2" />
 </dwsync>

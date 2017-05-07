@@ -38,7 +38,8 @@ if (isset($_POST['email']) && isset($_POST["password"])) {
 	if (isset($_GET["url"]) && !isset($page)) {
 		$page = $_GET["url"];
 		
-		$userRole = (new User($_SESSION["userId"]))->getRole();
+		$user = new User($_SESSION["userId"]);
+		$userRole = $user->getRole();
 		if ($userRole == 1) {
 			// STUDENT
 			switch ($page) {

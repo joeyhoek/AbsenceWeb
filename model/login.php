@@ -6,12 +6,10 @@ use Team10\Absence\Model\User as User;
 use Team10\Absence\Model\Token as Token;
 
 /*
-echo "password: " . (new Encryption)->encrypt((new Encryption)->hash("ken"));
-echo "<br> firstname: " . (new Encryption)->encrypt("Racha");
-echo "<br> lastname: " . (new Encryption)->encrypt("Stapper");
-echo "<br> email: " . (new Encryption)->encrypt("s1108945@student.windesheim.nl");
-echo "<br> sex: " . (new Encryption)->encrypt("2");
-echo "<br> dayOfBirth: " . (new Encryption)->encrypt("1992-06-22");
+echo "password: " . (new Encryption)->encrypt((new Encryption)->hash("wachtwoord"));
+echo "<br> firstname: " . (new Encryption)->encrypt("Edwin");
+echo "<br> lastname: " . (new Encryption)->encrypt("Hennipman");
+echo "<br> email: " . (new Encryption)->encrypt("HNE12@docent.windesheim.nl");
 echo "<br> notes: " . (new Encryption)->encrypt("IAMGIRL");
 */
 
