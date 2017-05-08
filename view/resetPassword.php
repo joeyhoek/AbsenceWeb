@@ -2,7 +2,7 @@
 
 	<div class="container-middle">
 
-		<h4>Reset Password</h4>
+		<h4>Reset Password</h4><br>
 		<form method="POST">
 
 			<input class="input email reset" type="password" name="newPassword" required autocorrect="off" autocapitalize="off" spellcheck="false" autocomplete="new-password" placeholder="New Password">
