@@ -2,16 +2,7 @@
 	namespace Team10\Absence\View;
 	use Team10\Absence\Model\User as User;
 ?>
-<style>
-	.fa {
-		color: white;
-		font-family: FontAwesome !important;
-		font-size: 92px !important;
-	}
-	
-	
-	
-</style>
+
 <header class="cd-header">
 	<a class="cd-primary-nav-trigger" href="#0">
 		<span class="cd-menu-icon"></span>
@@ -32,3 +23,10 @@
 	</ul>
 
 </nav>
+
+<div class="header">
+
+<div id="whiteSquare"></div>
+<div id="whiteTriangle"></div>
+	<div id="logo"><img class="logo logo2" src="view/images/logo.png"></div>
+</div>	
