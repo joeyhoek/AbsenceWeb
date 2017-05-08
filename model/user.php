@@ -104,8 +104,12 @@ class User {
 			if ($token !== false) {
 				$this->connection->query("UPDATE users SET password = '" . $password . "' WHERE forgotToken = '" . $this->connection->escape($token) . "'");
 				$this->connection->query("UPDATE users SET forgotToken = '0' WHERE forgotToken = '" .$this->connection->escape($token) . "'");
+				$this->deleteForgotToken($_GET["token"]);
+				header("Location: /");
 			} else {
 				$this->connection->query("UPDATE users SET password = '" . $password . '" WHERE id = "' . $this->id . "'");
+				$this->deleteForgotToken($_GET["token"]);
+				header("Location: /");
 			}
 		} else {
 			echo "Passwords do not match";
