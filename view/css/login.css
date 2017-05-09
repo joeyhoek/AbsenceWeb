@@ -956,6 +956,7 @@ Hieronder staat de code voor de 404 Pagina
 	position: fixed;
 	left: 50%;
 	top: 50%;
+	width: 70%;
 	transform: translate(-50%, -50%);
 	font-family: "Arial Black", Gadget, sans-serif;
 }
@@ -974,6 +975,8 @@ Hieronder staat de code voor de 404 Pagina
 
 .homepage a {
 	font-size: 17px;
+	max-width: 350px;
+	margin: 15px auto 0;
 	color: #ffffff;
 	text-align: center;
 }
@@ -998,4 +1001,28 @@ Hieronder staat de code voor de 404 Pagina
 
 .button2:hover {
 	background-color: #01577A;
+}
+
+@media only screen and (max-width: 700px){
+	.notFound .zero{
+		font-size: 90px;
+	}
+	.notFound .four{
+		font-size: 100px;
+	}
+	.homepage a{
+		font-size: 12px;
+		max-width: 180px;
+		margin: 15px auto 0;
+	}
+	.notFound h1{
+		font-size: 25px;
+		margin-top: -10px;
+	}
+}
+
+@media only screen and (max-width: 382px){
+	.notFound{
+		width: 90%;
+	}
 }
