@@ -1,4 +1,10 @@
 <div class="container">
+
+<div class="alert">
+  <span class="closebtn">&times;</span>  
+  <strong>Danger!</strong> Indicates a dangerous or potentially negative action.
+</div>
+
 	<div class="container2">
 		<div id="column-left">
 

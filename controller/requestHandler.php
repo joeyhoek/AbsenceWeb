@@ -17,9 +17,11 @@ if (isset($_GET["action"]) && $_GET["action"] ==  "logout") {
 
 if (isset($_POST['email']) && isset($_POST["password"])) {
 	if ((new Login)->checkLogin($_POST["email"], $_POST["password"])) {
-		$page = "myAccount";
+		$page = "dashboard";
+		$pageTitle = "Dashboard";
 	} else {
 		$page = "login";
+		$pageTitle = "Login";
 	}
 } elseif (!isset($_SESSION["userId"])) {
 	$result = (new Token)->checkSessionIdAndGive(session_id());
@@ -33,6 +35,7 @@ if (isset($_POST['email']) && isset($_POST["password"])) {
 } elseif (isset($_SESSION['userId']) && isset($_SESSION["token"])) {
 	if (!(new Token)->verifySessionToken($_SESSION['userId'], $_SESSION["token"], "web")) {
 		$page = "login";
+		$pageTitle = "Login";
 	}
 	
 	if (isset($_GET["url"]) && !isset($page)) {
@@ -45,18 +48,21 @@ if (isset($_POST['email']) && isset($_POST["password"])) {
 			switch ($page) {
 				default:
 					$page = "404";
+					$pageTitle = "404 Page not found";
 			}
 		} elseif ($userRole == 2) {
 			// TEACHER
 			switch ($page) {
 				default:
 					$page = "404";
+					$pageTitle = "404 Page not found";
 			}
 		} elseif ($userRole == 3) {
 			// STUDENT COUNSELOR
 			switch ($page) {
 				default:
 					$page = "404";
+					$pageTitle = "404 Page not found";
 			}
 		} elseif ($userRole == 4) {
 			// TEAMLEADER
@@ -66,10 +72,12 @@ if (isset($_POST['email']) && isset($_POST["password"])) {
 					break;
 				default:
 					$page = "404";
+					$pageTitle = "404 Page not found";
 			}
 		}
 	} else {
-		$page = "myAccount";
+		$page = "dashboard";
+		$pageTitle = "Dashboard";
 	}
 }
 	
@@ -109,6 +117,7 @@ if (isset($_GET["url"]) && !isset($page)) {
 				}
 			} else {
 				$page = "404";
+				$pageTitle = "404 Page not found";
 			}
 			break;
 		case "desktopClient":
@@ -119,10 +128,12 @@ if (isset($_GET["url"]) && !isset($page)) {
 			break;
 		default:
 			$page = "404";
+			$pageTitle = "404 Page not found";
 	}
 } elseif (!isset($page)) {
 	// If no url go to login page
 	$page = "login";
+	$pageTitle = "Login";
 }
 
 if ($page !== "desktopClient" && $page !== "mobileClient") {
