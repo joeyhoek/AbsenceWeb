@@ -10,3 +10,7 @@
 			setTimeout(function(){ div.style.display = "none"; }, 600);
 		}
 	}
+
+var login = document.querySelector(".button").addEventListener("click", function() {
+	document.querySelector(".alert").style.opacity = "1";
+});
