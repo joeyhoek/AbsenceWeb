@@ -164,7 +164,7 @@ body {
 	float: right;
 	margin-right: 48px;
 	max-width: 260px;
-	min-width: 230px; 
+	min-width: 260px; 
 	animation: logInQrIn 0.5s ease-in-out 0.45s;
  	-webkit-animation-fill-mode: forwards;
 	
@@ -921,11 +921,12 @@ figcaption {
 
 #whiteSquare {
 	width: 100%;
-	height: calc(90% - 80px);
+	height: calc(100% - 140px);
 	background-color: white;
 	padding: 0;
 	margin: 80px 0 0;
 	position: absolute;
+	z-index: -1;
 }
 
 #whiteTriangle {
@@ -1038,14 +1039,47 @@ Hieronder staat de code voor de 404 Pagina
     color: black;
 }
 
+.container3 {
+	width: 80% !important;
+}
+#column-left2 {
+	text-align: center;
+	width: 50%;
+	float: left;
+	display: block;
+	position: relative;
+	right: 10px;
+}
 .importCourse {
 	font-size: 20px;
 	color: #464648;
-	margin-bottom: 20px;
+	position: relative;
+	display: block;
+	top: -100px;
 }
 
 .course {
-	font-size: 30px;
+	font-size: 36px;
 	color: #464648;
-	margin-top: 20px;	
+	position: relative;
+	display: block;	
+	top: -100px;
+}
+
+.start {
+	width: 30px;
+	height: auto;
+	position: relative;
+	top: -40px;
+}
+
+.startCourse {
+	font-size: 20px;
+	color: #464648;
+	position: relative;
+	display: block;
+}
+
+#helper2 {
+	height: 400px !important;
 }
