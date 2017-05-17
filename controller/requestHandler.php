@@ -51,8 +51,14 @@ if (isset($_POST['email']) && isset($_POST["password"])) {
 					$pageTitle = "404 Page not found";
 			}
 		} elseif ($userRole == 2) {
+			echo $page;
 			// TEACHER
 			switch ($page) {
+				case "newCourse":
+					$page = "newCourse";
+					$pageTitle = "Start a new Course";
+					require_once("view/dashboard.php");
+					break;
 				default:
 					$page = "404";
 					$pageTitle = "404 Page not found";
@@ -67,8 +73,9 @@ if (isset($_POST['email']) && isset($_POST["password"])) {
 		} elseif ($userRole == 4) {
 			// TEAMLEADER
 			switch ($page) {
-				case "uploadCSV";
+				case "uploadcsv";
 					$page = "uploadCSV";
+					$pageTitle = "Upload CSV file";
 					break;
 				default:
 					$page = "404";

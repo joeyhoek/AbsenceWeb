@@ -1037,3 +1037,15 @@ Hieronder staat de code voor de 404 Pagina
 .closebtn:hover {
     color: black;
 }
+
+.importCourse {
+	font-size: 20px;
+	color: #464648;
+	margin-bottom: 20px;
+}
+
+.course {
+	font-size: 30px;
+	color: #464648;
+	margin-top: 20px;	
+}
