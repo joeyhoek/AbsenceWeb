@@ -29,14 +29,19 @@ final class Connection {
 		return mysqli_real_escape_string($this->connect(), $value);
 	}
 	
-	public function query($query) {
+	public function query($query, $type = false) {
 		$connection = $this->connect();
 		$stmt = utf8_encode($query);
 		$result = mysqli_query($connection, $stmt);
-		$connection = null;
-		if ($result !== false && $result !== true) {
+		if ($result !== false && $result !== true && $type == false) {
+			$connection = null;
 			return mysqli_fetch_assoc($result);
+		} elseif ($type == "insert") {
+			$id = mysqli_insert_id($connection);
+			$connection = null;
+			return $id;
 		} else {
+			$connection = null;
 			return false;
 		}
 	}

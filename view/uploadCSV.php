@@ -37,10 +37,13 @@
 			fclose($handle);
 			for ($i = 0; $i < count($aData); $i++) {
 				$aData[$i]["Studentnummer"] = "s" . $aData[$i]["Stud.nr."];
+				unset($aData[$i]["Stud.nr."]);
 				if ($aData[$i]["Tussenvoegsel"] !== "-") {
 					$aData[$i]["Achternaam"] = $aData[$i]["Tussenvoegsel"] . " " . $aData[$i]["Achternaam"];
 				}
 				unset($aData[$i]["Tussenvoegsel"]);
+				$aData[$i]["Groepsnaam"] = $aData[$i][key($aData[$i])];
+			    unset($aData[$i][key($aData[$i])]);
 			}
 			return $aData;
 		}
@@ -50,14 +53,19 @@
 		$connection = new Connection(DBHOST, DBUSER, DBPASS, DBNAME);
 		$encryption = new Encryption;
 		
+		$count = 0;
+		
 		foreach ($students as $student) {
-			$class = htmlspecialchars($student["Klas"]);
+			$class = htmlspecialchars($student["Groepsnaam"]);
+			$result = $connection->query("SELECT id FROM classes WHERE code = '" . $class . "'");
 			
-			/*if (!$connection->query("SELECT firstname FROM users WHERE id = '" . $username . "'")) {
-				$connection->query("INSERT INTO users VALUES ('" . $username . "', '0', '" . $firstname . "', '" . $lastname . "', '" . $email . "', '1', '1', '1', '1', '0', '0')");
+			if (!$result) {
+				$id = $connection->query("INSERT INTO classes (code) VALUES ('" . $class . "')", "insert");
+				$students[$count]["Klas"] = $id;
 			} else {
-				//$connection->query("INSERT INTO users FROM users WHERE id = '" . $username . "'");
-			}*/
+				$students[$count]["Klas"] = $result["id"];
+			}
+			$count++;
 		}
 		
 		foreach ($students as $student) {
@@ -67,7 +75,7 @@
 			$email = $encryption->encrypt($student["E-mailadres"]);
 			
 			if (!$connection->query("SELECT firstname FROM users WHERE id = '" . $username . "'")) {
-				$connection->query("INSERT INTO users VALUES ('" . $username . "', '0', '" . $firstname . "', '" . $lastname . "', '" . $email . "', '1', '1', '1', '1', '0', '0')");
+				$connection->query("INSERT INTO users VALUES ('" . $username . "', '0', '" . $firstname . "', '" . $lastname . "', '" . $email . "', '1', '1', '" . $student["Klas"] . "', '1', '0', '0')");
 			} else {
 				//$connection->query("INSERT INTO users FROM users WHERE id = '" . $username . "'");
 			}
