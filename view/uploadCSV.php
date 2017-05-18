@@ -47,9 +47,20 @@
 	}
 
 	function uploadStudents($students) {
+		$connection = new Connection(DBHOST, DBUSER, DBPASS, DBNAME);
+		$encryption = new Encryption;
+		
 		foreach ($students as $student) {
-			$connection = new Connection(DBHOST, DBUSER, DBPASS, DBNAME);
-			$encryption = new Encryption;
+			$class = htmlspecialchars($student["Klas"]);
+			
+			/*if (!$connection->query("SELECT firstname FROM users WHERE id = '" . $username . "'")) {
+				$connection->query("INSERT INTO users VALUES ('" . $username . "', '0', '" . $firstname . "', '" . $lastname . "', '" . $email . "', '1', '1', '1', '1', '0', '0')");
+			} else {
+				//$connection->query("INSERT INTO users FROM users WHERE id = '" . $username . "'");
+			}*/
+		}
+		
+		foreach ($students as $student) {
 			$username = htmlspecialchars($student["Studentnummer"]);
 			$firstname = $encryption->encrypt($student["Roepnaam"]);
 			$lastname = $encryption->encrypt($student["Achternaam"]);
