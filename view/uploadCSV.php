@@ -65,9 +65,20 @@
 			} else {
 				$students[$count]["Klas"] = $result["id"];
 			}
+			
+			$comakership = htmlspecialchars($student["Comakership"]);
+			$result = $connection->query("SELECT id FROM comakerships WHERE code = '" . $comakership . "'");
+			
+			if (!$result) {
+				$id = $connection->query("INSERT INTO comakerships (code) VALUES ('" . $comakership . "')", "insert");
+				$students[$count]["Comakerships"] = $id;
+			} else {
+				$students[$count]["Comakerships"] = $result["id"];
+			}
+			
 			$count++;
 		}
-		
+
 		foreach ($students as $student) {
 			$username = htmlspecialchars($student["Studentnummer"]);
 			$firstname = $encryption->encrypt($student["Roepnaam"]);
@@ -75,9 +86,9 @@
 			$email = $encryption->encrypt($student["E-mailadres"]);
 			
 			if (!$connection->query("SELECT firstname FROM users WHERE id = '" . $username . "'")) {
-				$connection->query("INSERT INTO users VALUES ('" . $username . "', '0', '" . $firstname . "', '" . $lastname . "', '" . $email . "', '1', '1', '" . $student["Klas"] . "', '1', '0', '0')");
+				$connection->query("INSERT INTO users VALUES ('" . $username . "', '0', '" . $firstname . "', '" . $lastname . "', '" . $email . "', '1', '1', '" . $student["Klas"] . "', '" . $student["Comakerships"] . "', '0', '0')");
 			} else {
-				//$connection->query("INSERT INTO users FROM users WHERE id = '" . $username . "'");
+				$connection->query("UPDATE users SET firstname = '" . $firstname . "', lastname = '" . $lastname . "', email = '" . $email . "', classId = '" . $student["Klas"] . "', comakershipId = '" . $student["Comakerships"] . "' WHERE id = '" . $username . "'");
 			}
 		}
 		
