@@ -38,7 +38,7 @@
 			for ($i = 0; $i < count($aData); $i++) {
 				$aData[$i]["Studentnummer"] = "s" . $aData[$i]["Stud.nr."];
 				unset($aData[$i]["Stud.nr."]);
-				if ($aData[$i]["Tussenvoegsel"] !== "-") {
+				if ($aData[$i]["Tussenvoegsel"] !== "") {
 					$aData[$i]["Achternaam"] = $aData[$i]["Tussenvoegsel"] . " " . $aData[$i]["Achternaam"];
 				}
 				unset($aData[$i]["Tussenvoegsel"]);

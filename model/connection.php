@@ -35,7 +35,17 @@ final class Connection {
 		$result = mysqli_query($connection, $stmt);
 		if ($result !== false && $result !== true && $type == false) {
 			$connection = null;
-			return mysqli_fetch_assoc($result);
+			$count = 0;
+			while ($row = mysqli_fetch_assoc($result)) {
+				$results[$count] = $row;
+				$count++;
+			}
+			
+			if ($count == 1) { 
+				return $results[0];
+			} else {
+				return $results;
+			}
 		} elseif ($type == "insert") {
 			$id = mysqli_insert_id($connection);
 			$connection = null;

@@ -39,6 +39,7 @@ if (isset($_POST['email']) && isset($_POST["password"])) {
 	}
 	
 	if (isset($_GET["url"]) && !isset($page)) {
+		$adminHeader = true;
 		$page = $_GET["url"];
 		
 		$user = new User($_SESSION["userId"]);
@@ -51,13 +52,11 @@ if (isset($_POST['email']) && isset($_POST["password"])) {
 					$pageTitle = "404 Page not found";
 			}
 		} elseif ($userRole == 2) {
-			echo $page;
 			// TEACHER
 			switch ($page) {
 				case "newCourse":
 					$page = "newCourse";
 					$pageTitle = "Start a new Course";
-					require_once("view/dashboard.php");
 					break;
 				default:
 					$page = "404";
@@ -73,7 +72,7 @@ if (isset($_POST['email']) && isset($_POST["password"])) {
 		} elseif ($userRole == 4) {
 			// TEAMLEADER
 			switch ($page) {
-				case "uploadcsv";
+				case "uploadCSV";
 					$page = "uploadCSV";
 					$pageTitle = "Upload CSV file";
 					break;
@@ -133,6 +132,9 @@ if (isset($_GET["url"]) && !isset($page)) {
 		case "mobileClient":
 			$page = "mobileClient";
 			break;
+		case "webClient":
+			$page = "webClient";
+			break;
 		default:
 			$page = "404";
 			$pageTitle = "404 Page not found";
@@ -143,8 +145,12 @@ if (isset($_GET["url"]) && !isset($page)) {
 	$pageTitle = "Login";
 }
 
-if ($page !== "desktopClient" && $page !== "mobileClient") {
+if ($page !== "desktopClient" && $page !== "mobileClient" && $page !== "webClient") {
 	require_once("view/head.php");
+	if ($adminHeader === true && $page !== "404") {
+		require_once("view/dashboard.php");
+	}
+	
 	if ($page == "login") {
 		require_once("controller/qrCode.php");
 	}		

@@ -10,5 +10,6 @@ require_once("model/encryption.php");
 require_once("model/token.php");
 require_once("model/user.php");
 require_once("model/login.php");
+require_once("model/search.php");
 
 ?>
