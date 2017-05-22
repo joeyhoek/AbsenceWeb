@@ -114,8 +114,6 @@
   
 <div class="container">
 
-
-	<div class="container2 container3">
 		<div id="column-left2">
 			<form  method="post" enctype="multipart/form-data">
 				<div class="image-upload">
@@ -139,7 +137,9 @@
 					</div>
 
 					<div id="users" class="tabcontent">
-						<h3>Users</h3>
+						<div class="searchbar">
+							<i class="fa fa-search" aria-hidden="true"></i>
+						</div>
 						<p>London is the capital city of England.</p>
 						 <i class="fa fa-pencil" aria-hidden="true"></i>
    						 <i class="fa fa-trash-o" aria-hidden="true"></i>
@@ -154,14 +154,7 @@
 						<h3>Locations</h3>
 						<p>Tokyo is the capital of Japan.</p>
 					</div>
-			  
-			  
-			  
-			  
-				 
 
-
-		</div>	
 			<div id="helper2">
 				<img class="lijn" src="view/images/lijn.png"></img>
 			</div>

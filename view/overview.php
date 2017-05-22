@@ -5,14 +5,6 @@
 		padding: 0;
 	}
 
-	main {
-		width: calc(100% - 40px);
-		max-width: 1280px;
-		padding: 20px;
-		margin: -70px auto 0;
-		display: block;
-	}
-
 	#searchBar {
 		width: 100%;
 		-webkit-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3);
@@ -109,7 +101,6 @@
 		text-align: left;
 	}
 </style>
-<main>
 	<div id="searchBar">
 		<div id="filter">
 			<i class="fa fa-sliders" aria-hidden="true"></i>
@@ -183,4 +174,3 @@
 			search();
 		};
 	</script>
-</main>
