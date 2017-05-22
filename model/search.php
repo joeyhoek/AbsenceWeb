@@ -20,13 +20,52 @@ class Search {
 			$results = $connection->query("SELECT id, firstname, lastname FROM users WHERE roleId != 1");
 		}
 		$encryption = new Encryption;
-		
+
 		$count = 0;
 		foreach ($results as $result) {
 			$results[$count]["firstname"] = $encryption->decrypt($results[$count]["firstname"]);
 			$results[$count]["lastname"] = $encryption->decrypt($results[$count]["lastname"]);
 			
-			if (strpos(strtolower($results[$count]["id"]), $search) !== false || $search == strtolower($results[$count]["id"]) || strpos(strtolower($results[$count]["firstname"]), $search) !== false || $search == strtolower($results[$count]["firstname"]) || strpos(strtolower($results[$count]["lastname"]), $search) !== false || $search == strtolower($results[$count]["lastname"])) {
+			if ($search !== " " && strpos(strtolower($search), " ") !== false) {
+				$searchTerms = explode(" ", $search);
+				$hits = 0;
+				
+				$number = 0;
+				foreach ($searchTerms as $searchTerm) {
+					if (empty($searchTerm)) {
+						unset($searchTerms[$number]);
+						$number++;
+						continue;
+					}
+					
+					if (strpos(strtolower($results[$count]["id"]), $searchTerm) !== false && !isset($id)) {
+						$hits++;
+						$id = true;
+					} elseif (strpos(strtolower($results[$count]["firstname"]), $searchTerm) !== false && !isset($firstname)) {
+						$hits++;
+						$firstname = true;
+					} elseif (strpos(strtolower($results[$count]["lastname"]), $searchTerm) !== false && (!isset($lastname) || $lastname === 1)) {
+						$hits++;
+						if (!isset($lastname)) {
+							$lastname = 1;
+						} else {
+							$lastname = true;
+						}
+					}
+							  
+					$number++;
+				}
+								
+				unset($id);
+				unset($firstname);
+				unset($lastname);
+				
+				if ($hits < count($searchTerms)) {
+					unset($results[$count]);
+				}
+				
+				$count++;
+			} elseif (strpos(strtolower($results[$count]["id"]), $search) !== false || $search == strtolower($results[$count]["id"]) || strpos(strtolower($results[$count]["firstname"]), $search) !== false || $search == strtolower($results[$count]["firstname"]) || strpos(strtolower($results[$count]["lastname"]), $search) !== false || $search == strtolower($results[$count]["lastname"])) {
 				$count++;
 				continue;
 			} else {
@@ -47,16 +86,10 @@ class Search {
 		$connection = $this->connection;
 		$results = $connection->query("SELECT * FROM courses WHERE name LIKE '%" . $search . "%' OR code LIKE '%" . $search . "%' ORDER BY name, code");
 		
-<<<<<<< HEAD
-		
-		
 		if (isset($results["name"])) {
 			$result[0] = $results;
 			return $result;
 		} if (!$results) {
-=======
-		if (!$results) {
->>>>>>> origin/master
 			return false;
 		} else {
 			return $results;
@@ -68,14 +101,10 @@ class Search {
 		$connection = $this->connection;
 		$results = $connection->query("SELECT * FROM classes WHERE code LIKE '%" . $search . "%' ORDER BY code");
 		
-<<<<<<< HEAD
 		if (isset($results["code"])) {
 			$result[0] = $results;
 			return $result;
 		} if (!$results) {
-=======
-		if (!$results) {
->>>>>>> origin/master
 			return false;
 		} else {
 			return $results;
@@ -87,14 +116,10 @@ class Search {
 		$connection = $this->connection;
 		$results = $connection->query("SELECT * FROM locations WHERE name LIKE '%" . $search . "%' ORDER BY name");
 		
-<<<<<<< HEAD
 		if (isset($results["name"])) {
 			$result[0] = $results;
 			return $result;
 		} if (!$results) {
-=======
-		if (!$results) {
->>>>>>> origin/master
 			return false;
 		} else {
 			return $results;
@@ -153,7 +178,7 @@ class Search {
 	
 }
 
-//$search = new Search("hoek");
+//$search = new Search("Joey Hoek");
 //var_dump($search->getResults(true, true, true, true, false));
 
 //var_dump($search->check());

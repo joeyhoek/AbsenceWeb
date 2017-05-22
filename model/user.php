@@ -46,13 +46,13 @@ class User {
 	}
 	
 	public function getClass() {
-		$class = $this->connection->query("SELECT classId FROM users WHERE id = '" . $this->id . "'")["class"];
+		$class = $this->connection->query("SELECT code FROM users, classes WHERE users.id = '" . $this->id . "' AND users.classId = classes.id")["code"];
 		return $class;
 	}
 	
 	public function getFaculty() {
-		$faculty = $this->connection->query("SELECT facultyId FROM users WHERE id = '" . $this->id . "'")["facultyId"];
-		return $class;
+		$faculty = $this->connection->query("SELECT name FROM users, faculties WHERE users.id = '" . $this->id . "' AND users.facultyId = faculties.id")["name"];
+		return $faculty;
 	}
 	
 	public function getForgotToken() {
