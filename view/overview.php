@@ -140,7 +140,6 @@
 		border-top: none;
 	}
 </style>
-<<<<<<< HEAD
 <div id="searchBar">
 	<div id="filter">
 		<i class="fa fa-sliders" aria-hidden="true"></i>
@@ -148,16 +147,6 @@
 	<input id="searchBox" type="text" placeholder="Search..." />
 	<div id="searchButton" onclick="search();">
 		<i class="fa fa-search" aria-hidden="true"></i>
-=======
-	<div id="searchBar">
-		<div id="filter">
-			<i class="fa fa-sliders" aria-hidden="true"></i>
-		</div>
-		<input id="searchBox" type="text" placeholder="Search..." />
-		<div id="searchButton" onclick="search();">
-			<i class="fa fa-search" aria-hidden="true"></i>
-		</div>
->>>>>>> origin/master
 	</div>
 	<div id="results">
 
@@ -235,17 +224,9 @@
 			};
 			http.send(params);
 		}
-<<<<<<< HEAD
 	}
 
 	document.getElementById("searchBox").onkeyup = function () {
 		search();
 	};
 </script>
-=======
-		
-		document.getElementById("searchBox").onkeyup = function () {
-			search();
-		};
-	</script>
->>>>>>> origin/master
