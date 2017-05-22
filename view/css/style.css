@@ -43,6 +43,14 @@ html {
 	overflow-x: hidden;
 }
 
+main {
+	width: calc(100% - 40px);
+	max-width: 1280px;
+	padding: 20px;
+	margin: -70px auto 0;
+	display: block;
+}
+
 @keyframes logInRecIn { 
 	from {  
 		-moz-transform: translate(-50%, -50%) rotate(-9deg) scaleY(0);
@@ -164,15 +172,7 @@ body {
 	float: right;
 	margin-right: 48px;
 	max-width: 260px;
-<<<<<<< HEAD
-<<<<<<< HEAD
 	min-width: 260px; 
-=======
-	min-width: 230px; 
->>>>>>> origin/master
-=======
-	min-width: 260px; 
->>>>>>> origin/master
 	animation: logInQrIn 0.5s ease-in-out 0.45s;
  	-webkit-animation-fill-mode: forwards;
 	
@@ -406,15 +406,7 @@ form .input.loaded.shake-horizontal.shake-constant, .emailLogo.shake-horizontal.
 	transition: border-left 0.3s ease 0s, width 0s ease 0s, opacity 0s ease 0s;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 .input:focus {
-=======
-input:focus {
->>>>>>> origin/master
-=======
-.input:focus {
->>>>>>> origin/master
 	border-left: solid 10px #0ba2dd !important;
 		 box-shadow: 0 0 5px 0 rgba(0,0,0,0.4);
 		 border-right: 0.5px solid #b8b7be;
@@ -929,49 +921,21 @@ figcaption {
 	}
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 .faf {
-=======
-.fa {
->>>>>>> origin/master
-=======
-.faf {
->>>>>>> origin/master
 	color: white;
 	font-family: FontAwesome !important;
 	font-size: 92px !important;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 #whiteSquare {
 	width: 100%;
 	height: calc(100% - 140px);
-=======
-#whiteSquare {
-	width: 100%;
-	height: calc(90% - 80px);
->>>>>>> origin/master
-=======
-
-#whiteSquare {
-	width: 100%;
-	height: calc(100% - 140px);
->>>>>>> origin/master
 	background-color: white;
 	padding: 0;
 	margin: 80px 0 0;
 	position: absolute;
-<<<<<<< HEAD
-<<<<<<< HEAD
 	z-index: -1;
-=======
->>>>>>> origin/master
-=======
-	z-index: -1;
->>>>>>> origin/master
 }
 
 #whiteTriangle {
@@ -1084,10 +1048,6 @@ Hieronder staat de code voor de 404 Pagina
     color: black;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> origin/master
 .container3 {
 	width: 80% !important;
 }
@@ -1099,7 +1059,6 @@ Hieronder staat de code voor de 404 Pagina
 	position: relative;
 	right: 10px;
 }
-<<<<<<< HEAD
 .importCourse {
 	font-size: 20px;
 	color: #464648;
@@ -1186,9 +1145,9 @@ div.tab button {
     border: none;
     outline: none;
     cursor: pointer;
-    padding: 12px 12% 12px 12%;
+    padding: 12px 50px 12px 50px;
     transition: 0.3s;
-	
+	width: 33%;	
 }
 
 /* Change background color of buttons on hover */
@@ -1214,9 +1173,18 @@ div.tab button.active {
 	color: #4bb001 !important;
 }
 
-=======
-=======
->>>>>>> origin/master
+.container3 {
+	height: 60%;
+}
+
+.searchbar {
+	position: relative;
+	display: block;
+	top: 50px;
+}
+
+
+
 .importCourse {
 	font-size: 20px;
 	color: #464648;
@@ -1240,11 +1208,19 @@ div.tab button.active {
 	top: -40px;
 }
 
+.container3 {
+	height: 60%;
+}
+
 .startCourse {
 	font-size: 20px;
 	color: #464648;
+}
+	
+.searchbar {
 	position: relative;
 	display: block;
+	top: 50px;
 }
 
 /* the height of the line */
@@ -1333,5 +1309,3 @@ div.tab button.active {
 .green {
 	color: #4bb001 !important;
 }
-
->>>>>>> origin/master
