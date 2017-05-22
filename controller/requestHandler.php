@@ -47,6 +47,10 @@ if (isset($_POST['email']) && isset($_POST["password"])) {
 		if ($userRole == 1) {
 			// STUDENT
 			switch ($page) {
+				case "about":
+					$page = "about";
+					$pageTitle = "About us";
+					break;
 				default:
 					$page = "404";
 					$pageTitle = "404 Page not found";
@@ -57,6 +61,10 @@ if (isset($_POST['email']) && isset($_POST["password"])) {
 				case "newCourse":
 					$page = "newCourse";
 					$pageTitle = "Start a new Course";
+					break;
+				case "courseOverview":
+					$page = "courseOverview";
+					$pageTitle = "Course Overview";
 					break;
 				default:
 					$page = "404";
@@ -72,7 +80,10 @@ if (isset($_POST['email']) && isset($_POST["password"])) {
 		} elseif ($userRole == 4) {
 			// TEAMLEADER
 			switch ($page) {
-<<<<<<< HEAD
+				case "profile":
+					$page = "profile";
+					$pageTitle = "Profile";
+					break;
 				case "manage";
 					$page = "manage";
 					$pageTitle = "Manage";
@@ -83,11 +94,6 @@ if (isset($_POST['email']) && isset($_POST["password"])) {
 					break;
 				case "webClient":
 					$page = "webClient";
-=======
-				case "uploadCSV";
-					$page = "uploadCSV";
-					$pageTitle = "Upload CSV file";
->>>>>>> origin/master
 					break;
 				default:
 					$page = "404";
@@ -145,12 +151,6 @@ if (isset($_GET["url"]) && !isset($page)) {
 		case "mobileClient":
 			$page = "mobileClient";
 			break;
-<<<<<<< HEAD
-=======
-		case "webClient":
-			$page = "webClient";
-			break;
->>>>>>> origin/master
 		default:
 			$page = "404";
 			$pageTitle = "404 Page not found";
@@ -171,6 +171,11 @@ if ($page !== "desktopClient" && $page !== "mobileClient" && $page !== "webClien
 		require_once("controller/qrCode.php");
 	}		
 	require_once("view/" . $page . ".php");
+	
+	if ($adminHeader === true && $page !== "404") {
+		require_once("view/foot.php");
+	}
+	
 	require_once("view/footer.php");
 } else {
 	require_once("api/" . $page . ".php");
