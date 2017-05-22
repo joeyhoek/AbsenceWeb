@@ -14,6 +14,7 @@
 			<div id="container-right">
 				<div id="container-right2">
 					<input class="hoi" type="text" name="searchCourse">
+					<i class="fa fa-search" aria-hidden="true"></i>
 					
 					
 					
