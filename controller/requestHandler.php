@@ -72,6 +72,7 @@ if (isset($_POST['email']) && isset($_POST["password"])) {
 		} elseif ($userRole == 4) {
 			// TEAMLEADER
 			switch ($page) {
+<<<<<<< HEAD
 				case "manage";
 					$page = "manage";
 					$pageTitle = "Manage";
@@ -82,6 +83,11 @@ if (isset($_POST['email']) && isset($_POST["password"])) {
 					break;
 				case "webClient":
 					$page = "webClient";
+=======
+				case "uploadCSV";
+					$page = "uploadCSV";
+					$pageTitle = "Upload CSV file";
+>>>>>>> origin/master
 					break;
 				default:
 					$page = "404";
@@ -139,6 +145,12 @@ if (isset($_GET["url"]) && !isset($page)) {
 		case "mobileClient":
 			$page = "mobileClient";
 			break;
+<<<<<<< HEAD
+=======
+		case "webClient":
+			$page = "webClient";
+			break;
+>>>>>>> origin/master
 		default:
 			$page = "404";
 			$pageTitle = "404 Page not found";

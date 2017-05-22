@@ -47,12 +47,16 @@ class Search {
 		$connection = $this->connection;
 		$results = $connection->query("SELECT * FROM courses WHERE name LIKE '%" . $search . "%' OR code LIKE '%" . $search . "%' ORDER BY name, code");
 		
+<<<<<<< HEAD
 		
 		
 		if (isset($results["name"])) {
 			$result[0] = $results;
 			return $result;
 		} if (!$results) {
+=======
+		if (!$results) {
+>>>>>>> origin/master
 			return false;
 		} else {
 			return $results;
@@ -64,10 +68,14 @@ class Search {
 		$connection = $this->connection;
 		$results = $connection->query("SELECT * FROM classes WHERE code LIKE '%" . $search . "%' ORDER BY code");
 		
+<<<<<<< HEAD
 		if (isset($results["code"])) {
 			$result[0] = $results;
 			return $result;
 		} if (!$results) {
+=======
+		if (!$results) {
+>>>>>>> origin/master
 			return false;
 		} else {
 			return $results;
@@ -79,10 +87,14 @@ class Search {
 		$connection = $this->connection;
 		$results = $connection->query("SELECT * FROM locations WHERE name LIKE '%" . $search . "%' ORDER BY name");
 		
+<<<<<<< HEAD
 		if (isset($results["name"])) {
 			$result[0] = $results;
 			return $result;
 		} if (!$results) {
+=======
+		if (!$results) {
+>>>>>>> origin/master
 			return false;
 		} else {
 			return $results;

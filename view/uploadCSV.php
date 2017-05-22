@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 accept=".csv"accept=".csv"accept=".csv"accept=".csv"<?php
+=======
+<?php
+>>>>>>> origin/master
 
 	use Team10\Absence\Model\Encryption as Encryption;
 	use Team10\Absence\Model\Connection as Connection;

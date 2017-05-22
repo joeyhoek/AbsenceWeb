@@ -164,7 +164,11 @@ body {
 	float: right;
 	margin-right: 48px;
 	max-width: 260px;
+<<<<<<< HEAD
 	min-width: 260px; 
+=======
+	min-width: 230px; 
+>>>>>>> origin/master
 	animation: logInQrIn 0.5s ease-in-out 0.45s;
  	-webkit-animation-fill-mode: forwards;
 	
@@ -398,7 +402,11 @@ form .input.loaded.shake-horizontal.shake-constant, .emailLogo.shake-horizontal.
 	transition: border-left 0.3s ease 0s, width 0s ease 0s, opacity 0s ease 0s;
 }
 
+<<<<<<< HEAD
 .input:focus {
+=======
+input:focus {
+>>>>>>> origin/master
 	border-left: solid 10px #0ba2dd !important;
 		 box-shadow: 0 0 5px 0 rgba(0,0,0,0.4);
 		 border-right: 0.5px solid #b8b7be;
@@ -913,21 +921,34 @@ figcaption {
 	}
 }
 
+<<<<<<< HEAD
 .faf {
+=======
+.fa {
+>>>>>>> origin/master
 	color: white;
 	font-family: FontAwesome !important;
 	font-size: 92px !important;
 }
 
+<<<<<<< HEAD
 
 #whiteSquare {
 	width: 100%;
 	height: calc(100% - 140px);
+=======
+#whiteSquare {
+	width: 100%;
+	height: calc(90% - 80px);
+>>>>>>> origin/master
 	background-color: white;
 	padding: 0;
 	margin: 80px 0 0;
 	position: absolute;
+<<<<<<< HEAD
 	z-index: -1;
+=======
+>>>>>>> origin/master
 }
 
 #whiteTriangle {
@@ -1040,6 +1061,7 @@ Hieronder staat de code voor de 404 Pagina
     color: black;
 }
 
+<<<<<<< HEAD
 .container3 {
 	width: 80% !important;
 }
@@ -1165,3 +1187,16 @@ div.tab button.active {
 	color: #4bb001 !important;
 }
 
+=======
+.importCourse {
+	font-size: 20px;
+	color: #464648;
+	margin-bottom: 20px;
+}
+
+.course {
+	font-size: 30px;
+	color: #464648;
+	margin-top: 20px;	
+}
+>>>>>>> origin/master
