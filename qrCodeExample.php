@@ -38,7 +38,7 @@
 	<script>
 		function checkIfScanned(sessionid) {
 			var xhttp = new XMLHttpRequest();
-			var url = "http://qrcode.innovatewebdesign.nl/api.php";
+			var url = "<?php echo $PROTOCOL . $HOST . $ROOT; ?>/mobileClient";
 			var params = "clientid=" + sessionid;
 			xhttp.open("POST", url, true);
 
@@ -49,7 +49,7 @@
 						setTimeout(function(){ window.location.reload(); }, 1);
 					}
 					xhttp = null;
-					checkIfScanned(sessionid);
+					setTimeout(checkIfScanned(sessionid), 500);
 				}
 			};
 			xhttp.send(params);

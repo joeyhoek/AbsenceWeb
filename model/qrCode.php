@@ -14,8 +14,7 @@ final class QRCode {
 	public function Generate($output = false) {
 		if (!$output):
 			$output = [
-				"type" => "login",
-				"value" => session_id()
+				"data" => [1, session_id()]
 			];
 			$output = json_encode($output);
 		endif;

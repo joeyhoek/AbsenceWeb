@@ -21,18 +21,37 @@ final class Connection {
 		$dbpass = $this->dbpass;
 		$dbname = $this->dbname;
 
-		$connection = mysqli_connect($host, $dbuser, $dbpass, $dbname);
+		$connection = mysqli_connect($host, $dbuser, $dbpass, $dbname) or die("Error establishing connection with database");
 		return $connection;
 	}
 	
-	public function query($query) {
+	public function escape($value) {
+		return mysqli_real_escape_string($this->connect(), $value);
+	}
+	
+	public function query($query, $type = false) {
 		$connection = $this->connect();
 		$stmt = utf8_encode($query);
 		$result = mysqli_query($connection, $stmt);
-		$connection = null;
-		if ($result !== false && $result !== true) {
-			return mysqli_fetch_assoc($result);
+		if ($result !== false && $result !== true && $type == false) {
+			$connection = null;
+			$count = 0;
+			while ($row = mysqli_fetch_assoc($result)) {
+				$results[$count] = $row;
+				$count++;
+			}
+			
+			if ($count == 1) { 
+				return $results[0];
+			} else {
+				return $results;
+			}
+		} elseif ($type == "insert") {
+			$id = mysqli_insert_id($connection);
+			$connection = null;
+			return $id;
 		} else {
+			$connection = null;
 			return false;
 		}
 	}

@@ -1,11 +1,11 @@
 <?php
 
 define("DBHOST", "localhost");
-define("DBUSER", "team16j_absence");
-define("DBPASS", "WrBPtPv4EY");
-define("DBNAME", "team16j_absence");
-define("DOMAIN", "www.team16j.p004.nl");
-define("ROOT", "");
+define("DBUSER", "innovate_absence");
+define("DBPASS", "GNDvAbixU");
+define("DBNAME", "innovate_absence");
+define("DOMAIN", "absence.innovatewebdesign.nl");
+define("ROOT", "/");
 define("PROTOCOL", "http://");
 
 ?>

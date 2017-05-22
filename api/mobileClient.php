@@ -1,55 +1,92 @@
 <?php
 
-use Team10\Absence\Model\Connection as Connection;
-use Team10\Absence\Model\Encryption as Encryption;
+use Team10\Absence\Model\Login as Login;
+use Team10\Absence\Model\Token as Token;
+use Team10\Absence\Model\User as User;
 
-require_once("../model/connection.php");
-require_once("../model/encryption.php");
+$tokenObj = new Token;
 
 if (isset($_POST["username"]) && isset($_POST["password"])):
-	$connection = new Connection("localhost", "innovate_absence", "TDz8e0lOmL", "innovate_absence");
-	$result = $connection->query("SELECT * FROM users WHERE username = '" . $_POST["username"] .  "'");
-	if ($result !== false && $_POST["username"] == $result["username"] && $_POST["password"] == $result["password"]):
-		unset($result["password"]);
-		if ($connection->query("SELECT * FROM appclients WHERE userid = " . $result["userid"]) !== false):
-			$connection->query("DELETE FROM appclients WHERE userid = " . $result["userid"]);
+	if ((new Login)->checkLogin($_POST["username"], $_POST["password"], false)):
+		$username = $_POST["username"];
+		if (strpos($username, "@")):
+			$id = (new User)->getIdFromEmail($username);
+		else:
+			if ($username[0] !== "s" && is_numeric($username)):
+				$id = "s" . $username;
+			else:
+				$id = $username;
+			endif;
 		endif;
-		$token = bin2hex(openssl_random_pseudo_bytes(20));
-		$connection->query("INSERT INTO appclients (userid, token) VALUES (" . $result["userid"] . ", '" . $token . "')");
-		$result["token"] = $token;
+		
+		if ($tokenObj->checkSessionToken($id, "mobile") !== false):
+			$tokenObj->deleteSessionToken($id, "mobile");
+		endif;
+
+		$token = $tokenObj->generateToken();
+		$tokenObj->addSessionToken($id, $token, "mobile");
+
+		$user = new User($id);
+
+		$result = [
+			"userId" => $id,
+			"token" => $token,
+			"firstname" => $user->getFirstname(),
+			"lastname" => $user->getLastname()
+		];
 		echo json_encode($result);
 	else:
 		header("HTTP/1.0 403 Forbidden");
 	endif;
-elseif (isset($_POST["userid"]) && isset($_POST["token"]) && isset($_POST["clientid"])):
-	$connection = new Connection("localhost", "innovate_absence", "TDz8e0lOmL", "innovate_absence");
-	$userid = $connection->query("SELECT * FROM tokens WHERE userid = " . $_POST["userid"]);
-	$token = $connection->query("SELECT * FROM tokens WHERE token = '" . $_POST["token"] . "'");
-	if ($userid !== false && $token !== false):
-		if ($connection->query("SELECT * FROM tokens WHERE clientid = '" . $_POST["clientid"] . "'") !== false):
-			$connection->query("DELETE FROM tokens WHERE clientid = '" . $_POST["clientid"] . "'");
+elseif (isset($_POST["username"]) && isset($_POST["action"]) && $_POST["action"] == "resetPass"):
+	$username = $_POST["username"];
+	if (strpos($username, "@")):
+		$email = $username;
+	else:
+		if ($username[0] !== "s" && is_numeric($username)):
+			$email = "s" . $username . "@student.windesheim.nl";
+		elseif ($username[0] == "s"):
+			$email = $username . "@student.windesheim.nl";
+		else:
+			$id = $username . "@docent.windesheim.nl";
 		endif;
-		$connection->query("INSERT INTO tokens (userid, token, clientid) VALUES (" . $_POST["userid"] . ", '" . bin2hex(openssl_random_pseudo_bytes(20)) . "', '" . $_POST["clientid"] . "')");
+	endif;
+
+	if ($tokenObj->sendToken($email)):
 		echo 1;
 	else:
 		header("HTTP/1.0 403 Forbidden");
 	endif;
-elseif (isset($_POST["userid"]) && isset($_POST["token"]) && isset ($_POST["action"]) && $_POST["action"] == "logout"):
-	$connection = new Connection("localhost", "innovate_absence", "TDz8e0lOmL", "innovate_absence");
-	$connection->query("DELETE FROM appclients WHERE userid = '" . $_POST["userid"] . "' AND token = '" . $_POST["token"] . "'");
-elseif (isset($_POST["userid"]) && isset($_POST["token"])):
-	$connection = new Connection("localhost", "innovate_absence", "TDz8e0lOmL", "innovate_absence");
-	$result = $connection->query("SELECT * FROM users, appclients WHERE users.userid = appclients.userid AND users.userid = " . $_POST["userid"]);
-	if ($result !== false && $result["token"] == $_POST["token"]):
-		unset($result["password"]);
+elseif (isset($_POST["userId"]) && isset($_POST["token"]) && isset($_POST["clientId"])):
+	$userId = $_POST["userId"]; 
+	if ($tokenObj->verifySessionToken($userId, $_POST["token"], "mobile")):
+		if ($tokenObj->checkSessionToken($userId, "web") !== false):
+			$tokenObj->deleteSessionToken($userId, "web");
+		endif;
+		
+		$tokenObj->addSessionToken($userId, $tokenObj->generateToken(), "web", $_POST["clientId"]);
+		echo 1;
+	else:
+		header("HTTP/1.0 403 Forbidden");
+	endif;
+elseif (isset($_POST["userId"]) && isset($_POST["token"]) && isset ($_POST["action"]) && $_POST["action"] == "logout"):
+	$tokenObj->deleteSessionToken($_POST["userId"], "mobile", $_POST["token"]);
+elseif (isset($_POST["userId"]) && isset($_POST["token"])):
+	if ((new Token)->verifySessionToken($_POST["userId"], $_POST["token"], "mobile")):
+		$user = new User($_POST["userId"]);
+
+		$result = [
+			"userId" => $_POST["userId"],
+			"token" => $_POST["token"],
+			"firstname" => $user->getFirstname(),
+			"lastname" => $user->getLastname()
+		];
 		echo json_encode($result);
 	else:
 		header("HTTP/1.0 403 Forbidden");
 	endif;
-elseif (isset($_POST["clientid"])):
-	$connection = new Connection("localhost", "innovate_absence", "TDz8e0lOmL", "innovate_absence");
-	$result = $connection->query("SELECT * FROM tokens WHERE clientid = '" . $_POST["clientid"] . "'");
-	if ($result !== NULL):
+elseif (isset($_POST["clientId"])):
+	if ((new Token)->checkSessionId($_POST["clientId"])):
 		echo 1;
 	else:
 		echo 0;
