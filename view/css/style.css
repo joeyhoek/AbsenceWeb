@@ -51,6 +51,10 @@ main {
 	display: block;
 }
 
+ main + #footer {
+  color: #464648;
+ }
+
 @keyframes logInRecIn { 
 	from {  
 		-moz-transform: translate(-50%, -50%) rotate(-9deg) scaleY(0);
@@ -930,7 +934,7 @@ figcaption {
 
 #whiteSquare {
 	width: 100%;
-	height: calc(100% - 140px);
+	height: calc(100% - 90px);
 	background-color: white;
 	padding: 0;
 	margin: 80px 0 0;
@@ -1048,9 +1052,6 @@ Hieronder staat de code voor de 404 Pagina
     color: black;
 }
 
-.container3 {
-	width: 80% !important;
-}
 #column-left2 {
 	text-align: center;
 	width: 50%;
@@ -1132,7 +1133,6 @@ div.tab {
     overflow: hidden;
     border: 1px solid #ccc;
     background-color: #f1f1f1;
-	margin-left: 50px;
 	width: 50%;
 	position: absolute;
 	top: 10px;
@@ -1147,7 +1147,7 @@ div.tab button {
     cursor: pointer;
     padding: 12px 50px 12px 50px;
     transition: 0.3s;
-	width: 33%;	
+	width: calc(100% / 3);	
 }
 
 /* Change background color of buttons on hover */
@@ -1160,30 +1160,11 @@ div.tab button.active {
     background-color: #0ba2dd !important;
 }
 
-/* Style the tab content */
-.tabcontent {
-    display: none;
-    padding: 6px 12px;
-    border: 1px solid #ccc;
-    border-top: none;
-	margin-left: 50px;
-}
-
-.green {
-	color: #4bb001 !important;
-}
-
-.container3 {
-	height: 60%;
-}
-
 .searchbar {
 	position: relative;
 	display: block;
 	top: 50px;
 }
-
-
 
 .importCourse {
 	font-size: 20px;
@@ -1208,24 +1189,9 @@ div.tab button.active {
 	top: -40px;
 }
 
-.container3 {
-	height: 60%;
-}
-
 .startCourse {
 	font-size: 20px;
 	color: #464648;
-}
-	
-.searchbar {
-	position: relative;
-	display: block;
-	top: 50px;
-}
-
-/* the height of the line */
-#helper2 {
-	height: 400px !important;
 }
 
 .fa-search {
@@ -1260,19 +1226,14 @@ div.tab button.active {
 .csvButton {
 	width: 93% !important;
 }
-<<<<<<< HEAD
->>>>>>> origin/master
-=======
 
 /* Style the tab */
 div.tab {
     overflow: hidden;
     border: 1px solid #ccc;
     background-color: #f1f1f1;
-	margin-left: 50px;
-	width: 50%;
-	position: absolute;
-	top: 10px;
+	width: 70%;
+	position: relative;
 }
 
 /* Style the buttons inside the tab */
@@ -1300,12 +1261,50 @@ div.tab button.active {
 /* Style the tab content */
 .tabcontent {
     display: none;
-    padding: 6px 12px;
     border: 1px solid #ccc;
     border-top: none;
-	margin-left: 50px;
+	width: 70%;
+	position: relative;
 }
 
 .green {
 	color: #4bb001 !important;
+}
+
+.containerManage {
+	border: 3px solid black;
+	height: 50%;
+	position: absolute;
+	width: 80%;
+	top: 40%;
+	left: 50%;
+	transform: translate(-50%, -50%);		
+}
+
+.columnLeftManage {	
+	float: left;
+	height: inherit;
+	width: 50%;
+	position: relative;
+}
+
+.columnLeftManage2 {
+	height: inherit;
+	top: 50%;
+	left: 35%;
+	position: relative;
+}
+
+.columnRightManage {
+	float: right;
+	height: inherit;
+	position: relative;
+	width: 50%;
+}
+
+.columnRightManage2 {
+	height: inherit;
+	top: 5%;
+	position: relative;
+	left: 10%;
 }

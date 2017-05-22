@@ -112,23 +112,25 @@
 
 ?>
   
-<div class="container">
+<div class="containerManage">
 
-		<div id="column-left2">
+	<div class="columnLeftManage">
+		<div class="columnLeftManage2">
 			<form  method="post" enctype="multipart/form-data">
-				<div class="image-upload">
+			<div class="image-upload">
 				<label for="file-input">
 				<i class="fa fa-upload" aria-hidden="true"></i>
 				</label>
 
 				<input id="file-input" type="file" name="csv" accept=".csv" required/>
 			</div>
-		<input type="submit" class="button csvButton" value="Upload">
-
-		
+			<input type="submit" class="button csvButton" value="Upload">
 		</div>
 
-		<div id="column-right">
+	</div>
+
+		<div class="columnRightManage">
+			  	<div class="columnRightManage2">
 				  
 					<div class="tab">
 						<button class="tablinks" onclick="openCity(event, 'users')">Users</button>
@@ -154,12 +156,13 @@
 						<h3>Locations</h3>
 						<p>Tokyo is the capital of Japan.</p>
 					</div>
-
+			</div>
+	</div>
 			<div id="helper2">
 				<img class="lijn" src="view/images/lijn.png"></img>
 			</div>
 			
-	</div>
+	
 </div>
 
 <script>
