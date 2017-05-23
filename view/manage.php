@@ -133,18 +133,34 @@
 			  	<div class="columnRightManage2">
 				  
 					<div class="tab">
-						<button class="tablinks" onclick="openCity(event, 'users')">Users</button>
+						<button class="tablinks active" onclick="openCity(event, 'users')">Users</button>
 						<button class="tablinks" onclick="openCity(event, 'classrooms')">Classrooms</button>
 						<button class="tablinks" onclick="openCity(event, 'locations')">Locations</button>
 					</div>
-
-					<div id="users" class="tabcontent">
-						<div class="searchbar">
+					<div id="searchBar">
+						<div id="filter">
+							<i class="fa fa-plus" aria-hidden="true"></i>
+						</div>
+						<input id="searchBox" type="text" placeholder="Search..." />
+						<div id="searchButton" onclick="search();">
 							<i class="fa fa-search" aria-hidden="true"></i>
 						</div>
-						<p>London is the capital city of England.</p>
-						 <i class="fa fa-pencil" aria-hidden="true"></i>
-   						 <i class="fa fa-trash-o" aria-hidden="true"></i>
+						<div id="results">
+
+						</div>
+					</div>
+					<div id="users" class="tabcontent" style="display: block;">
+						<div class="userInfo">
+							<p>London is the capital city of England.</p>
+							<p>London is the capital city of England.</p>
+							<p>London is the capital city of England.</p>
+							<p>London is the capital city of England.</p>
+							<p>London is the capital city of England.</p>
+							<p>London is the capital city of England.</p>
+							<p>London is the capital city of England.</p>
+							 <i class="fa fa-pencil" aria-hidden="true"></i>
+							 <i class="fa fa-trash-o" aria-hidden="true"></i>
+						</div>
 					</div>
 
 					<div id="classrooms" class="tabcontent">
@@ -183,7 +199,7 @@
 		}
 
 		// Show the current tab, and add an "active" class to the button that opened the tab
-		document.getElementById(cityName).style.display = "block";
+		document.getElementById(	cityName).style.display = "block";
 		evt.currentTarget.className += " active";
 }
 	
@@ -195,7 +211,77 @@
 		}
 	});
 	
-	
-	
+	function search() {
+		var search = document.getElementById("searchBox").value;
+		if (search == "" || search == null) {
+			document.getElementById("results").innerHTML = "";
+		} else {
+			var http = new XMLHttpRequest();
+			var type = document.getElementsByClassName("active")[0].innerHTML.toLowerCase();
+			var params = "search=" + search + "&type=" + type;
+
+			http.open("POST", "<?php echo PROTOCOL . DOMAIN . ROOT; ?>webClient", true);
+			http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+			http.onreadystatechange = function() {
+				if(http.readyState == 4 && http.status == 200) {
+					var results = JSON.parse(this.responseText);
+					var html = "";
+					var totalCount = 0;
+					
+					if (typeof results.students != "undefined") {
+						var count = 0;
+						for (var result in results.students) {
+							if (count >= 3) {
+								continue;
+							}
+							count++;
+							html = html + "<a href='/overview?type=students&id=" + results.students[result].id + "'><div class='result result-" + totalCount + "'><i>(" + results.students[result].id + ")</i> " + results.students[result].firstname + " " + results.students[result].lastname + "</div></a>";
+							totalCount++;
+						}
+					}
+
+					if (typeof results.teachers != "undefined") {
+						var count = 0;
+						for (var result in results.teachers) {
+							if (count >= 3) {
+								continue;
+							}
+							count++;
+							html = html + "<a href='/overview?type=teachers&id=" + results.teachers[result].id + "'><div class='result result-" + totalCount + "'><i>(" + results.teachers[result].id + ")</i> " + results.teachers[result].firstname + " " + results.teachers[result].lastname + "</div></a>";
+							totalCount++;
+						}
+					}
+					
+					if (typeof results.classrooms != "undefined") {
+						var count = 0;
+						for (var result in results.classrooms) {
+							if (count >= 3) {
+								continue;
+							}
+							count++;
+							html = html + "<a href='/overview?type=teachers&id=" + results.classrooms[result].id + "'><div class='result result-" + totalCount + "'>" + results.classrooms[result].code + "</div></a>";
+							totalCount++;
+						}
+					}
+					
+					if (typeof results.locations != "undefined") {
+						for (var result in results.locations) {
+							html = html + "<a href='/overview?type=teachers&id=" + results.locations[result].id + "'><div class='result result-" + totalCount + "'>" + results.locations[result].name + "</div></a>";
+							totalCount++;
+						}
+					}
+
+					document.getElementById("results").innerHTML = html;
+				} 
+			};
+			http.send(params);
+		}
+	}
+
+	document.getElementById("searchBox").onkeyup = function () {
+		search();
+	};
 </script>
+	
 

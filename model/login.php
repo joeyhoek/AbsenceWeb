@@ -12,7 +12,7 @@ echo "<br> lastname: " . (new Encryption)->encrypt("Stapper");
 echo "<br> email: " . (new Encryption)->encrypt("s1108945@student.windesheim.nl");
 echo "<br> sex: " . (new Encryption)->encrypt("2");
 echo "<br> dayOfBirth: " . (new Encryption)->encrypt("1992-06-22");
-echo "<br> notes: " . (new Encryption)->encrypt("IAMGIRL");
+echo "<br> notes: " . (new Encryption)->encrypt("IAMGURL");
 */
 
 class Login {
