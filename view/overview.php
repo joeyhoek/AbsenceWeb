@@ -1,11 +1,106 @@
+<?php
+
+namespace Team10\Absence\View;
+use Team10\Absence\Model\User as User;
+use Team10\Absence\Model\ClassObj as ClassObj;
+use Team10\Absence\Model\Course as Course;
+
+if (isset($_GET["type"])) {
+	$type = $_GET["type"];
+	
+	switch ($type) {
+		case "students":
+			if ($userRole == 2 || $userRole == 3 || $userRole == 4) {
+				if (isset($_GET["id"])) {
+					$object = new User($_GET["id"]);
+					$objectRoleId = $object->getRole();
+
+					if ($objectRoleId == 1) {
+						$objectName = $object->getFirstname() . " " . $object->getLastname();
+						$set = true;
+					} else {
+						$set = false;
+					}
+				} else {
+					$set = false;
+				}
+			} else {
+				$set = false;
+			}
+			break;
+		case "teachers":
+			if ($userRole == 4) {
+				if (isset($_GET["id"])) {
+					$object = new User($_GET["id"]);
+					$objectRoleId = $object->getRole();
+
+					if ($objectRoleId != 1) {
+						$objectName = $object->getFirstname() . " " . $object->getLastname();
+						$set = true;
+					} else {
+						$set = false;
+					}
+				} else {
+					$set = false;
+				}
+			} else {
+				$set = false;
+			}
+			break;
+		case "classes":
+			if ($userRole == 2 || $userRole == 3 || $userRole == 4) {
+				if (isset($_GET["id"])) {
+					$object = new ClassObj($_GET["id"]);
+					$objectName = $object->getCode();
+
+					if ($objectName) {
+						$set = true;
+					} else {
+						$set = false;
+					}
+				} else {
+					$set = false;
+				}
+			} else {
+				$set = false;
+			}
+			break;
+		case "courses":
+			if ($userRole == 2 || $userRole == 3 || $userRole == 4) {
+				if (isset($_GET["id"])) {
+					$object = new Course($_GET["id"]);
+					$objectName = $object->getName();
+
+					if ($objectName) {
+						$set = true;
+					} else {
+						$set = false;
+					}
+				} else {
+					$set = false;
+				}
+			} else {
+				$set = false;
+			}
+			break;
+		default:
+			$set = false;
+	}
+} else {
+	$set = false;
+}
+
+?>
 <style>
 
 </style>
+
+<?php if ($userRole != 1) { ?>
 <div id="searchBar">
 	<div id="filter">
 		<i class="fa fa-sliders" aria-hidden="true"></i>
 	</div>
-	<input id="searchBox" type="text" placeholder="Search..." />
+	<input id="searchBox" type="text" placeholder="Search..." <?php if ($set) { echo "value='" . $objectName . "'"; } ?> />
 	<div id="searchButton" onclick="search();">
 		<i class="fa fa-search" aria-hidden="true"></i>
 	</div>
@@ -75,7 +170,7 @@
 								continue;
 							}
 							count++;
-							html = html + "<a href='/overview?type=class&id=" + results.classes[result].id + "'><div class='result result-" + totalCount + "'>" + results.classes[result].code + "</div></a>";
+							html = html + "<a href='/overview?type=classes&id=" + results.classes[result].id + "'><div class='result result-" + totalCount + "'>" + results.classes[result].code + "</div></a>";
 							totalCount++;
 						}
 					}
@@ -91,3 +186,22 @@
 		search();
 	};
 </script>
+<?php  
+	}
+	if ((isset($noData) && $noData === true)) {
+?>	
+
+nodata
+
+
+
+
+
+
+<?php } elseif (!$set) { ?>
+
+niks geselecteerd
+<?php } else { ?>
+
+wel data
+<?php } ?>
