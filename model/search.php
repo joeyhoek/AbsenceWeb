@@ -126,7 +126,22 @@ class Search {
 		}
 	}
 	
-	public function getResults($students, $teachers, $courses, $classes, $locations) {
+	private function classrooms() {
+		$search = $this->search;
+		$connection = $this->connection;
+		$results = $connection->query("SELECT * FROM classrooms WHERE code LIKE '%" . $search . "%' ORDER BY code");
+		
+		if (isset($results["id"])) {
+			$result[0] = $results;
+			return $result;
+		} if (!$results) {
+			return false;
+		} else {
+			return $results;
+		}
+	}
+	
+	public function getResults($students, $teachers, $courses, $classes, $locations, $classrooms) {
 		$results = [];
 		
 		if ($students) {
@@ -162,10 +177,18 @@ class Search {
 		} 
 		
 		if ($locations) {
-			$result = $this->users(false);
+			$result = $this->locations();
 			
 			if ($result) {
-				$results["locations"] = $this->locations();
+				$results["locations"] = $result;
+			}
+		}
+		
+		if ($classrooms) {
+			$result = $this->classrooms();
+			
+			if ($result) {
+				$results["classrooms"] = $result;
 			}
 		}
 			
@@ -179,7 +202,7 @@ class Search {
 }
 
 //$search = new Search("Joey Hoek");
-//var_dump($search->getResults(true, true, true, true, false));
+//var_dump($search->getResults(true, true, true, true, false, false));
 
 //var_dump($search->check());
 

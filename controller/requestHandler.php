@@ -38,18 +38,22 @@ if (isset($_POST['email']) && isset($_POST["password"])) {
 		$pageTitle = "Login";
 	}
 	
+	$adminHeader = true;
+	$user = new User($_SESSION["userId"]);
+	$userRole = $user->getRole();
 	if (isset($_GET["url"]) && !isset($page)) {
-		$adminHeader = true;
 		$page = $_GET["url"];
 		
-		$user = new User($_SESSION["userId"]);
-		$userRole = $user->getRole();
 		if ($userRole == 1) {
 			// STUDENT
 			switch ($page) {
 				case "about":
 					$page = "about";
 					$pageTitle = "About us";
+					break;
+				case "profile":
+					$page = "profile";
+					$pageTitle = "Profile";
 					break;
 				default:
 					$page = "404";
@@ -58,6 +62,14 @@ if (isset($_POST['email']) && isset($_POST["password"])) {
 		} elseif ($userRole == 2) {
 			// TEACHER
 			switch ($page) {
+				case "about":
+					$page = "about";
+					$pageTitle = "About us";
+					break;
+				case "profile":
+					$page = "profile";
+					$pageTitle = "Profile";
+					break;
 				case "newCourse":
 					$page = "newCourse";
 					$pageTitle = "Start a new Course";
@@ -66,6 +78,13 @@ if (isset($_POST['email']) && isset($_POST["password"])) {
 					$page = "courseOverview";
 					$pageTitle = "Course Overview";
 					break;
+				case "overview";
+					$page = "overview";
+					$pageTitle = "Overview";
+					break;
+				case "webClient":
+					$page = "webClient";
+					break;
 				default:
 					$page = "404";
 					$pageTitle = "404 Page not found";
@@ -73,6 +92,21 @@ if (isset($_POST['email']) && isset($_POST["password"])) {
 		} elseif ($userRole == 3) {
 			// STUDENT COUNSELOR
 			switch ($page) {
+				case "about":
+					$page = "about";
+					$pageTitle = "About us";
+					break;
+				case "profile":
+					$page = "profile";
+					$pageTitle = "Profile";
+					break;
+				case "overview";
+					$page = "overview";
+					$pageTitle = "Overview";
+					break;
+				case "webClient":
+					$page = "webClient";
+					break;
 				default:
 					$page = "404";
 					$pageTitle = "404 Page not found";
@@ -80,6 +114,10 @@ if (isset($_POST['email']) && isset($_POST["password"])) {
 		} elseif ($userRole == 4) {
 			// TEAMLEADER
 			switch ($page) {
+				case "about":
+					$page = "about";
+					$pageTitle = "About us";
+					break;
 				case "profile":
 					$page = "profile";
 					$pageTitle = "Profile";

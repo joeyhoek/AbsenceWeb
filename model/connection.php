@@ -43,8 +43,10 @@ final class Connection {
 			
 			if ($count == 1) { 
 				return $results[0];
-			} else {
+			} elseif($count > 1) {
 				return $results;
+			} else {
+				return false;
 			}
 		} elseif ($type == "insert") {
 			$id = mysqli_insert_id($connection);
