@@ -37,7 +37,11 @@ class User {
 
 	public function getNotes() {
 		$notes = $this->connection->query("SELECT notes FROM users WHERE id = '" . $this->id . "'")["notes"];
-		return $this->encryption->decrypt($notes);
+		if ($notes == 0) {
+			return "No notes.";
+		} else {
+			return $this->encryption->decrypt($notes);
+		}
 	}
 	
 	public function getRole() {
