@@ -92,7 +92,9 @@ if (isset($_GET["type"])) {
 
 ?>
 <style>
-
+	.noData {
+		color: #464648;
+	}
 </style>
 
 <?php if ($userRole != 1) { ?>
@@ -190,17 +192,9 @@ if (isset($_GET["type"])) {
 	}
 	if ((isset($noData) && $noData === true)) {
 ?>	
-
-nodata
-
-
-
-
-
-
+		<p class="noData">No data for selected object</p>
 <?php } elseif (!$set) { ?>
-
-niks geselecteerd
+		<p class="noData">No object selected</p>
 <?php } else { ?>
 
 wel data

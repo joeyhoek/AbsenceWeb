@@ -19,6 +19,7 @@ if (isset($_POST['email']) && isset($_POST["password"])) {
 	if ((new Login)->checkLogin($_POST["email"], $_POST["password"])) {
 		$page = "dashboard";
 		$pageTitle = "Dashboard";
+		header("Location: /");
 	} else {
 		$page = "login";
 		$pageTitle = "Login";
@@ -70,9 +71,9 @@ if (isset($_POST['email']) && isset($_POST["password"])) {
 					$page = "profile";
 					$pageTitle = "Profile";
 					break;
-				case "newCourse":
+				case "lesson":
 					$page = "newCourse";
-					$pageTitle = "Start a new Course";
+					$pageTitle = "Start a new lesson";
 					break;
 				case "courseOverview":
 					$page = "courseOverview";
@@ -100,6 +101,10 @@ if (isset($_POST['email']) && isset($_POST["password"])) {
 					$page = "profile";
 					$pageTitle = "Profile";
 					break;
+				case "lesson":
+					$page = "newCourse";
+					$pageTitle = "Start a new lesson";
+					break;
 				case "overview";
 					$page = "overview";
 					$pageTitle = "Overview";
@@ -121,6 +126,10 @@ if (isset($_POST['email']) && isset($_POST["password"])) {
 				case "profile":
 					$page = "profile";
 					$pageTitle = "Profile";
+					break;
+				case "lesson":
+					$page = "newCourse";
+					$pageTitle = "Start a new lesson";
 					break;
 				case "manage";
 					$page = "manage";

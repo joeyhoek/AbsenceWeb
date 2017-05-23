@@ -42,6 +42,9 @@ elseif (isset($_POST["search"]) && $_POST["search"] !== NULL && isset($_POST["ty
 elseif (isset($_POST["search"]) && $_POST["search"] !== NULL && isset($_POST["type"]) && $_POST["type"] == "locations"):
 	$search = new Search($_POST["search"]);
 	echo json_encode($search->getResults(false, false, false, false, $locations, false));
+elseif (isset($_POST["search"]) && $_POST["search"] !== NULL && isset($_POST["type"]) && $_POST["type"] == "courses"):
+	$search = new Search($_POST["search"]);
+	echo json_encode($search->getResults(false, false, $courses, false, false, false));
 elseif (isset($_POST["search"]) && $_POST["search"] !== NULL):
 	$search = new Search($_POST["search"]);
 	echo json_encode($search->getResults($students, $teachers, $courses, $classes, false, false));
