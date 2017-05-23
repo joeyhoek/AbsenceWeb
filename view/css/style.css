@@ -207,7 +207,6 @@ body {
 @media only screen and (min-width: 600px) {
 	#container-right2 {
 		float: left;
-		width: 191px;
 		margin-left: 48px;
 	}
 	
@@ -693,13 +692,20 @@ h4 {
 }
 
 .cd-primary-nav-trigger {
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 42px;
-  padding-right: 20px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 42px;
+	padding-right: 20px;
+	cursor: pointer;
+	
 }
+
+.passwordBox .button {
+    width: 178px !important;
+}
+
 
 .cd-primary-nav-trigger .cd-menu-icon {
   /* this span is the central line of the menu icon */
@@ -1108,12 +1114,6 @@ Hieronder staat de code voor de 404 Pagina
 	color: #464648;
 }
 
-.fa-pencil {
-	font-family: FontAwesome !important;
-	font-size: 30px !important;
-	color: #464648;
-}
-
 .fa-plus {
     font-size: 38px !important;
 	margin-top: 2px;		
@@ -1200,7 +1200,7 @@ div.tab button.active {
 	color: #464648;
 }
 
-.fa-pencil {
+.columnRightManage2 .fa-pencil {
 	font-family: FontAwesome !important;
 	font-size: 30px !important;
 	color: #464648;
@@ -1438,4 +1438,141 @@ div.tab button.active {
 	border-right: 1px solid #ccc;
 	width: 70%;
 	margin-top: 10px;
+}
+
+#containerRightNewCourse {
+	position: relative;
+	left: 25%;
+}
+
+.horizontalMenu {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+ }
+ 
+ @media all and (min-width: 999px) {
+  .horizontalMenu {
+   position: absolute;
+   transform: translate(-50%, -50%);
+   top: 50%;
+   left: 50%;
+   width: 100%;
+   height: auto;
+   overflow: hidden;
+  }
+  
+  .cd-primary-nav .horizontalMenu .cd-label, .horizontalMenu .profile {
+   display: inline-block;
+   margin-right: 65px !important;
+   margin-top: 0 !important;
+  }
+  
+  .cd-primary-nav .horizontalMenu .profile .cd-label {
+   display: inline-block;
+   margin-right: 0 !important;
+   margin-top: 0 !important;
+  }
+  
+  .cd-primary-nav .horizontalMenu .profile {
+   margin-right: 0 !important;
+  }
+  
+  .horizontalMenu .profile .logout {
+   left: -25px;
+   right: 0;
+   bottom: 21px;
+   display: inline-block;
+  }
+  
+  .horizontalMenu .faf {
+   font-size: 115px !important;
+  }
+ }
+ 
+ @media all and (min-width: 1499px) {
+  .cd-primary-nav .horizontalMenu .cd-label, .horizontalMenu .profile {
+   margin-right: 75px !important;
+  }
+  
+  .cd-primary-nav .horizontalMenu .cd-label figcaption {
+   font-size: 17px !important;
+  }
+
+  .horizontalMenu .faf {
+   font-size: 160px !important;
+  }
+  
+  .horizontalMenu .profile .logout {
+   left: -35px;
+   right: 0;
+   bottom: 28px;
+   display: inline-block;
+   width: 42px;
+  }
+ }
+ 
+ .cd-primary-nav .cd-label a i, .cd-primary-nav .cd-label a figcaption {
+  transition: 0.3s all;
+ }
+ 
+ .cd-primary-nav .cd-label a:hover i, .cd-primary-nav .cd-label a:hover figcaption {
+  color: #015679 !important;
+ }
+ 
+ .cd-primary-nav .cd-label a:active i, .cd-primary-nav .cd-label a:active figcaption {
+  color: #464648 !important;
+ }
+ 
+ .cd-primary-nav .profile a .logout {
+  transition: 0.3s all;
+ }
+ 
+ .cd-primary-nav .profile a:hover .logout {
+  filter: grayscale(50%);
+ }
+ 
+ .cd-primary-nav .profile a:active .logout {
+  filter: grayscale(100%);
+ }
+ 
+ .cd-primary-nav-trigger .cd-menu-icon::before, .cd-primary-nav-trigger .cd-menu-icon:after, .cd-primary-nav-trigger .cd-menu-icon {
+  transition: 0.3s all;
+ }
+ 
+ .cd-primary-nav-trigger:hover .cd-menu-icon::before, .cd-primary-nav-trigger:hover .cd-menu-icon:after, .cd-primary-nav-trigger:hover .cd-menu-icon {
+  background-color: #0aa2dd;
+ }
+ 
+ .cd-primary-nav-trigger:active .cd-menu-icon::before, .cd-primary-nav-trigger:active .cd-menu-icon:after, .cd-primary-nav-trigger:active .cd-menu-icon {
+  background-color: #015679;
+ }
+ 
+ .cd-primary-nav-trigger .cd-menu-icon.is-clicked {
+  background-color: rgba(255, 255, 255, 0);
+ }
+ 
+ .fa-question {
+  font-family: FontAwesome !important;
+  font-size: 55px !important;
+  color: #ffffff;
+  transition: 0.3s all;
+ }
+ 
+ a:hover .fa-question {
+  color: #015679;
+ }
+ 
+ a:active .fa-question {
+  color: #464648;
+ }
+ 
+ .questionMark {
+  left: 28px;
+  bottom: 15px;
+ }
+
+.menuActive i, .menuActive figcaption {
+color: #01577A !important;
 }
