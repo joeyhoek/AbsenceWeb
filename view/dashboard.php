@@ -13,11 +13,11 @@
 	<ul class="cd-primary-nav">
 		<div class="horizontalMenu">
 			<li class="cd-label<?php if (!isset($_GET["url"])) { echo " menuActive"; } ?>"><a href="/"><i class=" faf fa fa-tachometer" aria-hidden="true"></i><figcaption>Dashboard</figcaption></a></li>
-			<?php if ($userRole !== 1) { ?>
+			<?php if ($userRole != 1) { ?>
 			<li class="cd-label<?php if (isset($_GET["url"]) && $_GET["url"] == "lesson") { echo " menuActive"; } ?>"><a href="/lesson"><i class="faf fa fa-users" aria-hidden="true"></i><figcaption>Lesson</figcaption></a></li>
 			<?php } ?>
 			<li class="cd-label<?php if (isset($_GET["url"]) && $_GET["url"] == "overview") { echo " menuActive"; } ?>"><a href="/overview"><i class="faf fa fa-bar-chart" aria-hidden="true"></i><figcaption>Overview</figcaption></a></li>
-			<?php if ($userRole !== 4) { ?>
+			<?php if ($userRole == 4) { ?>
 			<li class="cd-label<?php if (isset($_GET["url"]) && $_GET["url"] == "manage") { echo " menuActive"; } ?>"><a href="/manage"><i class="faf fa fa-pencil" aria-hidden="true"></i><figcaption>Manage</figcaption></a></li>
 			<?php } ?>
 			<div class="profile">

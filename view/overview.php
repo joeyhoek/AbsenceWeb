@@ -18,15 +18,9 @@ if (isset($_GET["type"])) {
 					if ($objectRoleId == 1) {
 						$objectName = $object->getFirstname() . " " . $object->getLastname();
 						$set = true;
-					} else {
-						$set = false;
-					}
-				} else {
-					$set = false;
+					} 
 				}
-			} else {
-				$set = false;
-			}
+			} 
 			break;
 		case "teachers":
 			if ($userRole == 4) {
@@ -37,14 +31,8 @@ if (isset($_GET["type"])) {
 					if ($objectRoleId != 1) {
 						$objectName = $object->getFirstname() . " " . $object->getLastname();
 						$set = true;
-					} else {
-						$set = false;
 					}
-				} else {
-					$set = false;
 				}
-			} else {
-				$set = false;
 			}
 			break;
 		case "classes":
@@ -55,14 +43,8 @@ if (isset($_GET["type"])) {
 
 					if ($objectName) {
 						$set = true;
-					} else {
-						$set = false;
 					}
-				} else {
-					$set = false;
 				}
-			} else {
-				$set = false;
 			}
 			break;
 		case "courses":
@@ -73,20 +55,14 @@ if (isset($_GET["type"])) {
 
 					if ($objectName) {
 						$set = true;
-					} else {
-						$set = false;
 					}
-				} else {
-					$set = false;
 				}
-			} else {
-				$set = false;
 			}
 			break;
-		default:
-			$set = false;
 	}
-} else {
+}
+
+if (!isset($set)) {
 	$set = false;
 }
 
@@ -94,7 +70,54 @@ if (isset($_GET["type"])) {
 <style>
 	.noData {
 		color: #464648;
+		font-size: 20px;
+		margin-top: 65px;
 	}
+	
+	.row {
+		width: 100%;
+		display: block;
+		margin: 15px auto;
+		text-align: left;
+	}
+	
+	.columnLeft {
+		display: inline-block;
+		width: calc(65% - 92px);
+		margin-right: 27px;
+		height: 300px;
+		background-color: #f9fcfd;
+   		box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.31);
+		padding: 40px;
+	}
+	
+	.columnRight {
+		display: inline-block;
+		width: calc(35% - 100px);
+		height: 300px;
+    	box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.31);
+		padding: 40px;
+		background: #036992; /* Old browsers */
+		background: -moz-linear-gradient(left, #036992 0%, #0577a4 100%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(left, #036992 0%,#0577a4 100%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to right, #036992 0%,#0577a4 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#036992', endColorstr='#0577a4',GradientType=1 ); /* IE6-9 */
+	}
+
+	.columnNone {
+		width: calc(100% - 80px);
+		height: auto;
+		background-color: #f9fcfd;
+   		box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.31);
+		padding: 40px;
+		background: #247c9f;
+		background: -moz-linear-gradient(left, #247c9f 0%, #0ba2dd 100%);
+		background: -webkit-linear-gradient(left, #247c9f 0%,#0ba2dd 100%);
+		background: linear-gradient(to right, #247c9f 0%,#0ba2dd 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#247c9f', endColorstr='#0ba2dd',GradientType=1 );
+	}
+}
+
 </style>
 
 <?php if ($userRole != 1) { ?>
@@ -132,7 +155,7 @@ if (isset($_GET["type"])) {
 					if (typeof results.students != "undefined") {
 						var count = 0;
 						for (var result in results.students) {
-							if (count >= 3) {
+							if (count >= 2) {
 								continue;
 							}
 							count++;
@@ -144,7 +167,7 @@ if (isset($_GET["type"])) {
 					if (typeof results.teachers != "undefined") {
 						var count = 0;
 						for (var result in results.teachers) {
-							if (count >= 3) {
+							if (count >= 2) {
 								continue;
 							}
 							count++;
@@ -156,7 +179,7 @@ if (isset($_GET["type"])) {
 					if (typeof results.courses != "undefined") {
 						var count = 0;
 						for (var result in results.courses) {
-							if (count >= 3) {
+							if (count >= 2) {
 								continue;
 							}
 							count++;
@@ -168,7 +191,7 @@ if (isset($_GET["type"])) {
 					if (typeof results.classes != "undefined") {
 						var count = 0;
 						for (var result in results.classes) {
-							if (count >= 3) {
+							if (count >= 2) {
 								continue;
 							}
 							count++;
@@ -196,6 +219,17 @@ if (isset($_GET["type"])) {
 <?php } elseif (!$set) { ?>
 		<p class="noData">No object selected</p>
 <?php } else { ?>
-
-wel data
+		<div class="row">
+			<div class="columnLeft">
+				1
+			</div>
+			<div class="columnRight">
+				2
+			</div>
+		</div>
+		<div class="row">
+			<div class="columnNone">
+				2
+			</div>
+		</div>
 <?php } ?>
