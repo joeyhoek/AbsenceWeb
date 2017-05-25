@@ -18,13 +18,8 @@
 <file name="qrCode.php" server="ftp.innovatewebdesign.nl" local="131395225184129521" remote="131395225200000000" Dst="2" />
 <file name="sha3.php" server="ftp.innovatewebdesign.nl" local="131383219052090961" remote="131383959000000000" Dst="2" />
 <file name="login.php" server="ftp.team16j.p004.nl//domains/team16j.p004.nl/public_html/" local="131382755238023518" remote="131382754800000000" Dst="2" />
-<<<<<<< HEAD
 <file name="login.php" server="ftp.innovatewebdesign.nl" local="131400190342143818" remote="131400190200000000" Dst="2" />
-<file name="user.php" server="ftp.innovatewebdesign.nl" local="131399580639672951" remote="131399580000000000" Dst="2" />
-=======
-<file name="login.php" server="ftp.innovatewebdesign.nl" local="131397945032323302" remote="131397944400000000" Dst="2" />
-<file name="user.php" server="ftp.innovatewebdesign.nl" local="131400154896331693" remote="131400154200000000" Dst="2" />
->>>>>>> origin/master
+<file name="user.php" server="ftp.innovatewebdesign.nl" local="131401215543078285" remote="131401215000000000" Dst="2" />
 <file name="token.php" server="ftp.innovatewebdesign.nl" local="131385489829272104" remote="131385489600000000" Dst="2" />
 <file name="search.php" server="ftp.innovatewebdesign.nl" local="131400157646828678" remote="131400157200000000" Dst="2" />
 <file name="class.php" server="ftp.innovatewebdesign.nl" local="131400361938867745" remote="131400361200000000" Dst="2" />

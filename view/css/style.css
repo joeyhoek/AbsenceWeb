@@ -37,10 +37,12 @@ html {
 	-o-background-size: cover;
 	background-attachment: fixed;
 	background-position: 100% 100%;
-	-moz-transform: scaleY(1.0); /* for Firefox, default 1*/
-	transform: scaleY(1.0); /* for Firefox, default 1*/
-    zoom:100%; /* For Chrome, IE, default 100%*/
-	overflow-x: hidden;
+	overflow: hidden;
+}
+
+body{
+	height:100%;
+	overflow: hidden;
 }
 
 main {
@@ -98,7 +100,6 @@ body {
 	overflow-x: hidden;
 }
 
-
 .container {
 	max-width: 100%;
 	height: auto;
@@ -124,10 +125,12 @@ body {
 	position: absolute;
 	top: 50%;
 	left: 50%;
+	-moz-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	-webkit-transform: translate(-50%, -50%);
 	transform: translate(-50%, -50%);
 	display: flex;
 	align-items: center;
-	
 }
 
 #column-left {
@@ -140,14 +143,12 @@ body {
 
 @media only screen and (min-width: 600px) {
 	#column-left {
-	text-align: center;
-	width: 50%;
-	float: left;
-	display: flex;
-	position: relative;
-	
-}
-	
+		text-align: center;
+		width: 50%;
+		float: left;
+		display: flex;
+		position: relative;
+	}
 }
 
 #qrcode {
@@ -179,7 +180,6 @@ body {
 	min-width: 260px; 
 	animation: logInQrIn 0.5s ease-in-out 0.45s;
  	-webkit-animation-fill-mode: forwards;
-	
 	-moz-transform: scale(0);
 	-ms-transform: scale(0);
 	-webkit-transform: scale(0);
@@ -265,13 +265,6 @@ body {
 
 form {
 	width: 191px;
-}
-
-@media (max-height: 900px) {
-	.container {
-/*		qqqqqqqq*/
-	
-	}
 }
 
 #footer {
@@ -378,7 +371,7 @@ animation: recInInput 0.4s ease-in-out 0.65s;
  animation: none !important;
  opacity: 1 !important;
  width: 191px !important;
-border-left: solid 10px #015679;
+ border-left: solid 10px #015679;
 }
 
 .submitted .input:invalid {
@@ -497,8 +490,10 @@ input:-webkit-autofill { -webkit-box-shadow:200px 200px 100px white inset; box-s
 	left: 50%;
 	height: 0px;
 	top: 50%;	
-	transform: translate(-50%, -50%);	
-	
+	-moz-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
 	animation: lijn 0.7s ease-in-out 0.3s;
 	 -webkit-animation-fill-mode: forwards;
 }
@@ -511,8 +506,10 @@ input:-webkit-autofill { -webkit-box-shadow:200px 200px 100px white inset; box-s
 	left: 50%;
 	height: 0px;
 	top: 50%;	
-	transform: translate(-50%, -50%);	
-	
+	-moz-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
 	animation: lijn 0.7s ease-in-out 0.3s;
 	 -webkit-animation-fill-mode: forwards;
 }
@@ -527,7 +524,7 @@ input:-webkit-autofill { -webkit-box-shadow:200px 200px 100px white inset; box-s
 	color: white;
 	font-size: 12px;
 	
-		opacity:0;  
+	opacity:0;  
 	-webkit-animation:container2 ease-in 1;  
 	-moz-animation:container2 ease-in 1;
 	animation:container2 ease-in 1;
@@ -603,12 +600,18 @@ h4 {
   top: 0;
   height: 100%;
   width: 100%;
+  -moz-transform: translateY(-100%);
+  -ms-transform: translateY(-100%);
+  -webkit-transform: translateY(-100%);
   transform: translateY(-100%);
   transition-property: transform;
   transition-duration: 0.4s;
 }
  
 .cd-primary-nav.is-visible {
+  -moz-transform: translateY(0%);
+  -ms-transform: translateY(0%);
+  -webkit-transform: translateY(0%);
   transform: translateY(0);
 }
 
@@ -630,6 +633,10 @@ h4 {
  
 .cd-header.is-visible {
   /* if the user changes the scrolling direction, we show the header */
+  -webkit-transform: translate3d(0, 100%, 0);
+  -moz-transform: translate3d(0, 100%, 0);
+  -ms-transform: translate3d(0, 100%, 0);
+  -o-transform: translate3d(0, 100%, 0);
   transform: translate3d(0, 100%, 0);
 }
 
@@ -976,6 +983,10 @@ Hieronder staat de code voor de 404 Pagina
 	position: fixed;
 	left: 50%;
 	top: 50%;
+	-webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
 	transform: translate(-50%, -50%);
 	font-family: "Arial Black", Gadget, sans-serif;
 }
@@ -1296,11 +1307,11 @@ div.tab button.active {
 }
 
 #searchBar {
-		width: 100%;
-		-webkit-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3);
-		-moz-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3);
-		box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3);
-		height: 54px;
+	width: 100%;
+	-webkit-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3);
+	box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.3);
+	height: 54px;
 }
 
 #searchBar #filter {
@@ -1326,6 +1337,10 @@ div.tab button.active {
 	color: #ffffff;
 	top: 50%;
 	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
 	transform: translate(-50%, -50%);
 	position: relative;
 	font-size: 34px;
@@ -1390,6 +1405,10 @@ div.tab button.active {
 	color: #ffffff;
 	top: 50%;
 	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
 	transform: translate(-50%, -50%);
 	position: relative;
 	font-size: 34px;
@@ -1457,6 +1476,10 @@ div.tab button.active {
  @media all and (min-width: 999px) {
 	.horizontalMenu {
 		position: absolute;
+		-webkit-transform: translate(-50%, -50%);
+    	-moz-transform: translate(-50%, -50%);
+    	-ms-transform: translate(-50%, -50%);
+    	-o-transform: translate(-50%, -50%);
 		transform: translate(-50%, -50%);
 		top: 50%;
 		left: 50%;
@@ -1577,4 +1600,18 @@ div.tab button.active {
 
 .menuActive i, .menuActive figcaption, .menuActive {
 	color: #01577A !important;
+}
+
+#qrcode.loaded img {
+ 	animation: none !important;
+ 	transform: scale(1) !important;
+ 	opacity: 1 !important;
+}
+
+input[type="password"], input:before, input:after {
+      -webkit-user-select: initial !important;
+      -khtml-user-select: initial !important;
+      -moz-user-select: initial !important;
+      -ms-user-select: initial !important;
+      user-select: initial !important;
 }
