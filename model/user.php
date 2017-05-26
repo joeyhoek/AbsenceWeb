@@ -68,9 +68,9 @@ class User {
 		}
 	}
 	
-	public function getYear() {
-		$year = $this->connection->query("SELECT year FROM users WHERE id = '" . $this->id . "'")["year"];
-		return $year;
+	public function getComakership() {
+		$comakership = $this->connection->query("SELECT code FROM users, comakerships WHERE users.id = '" . $this->id . "' AND users.comakershipId = comakerships.id")["code"];
+		return $comakership;
 	}
 	
 	public function getIdFromEmail($email) {

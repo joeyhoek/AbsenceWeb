@@ -35,8 +35,8 @@ if (isset($_POST['email']) && isset($_POST["password"])) {
 	endif;
 } elseif (isset($_SESSION['userId']) && isset($_SESSION["token"])) {
 	if (!(new Token)->verifySessionToken($_SESSION['userId'], $_SESSION["token"], "web")) {
-		$page = "login";
-		$pageTitle = "Login";
+		(new Login)->logout();
+		header("Location: /");
 	}
 	
 	$adminHeader = true;
@@ -87,6 +87,7 @@ if (isset($_POST['email']) && isset($_POST["password"])) {
 					$page = "webClient";
 					break;
 				default:
+					header("HTTP/1.0 404 Not Found");
 					$page = "404";
 					$pageTitle = "404 Page not found";
 			}
@@ -113,6 +114,7 @@ if (isset($_POST['email']) && isset($_POST["password"])) {
 					$page = "webClient";
 					break;
 				default:
+					header("HTTP/1.0 404 Not Found");
 					$page = "404";
 					$pageTitle = "404 Page not found";
 			}
@@ -143,6 +145,7 @@ if (isset($_POST['email']) && isset($_POST["password"])) {
 					$page = "webClient";
 					break;
 				default:
+					header("HTTP/1.0 404 Not Found");
 					$page = "404";
 					$pageTitle = "404 Page not found";
 			}
@@ -188,6 +191,7 @@ if (isset($_GET["url"]) && !isset($page)) {
 					(new User)->changePassword($_POST["newPassword"], $_POST["confirmPassword"], $_GET["token"]);
 				}
 			} else {
+				header("HTTP/1.0 404 Not Found");
 				$page = "404";
 				$pageTitle = "404 Page not found";
 			}
@@ -199,6 +203,7 @@ if (isset($_GET["url"]) && !isset($page)) {
 			$page = "mobileClient";
 			break;
 		default:
+			header("HTTP/1.0 404 Not Found");
 			$page = "404";
 			$pageTitle = "404 Page not found";
 	}
@@ -210,7 +215,7 @@ if (isset($_GET["url"]) && !isset($page)) {
 
 if ($page !== "desktopClient" && $page !== "mobileClient" && $page !== "webClient") {
 	require_once("view/head.php");
-	if ($adminHeader === true && $page !== "404") {
+	if (isset($adminHeader) && $adminHeader === true && $page !== "404") {
 		require_once("view/dashboard.php");
 	}
 	
@@ -219,7 +224,7 @@ if ($page !== "desktopClient" && $page !== "mobileClient" && $page !== "webClien
 	}		
 	require_once("view/" . $page . ".php");
 	
-	if ($adminHeader === true && $page !== "404") {
+	if (isset($adminHeader) && $adminHeader === true && $page !== "404") {
 		require_once("view/foot.php");
 	}
 	

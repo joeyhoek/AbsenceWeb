@@ -31,22 +31,43 @@ function shakeFix(delay) {
 	//var loginPassword = document.getElementsByClassName('password')[0];
 	var userIcon = document.getElementsByClassName('emailLogo')[0];
 	var lockIcon = document.getElementsByClassName('passwordLogo')[0];
+	var qrcode = document.getElementById('qrcode');
 
 	setTimeout(function(){
 		//loginUsername.classList.add("loaded");
 		//loginPassword.classList.add("loaded");
 		userIcon.classList.add("loaded");
 		lockIcon.classList.add("loaded");
+		qrcode.classList.add("loaded");
 	}, delay);
 }
 
 
 	setTimeout(function(){
-		document.getElementsByClassName('input')[0].classList.add("loaded");
-		document.getElementsByClassName('input')[1].classList.add("loaded");
-		document.getElementById('wit').classList.add("loaded");
-		shakeFix(0);
+		try { 
+			document.getElementsByClassName('input')[0].classList.add("loaded");
+		} catch (e) {
+		}
+		try { 
+			document.getElementsByClassName('input')[1].classList.add("loaded");
+		} catch (e) {
+		}
+		try { 
+			document.getElementById('wit').classList.add("loaded");
+		} catch (e) {
+		}
+		try { 
+			document.getElementsByClassName('input')[2].classList.add("loaded");
+		}  catch (e) {
+		}
+		try {
+			shakeFix(0);
+		} catch (e) {
+		}
 	}, 1500);
 };
+
+window.ondragstart = function() { return false; };
+
 
 
