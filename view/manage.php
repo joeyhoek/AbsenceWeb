@@ -157,6 +157,42 @@
 					</div>
 					<div id="users" style="display: block;">
 						<div class="userInfo">
+							<input type="text" id="manageId" class="manageForm" placeholder="Id">
+							<input type="text" id="manageFirstName" class="manageForm" placeholder="First Name">
+							<input type="text" id="manageLastName" class="manageForm" placeholder="Last Name">
+							<input type="text" id="manageEmail" class="manageForm" placeholder="Email">
+							<select id="manageRole" class="manageForm">
+							 <option value="" disabled selected hidden>Role</option>
+								<option>Student</option>
+								<option>Teacher</option>
+								<option>Student counselor</option>
+								<option>Teamleader</option>
+							</select>
+							<select id="manageFaculty" class="manageForm">
+								<option value="" disabled selected hidden>Faculty</option>
+								<option>HBO-ICT</option>
+								<option>PABO</option>
+								<option>Engineering</option>
+							</select>
+							<select id="manageClass" class="manageForm">
+								<option value="" disabled selected hidden>Class</option>
+								<option>WFHBOICT.V1A</option>
+								<option>WFHBOICT.V1B</option>
+								<option>WFHBOICT.V1C</option>
+								<option>WFHBOICT.V1D</option>
+								<option>WFHBOICT.V1E</option>
+								<option>WFHBOICT.V1F</option>
+							</select>
+							<select id="manageComaker" class="manageForm">
+								<option value="" disabled selected hidden>Year</option>
+								<option>1st year</option>
+								<option>2nd year</option>
+								<option>3th year</option>
+								<option>4th year</option>
+							</select>
+							<textarea id="manageNotes" class="manageForm" placeholder="Notes"></textarea>
+							
+							<input type="submit" class="button buttonManage" value="Add user">
 
 						</div>
 					</div>
@@ -171,7 +207,7 @@
 			</div>
 	</div>
 			<div id="helper2">
-				<img class="lijn" src="view/images/lijn.png"></img>
+				<img class="lijn lijnManage" src="view/images/lijn.png"></img>
 			</div>
 			
 	
@@ -278,6 +314,44 @@
 	document.getElementById("searchBox").onkeyup = function () {
 		search();
 	};
+	
+	
+	var manageId = document.getElementById("manageId");
+	var manageFirstName = document.getElementById("manageFirstName");
+	var manageLastName = document.getElementById("manageLastName");
+	var manageEmail = document.getElementById("manageEmail");
+	var manageRole = document.getElementById("manageRole");
+	var manageFaculty = document.getElementById("manageFaculty");
+	var manageClass = document.getElementById("manageClass");
+	var manageComaker = document.getElementById("manageComaker");
+	var manageNotes = document.getElementById("manageNotes");
+	
+	document.getElementById("filter").addEventListener("click", function(){
+
+		if (manageId.style.display === "block" && manageFirstName.style.display === "block" && manageLastName.style.display === "block" && manageEmail.style.display === "block" && manageRole.style.display === "block" && manageFaculty.style.display === "block" && manageClass.style.display === "block" && manageComaker.style.display === "block" && manageNotes.style.display === "block") {
+ 			manageId.style.display = "none";
+ 			manageFirstName.style.display = "none";
+ 			manageLastName.style.display = "none";
+ 			manageEmail.style.display = "none";
+ 			manageRole.style.display = "none";
+ 			manageFaculty.style.display = "none";
+ 			manageClass.style.display = "none";
+ 			manageComaker.style.display = "none";
+ 			manageNotes.style.display = "none";
+		} else {
+			manageId.style.display = "block";
+			manageFirstName.style.display = "block";
+			manageLastName.style.display = "block";
+			manageEmail.style.display = "block";
+			manageRole.style.display = "block";
+			manageFaculty.style.display = "block";
+			manageClass.style.display = "block";
+ 			manageComaker.style.display = "block";
+ 			manageNotes.style.display = "block";
+		}
+	});
+	
+	
 </script>	
 	
 
