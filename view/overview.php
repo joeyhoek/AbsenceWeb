@@ -104,13 +104,50 @@ if (isset($_GET["type"])) {
 								}
 								
 								$years = [];
+								$ir = "";
 								
 								foreach ($results2 as $result) {
+									$courses = [];
+									$course = $result["courseId"];
+									$teacher = $result["teacherId"];
+									foreach ($courses as $cours) {
+										if (in_array($course, $cours) && in_array($teacher, $cours)) {
+											$add = false;
+										}
+									}
+									
+									if (!isset($add) && $add !== false) {
+										$courses[] = [$course, $teacher];
+										unset($add);
+									}
+									
 									$year =  date_parse($result["date"])["year"];
 									
-									if (!in_array($year, $years)) {
-										$years[] = $year;
+									foreach ($years as $yea) {
+										if (in_array($year, $yea)) {
+											$add = false;
+										}
 									}
+									
+									if (!isset($add) || $add !== false) {
+										$years[] = [$year, $courses];
+									}
+									
+									var_dump($courses);
+									unset($courses);
+								}
+								
+								//var_dump($years);
+								
+								$num = 1;
+								foreach ($years as $year) {
+									$ir .= "<div id='recordContainer" . $num . "' class='recordContainer expand' onClick='collapse(" . $num . ");'><b>Year</b> - ";
+									$ir .= $year[0];
+									$ir .= "</div>";
+									$ir .= "<div id='recordInner" . $num . "' class='recordInner'>";
+									$num++;
+									$ir .= "<div id='recordContainer" . $num . "' class='recordContainer expand' onClick='collapse(" . $num . ");'><b>Year</b> - " . $year[1][0][1] . "</div><div id='recordInner" . $num . "' class='recordInner'>inner</div></div>";
+									$num++;
 								}
 								//var_dump($years);
 							}
@@ -521,6 +558,49 @@ $echo = generateDatasets($data, $labels);
 		color: #096C92;
 		position: absolute;
 	}
+	
+	.nicescroll-rails {
+		z-index: 5 !important;
+	}
+	
+	::selection {
+		background: #0ba2dd;
+		color: #ffffff;
+	}
+	::-moz-selection {
+		background: #0ba2dd;
+		color: #ffffff;
+	}
+	
+	.recordContainer {
+		padding:  13px 20px;
+		color: #ffffff;
+		border-bottom: 1px solid #ffffff;
+		border-top: 1px solid #ffffff;
+		width: calc(100% - 40px);
+		font-size: 17px;
+		font-style: italic;
+		margin-top: -1px;
+	}
+	
+	.recordContainer b {
+		font-weight: bold;
+		font-style: normal;
+	}
+	
+	main {
+		overflow-x: hidden;
+	}
+	
+	.recordInner {
+		width: calc(100% - 40px);
+		margin-left: 40px;
+		display: none;
+	}
+	
+	.recordInner.expanded {
+		display: block;
+	}
 </style>
 <?php if ($userRole != 1) { ?>
 <div id="searchBar">
@@ -755,9 +835,16 @@ $echo = generateDatasets($data, $labels);
 						return mainChart;
 					}
 					
+					<?php if (isset($filterType)) { ?>
 					document.getElementById("switch").addEventListener("click", function() {
 						mainChart = switchGraph(mainChart);
 					}, false);
+					<?php } ?>
+					
+					function collapse(id) {
+						var inner = "recordInner" + id;
+						document.getElementById(inner).classList.toggle("expanded");
+					}
 				</script>
 			</div>
 			<div class="columnRight">
@@ -785,7 +872,9 @@ $echo = generateDatasets($data, $labels);
 		<div class="row">
 			<div class="columnNone">
 				<h2 class="title">Individual Records</h2>
-				<div class="recordsBox"><div class="noDataRecorded">No data</div></div>
+				<div class="recordsBox">
+					<?php echo $ir; ?>
+				</div>
 			</div>
 		</div>
 <?php } ?>

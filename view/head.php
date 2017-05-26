@@ -14,8 +14,10 @@
 		<script>
 			$(document).ready(function() {  
 				$("main").niceScroll({
-					cursorcolor: "#015679" 
+					cursorcolor: "#015679",
+					horizrailenabled: false
 				});
+				
 				$(".horizontalMenu").niceScroll({
 					cursorcolor: "#015679",
 					cursorborder: "0px solid #015679"
