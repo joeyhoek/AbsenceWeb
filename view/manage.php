@@ -111,12 +111,18 @@
 	}
 
 ?>
-  
+
+<style>
+
+		
+	
+</style>  
+      
 <div class="containerManage">
 
 	<div class="columnLeftManage">
 		<div class="columnLeftManage2">
-			<form  method="post" enctype="multipart/form-data">
+			<form method="post" enctype="multipart/form-data">
 			<div class="image-upload">
 				<label for="file-input">
 				<i class="fa fa-upload" aria-hidden="true"></i>
@@ -145,27 +151,17 @@
 						<div id="searchButton" onclick="search();">
 							<i class="fa fa-search" aria-hidden="true"></i>
 						</div>
-						<div id="results">
+						<div id="resultsManage">
 
 						</div>
 					</div>
-					<div id="users" class="tabcontent" style="display: block;">
+					<div id="users" style="display: block;">
 						<div class="userInfo">
-							<p>London is the capital city of England.</p>
-							<p>London is the capital city of England.</p>
-							<p>London is the capital city of England.</p>
-							<p>London is the capital city of England.</p>
-							<p>London is the capital city of England.</p>
-							<p>London is the capital city of England.</p>
-							<p>London is the capital city of England.</p>
-							 <i class="fa fa-pencil" aria-hidden="true"></i>
-							 <i class="fa fa-trash-o" aria-hidden="true"></i>
+
 						</div>
 					</div>
 
-					<div id="classrooms" class="tabcontent">
-						<h3>Classrooms</h3>
-						<p>Paris is the capital of France.</p> 
+					<div id="classrooms"> 
 					</div>
 
 					<div id="locations" class="tabcontent">
@@ -214,7 +210,7 @@
 	function search() {
 		var search = document.getElementById("searchBox").value;
 		if (search == "" || search == null) {
-			document.getElementById("results").innerHTML = "";
+			document.getElementById("resultsManage").innerHTML = "";
 		} else {
 			var http = new XMLHttpRequest();
 			var type = document.getElementsByClassName("active")[0].innerHTML.toLowerCase();
@@ -225,54 +221,54 @@
 
 			http.onreadystatechange = function() {
 				if(http.readyState == 4 && http.status == 200) {
-					var results = JSON.parse(this.responseText);
+					var resultsManage = JSON.parse(this.responseText);
 					var html = "";
 					var totalCount = 0;
 					
-					if (typeof results.students != "undefined") {
+					if (typeof resultsManage.students != "undefined") {
 						var count = 0;
-						for (var result in results.students) {
+						for (var result in resultsManage.students) {
 							if (count >= 3) {
 								continue;
 							}
 							count++;
-							html = html + "<a href='/overview?type=students&id=" + results.students[result].id + "'><div class='result result-" + totalCount + "'><i>(" + results.students[result].id + ")</i> " + results.students[result].firstname + " " + results.students[result].lastname + "</div></a>";
+							html = html + "<a href='/overview?type=students&id=" + resultsManage.students[result].id + "'><div class='result result-" + totalCount + "'><i>(" + resultsManage.students[result].id + ")</i> " + resultsManage.students[result].firstname + " " + resultsManage.students[result].lastname + "</div></a><i class='fa fa-trash-o' aria-hidden='true'></i><i class='fa fa-pencil' aria-hidden='true'></i>";
 							totalCount++;
 						}
 					}
 
-					if (typeof results.teachers != "undefined") {
+					if (typeof resultsManage.teachers != "undefined") {
 						var count = 0;
-						for (var result in results.teachers) {
+						for (var result in resultsManage.teachers) {
 							if (count >= 3) {
 								continue;
 							}
 							count++;
-							html = html + "<a href='/overview?type=teachers&id=" + results.teachers[result].id + "'><div class='result result-" + totalCount + "'><i>(" + results.teachers[result].id + ")</i> " + results.teachers[result].firstname + " " + results.teachers[result].lastname + "</div></a>";
+							html = html + "<a href='/overview?type=teachers&id=" + resultsManage.teachers[result].id + "'><div class='result result-" + totalCount + "'><i>(" + resultsManage.teachers[result].id + ")</i> " + resultsManage.teachers[result].firstname + " " + resultsManage.teachers[result].lastname + "</div></a><i class='fa fa-trash-o' aria-hidden='true'></i><i class='fa fa-pencil' aria-hidden='true'></i>";
 							totalCount++;
 						}
 					}
 					
-					if (typeof results.classrooms != "undefined") {
+					if (typeof resultsManage.classrooms != "undefined") {
 						var count = 0;
-						for (var result in results.classrooms) {
+						for (var result in resultsManage.classrooms) {
 							if (count >= 3) {
 								continue;
 							}
 							count++;
-							html = html + "<a href='/overview?type=teachers&id=" + results.classrooms[result].id + "'><div class='result result-" + totalCount + "'>" + results.classrooms[result].code + "</div></a>";
+							html = html + "<a href='/overview?type=teachers&id=" + resultsManage.classrooms[result].id + "'><div class='result result-" + totalCount + "'>" + resultsManage.classrooms[result].code + "</div></a><i class='fa fa-trash-o' aria-hidden='true'></i><i class='fa fa-pencil' aria-hidden='true'></i>";
 							totalCount++;
 						}
 					}
 					
-					if (typeof results.locations != "undefined") {
-						for (var result in results.locations) {
-							html = html + "<a href='/overview?type=teachers&id=" + results.locations[result].id + "'><div class='result result-" + totalCount + "'>" + results.locations[result].name + "</div></a>";
+					if (typeof resultsManage.locations != "undefined") {
+						for (var result in resultsManage.locations) {
+							html = html + "<a href='/overview?type=teachers&id=" + resultsManage.locations[result].id + "'><div class='result result-" + totalCount + "'>" + resultsManage.locations[result].name + "</div></a><i class='fa fa-trash-o' aria-hidden='true'></i><i class='fa fa-pencil' aria-hidden='true'></i>";
 							totalCount++;
 						}
 					}
 
-					document.getElementById("results").innerHTML = html;
+					document.getElementById("resultsManage").innerHTML = html;
 				} 
 			};
 			http.send(params);
@@ -282,6 +278,6 @@
 	document.getElementById("searchBox").onkeyup = function () {
 		search();
 	};
-</script>
+</script>	
 	
 

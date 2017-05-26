@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
 <file name="login.php" server="ftp.team16j.p004.nl//domains/team16j.p004.nl/public_html/" local="131372497263589651" remote="131372517000000000" Dst="2" />
+<<<<<<< HEAD
 <file name="login.php" server="ftp.innovatewebdesign.nl" local="131400996911770481" remote="131400996600000000" Dst="2" />
+=======
+<file name="login.php" server="ftp.innovatewebdesign.nl" local="131402295828181363" remote="131402295600000000" Dst="2" />
+>>>>>>> origin/master
 <file name="echoQRCode.php" server="ftp.team16j.p004.nl//domains/team16j.p004.nl/public_html/" local="131364946254828701" remote="131372514600000000" Dst="2" />
 <file name="echoQRCode.php" server="ftp.innovatewebdesign.nl" local="131364946254828701" remote="131372521200000000" Dst="2" />
 <file name="forgotPassword.php" server="ftp.innovatewebdesign.nl" local="131384025465559890" remote="131384025000000000" Dst="2" />
@@ -9,12 +13,12 @@
 <file name="resetPassword.php" server="ftp.innovatewebdesign.nl" local="131387181551404448" remote="131387181000000000" Dst="2" />
 <file name="resetPassword.php" server="ftp.team16j.p004.nl//domains/team16j.p004.nl/public_html/" local="131383723568742957" remote="131383723200000000" Dst="2" />
 <file name="404.php" server="ftp.innovatewebdesign.nl" local="131387370972787840" remote="131387290200000000" Dst="2" />
-<file name="head.php" server="ftp.innovatewebdesign.nl" local="131394914168942769" remote="131394913800000000" Dst="2" />
-<file name="footer.php" server="ftp.innovatewebdesign.nl" local="131398660251545719" remote="131398659600000000" Dst="2" />
-<file name="dashboard.php" server="ftp.innovatewebdesign.nl" local="131400500257857514" remote="131400499800000000" Dst="2" />
+<file name="head.php" server="ftp.innovatewebdesign.nl" local="131402243422623057" remote="131402242800000000" Dst="2" />
+<file name="footer.php" server="ftp.innovatewebdesign.nl" local="131402213676275739" remote="131402213400000000" Dst="2" />
+<file name="dashboard.php" server="ftp.innovatewebdesign.nl" local="131402195858546189" remote="131402195400000000" Dst="2" />
 <file name="newCourse.php" server="ftp.innovatewebdesign.nl" local="131398653842034644" remote="131398653600000000" Dst="2" />
-<file name="manage.php" server="ftp.innovatewebdesign.nl" local="131398795757219757" remote="131398795200000000" Dst="2" />
+<file name="manage.php" server="ftp.innovatewebdesign.nl" local="131402330965541554" remote="131402330400000000" Dst="2" />
 <file name="uploadCSV.php" server="ftp.innovatewebdesign.nl" local="131398712828914642" remote="131398712400000000" Dst="2" />
-<file name="overview.php" server="ftp.innovatewebdesign.nl" local="131400538873080498" remote="131400538200000000" Dst="2" />
+<file name="overview.php" server="ftp.innovatewebdesign.nl" local="131402261442051505" remote="131402260800000000" Dst="2" />
 <file name="about.php" server="ftp.innovatewebdesign.nl" local="131400326021669400" remote="131400206400000000" Dst="2" />
 </dwsync>
