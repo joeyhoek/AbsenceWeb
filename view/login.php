@@ -57,7 +57,7 @@
 
 		</div>
 			<div id="helper">
-				<img class="lijn" src="view/images/lijn.png"></img>
+				<img class="lijn" src="view/images/lijn.png" />
 			</div>
 			<div id="container2"><div id="wit"></div></div>
 	</div>
