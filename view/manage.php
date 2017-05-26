@@ -122,6 +122,7 @@
 
 	<div class="columnLeftManage">
 		<div class="columnLeftManage2">
+			<form method="post" enctype="multipart/form-data">
 			<div class="image-upload">
 				<label for="file-input">
 				<i class="fa fa-upload" aria-hidden="true"></i>
