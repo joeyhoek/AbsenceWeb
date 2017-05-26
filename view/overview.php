@@ -108,8 +108,8 @@ if (isset($_GET["type"])) {
 								
 								foreach ($results2 as $result) {
 									$courses = [];
-									$course = $result["courseId"];
-									$teacher = $result["teacherId"];
+									$course = (new Course($result["courseId"]))->getName();
+									$teacher = (new User($result["teacherId"]))->getFirstname() . " " . (new User($result["teacherId"]))->getLastname();
 									foreach ($courses as $cours) {
 										if (in_array($course, $cours) && in_array($teacher, $cours)) {
 											$add = false;
@@ -121,7 +121,8 @@ if (isset($_GET["type"])) {
 										unset($add);
 									}
 									
-									$year =  date_parse($result["date"])["year"];
+									$year = date_parse($result["date"]);
+									$year =  $year["year"];
 									
 									foreach ($years as $yea) {
 										if (in_array($year, $yea)) {
@@ -133,7 +134,6 @@ if (isset($_GET["type"])) {
 										$years[] = [$year, $courses];
 									}
 									
-									var_dump($courses);
 									unset($courses);
 								}
 								
@@ -146,7 +146,7 @@ if (isset($_GET["type"])) {
 									$ir .= "</div>";
 									$ir .= "<div id='recordInner" . $num . "' class='recordInner'>";
 									$num++;
-									$ir .= "<div id='recordContainer" . $num . "' class='recordContainer expand' onClick='collapse(" . $num . ");'><b>Year</b> - " . $year[1][0][1] . "</div><div id='recordInner" . $num . "' class='recordInner'>inner</div></div>";
+									$ir .= "<div id='recordContainer" . $num . "' class='recordContainer expand' onClick='collapse(" . $num . ");'><b>" . $year[1][0][0] . "</b> - " . $year[1][0][1] . "</div><div id='recordInner" . $num . "' class='recordInner'>inner</div></div>";
 									$num++;
 								}
 								//var_dump($years);
