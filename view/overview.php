@@ -25,6 +25,132 @@ function getProfilePicture($id) {
 	return $status;
 }
 
+function getDoughnutGraph($data, $id) {
+	$present = 0;
+	$late = 0;
+	$absent = 0;
+	foreach ($data as $record) {
+		if ($record[1] == 1) {
+			$present++;
+		} elseif ($record[1] == 2) {
+			$late++;
+		} elseif ($record[1] == 3) {
+			$absent++;
+		}
+	}
+	$data = json_encode([$present, $late, $absent]);
+	$graph = "<canvas id='chart" . $id . "' class='innerChart' width='1600' height='400'></canvas>"; 
+	$graph .= "<script>
+		var data = {
+			labels: ['Present', 'Late', 'Absent'],
+			datasets: [
+				{
+					data: " . $data . ",
+					backgroundColor: [
+						'#4bb001',
+						'#b08901',
+						'#b02201'
+					],
+					hoverBackgroundColor: [
+						'#307030',
+						'#705a30',
+						'#703030'
+					]
+				}]
+		};
+		var ctx = document.getElementById('chart" . $id . "');
+		var myDoughnutChart = new Chart(ctx, {
+			type: 'doughnut',
+			data: data,
+			options: {
+				animation: {
+				animateScale: true
+			}
+			}
+		});
+	</script>";
+	return [$graph, $present, $late, $absent];
+}
+
+
+function getIndividualRecords($years) {
+	$ir = "";
+	$num = 1;
+	if (isset($years[1])) {
+		foreach ($years as $year) {
+			$ir .= "<div id='recordContainer" . $num . "' class='recordContainer' onClick='collapse(" . $num . ");'><b>Year</b> - ";
+			$ir .= $year[0];
+			$ir .= "</div>";
+			$ir .= "<div id='recordInner" . $num . "' class='recordInner'>";
+			foreach ($year[1] as $course) {
+				$num++;
+				$ir .= "<div id='recordContainer" . $num . "' class='recordContainer' onClick='collapse(" . $num . ");'><b>" . $course[0] . "</b> - " . $course[1] . " <a href='" . PROTOCOL . DOMAIN . ROOT . "/overview?type=courses&id=" . $course[3] . "' target='_blank' class='externalLink'><i class='fa fa-external-link' aria-hidden='true'></i></a></div>";
+				$ir .= "<div id='recordInner" . $num . "' class='recordInner'>";
+				foreach ($course[2] as $lesson) {
+					$num++;
+					$ir .= "<div id='recordContainer" . $num . "' class='recordContainer' onClick='collapse(" . $num . ");'><b>Lesson " . $lesson[0] . "</b> - " . $lesson[1] . "</div>";
+					$graph = getDoughnutGraph($lesson[2], $num);
+					$ir .= "<div class='absoluteRecords'><div class='present'>" . $graph[1] . "</div><div class='late'>" . $graph[2] . "</div><div class='absent'>" . $graph[3] . "</div></div>";
+					$ir .= "<div id='recordInner" . $num . "' class='recordInnerOverview'>";
+					$ir .= $graph[0];
+					$ir .= "<div class='individualRecordsContainer'>";
+					$ir .= "<h2>Students</h2>";
+					foreach ($lesson[2] as $student) {
+						$ir .= "<div class='row'><a href='" . PROTOCOL . DOMAIN . ROOT . "/overview?type=students&id=" . $student[2] . "' target='_blank'>" . $student[0] . " <i class='fa fa-external-link' aria-hidden='true'></i></a>";
+						if ($student[1] == 1) {
+							$ir .= "<div class='present'>Present</div>";
+						} elseif ($student[1] == 2) {
+							$ir .= "<div class='late'>Late</div>";
+						} elseif ($student[1] == 3) {
+							$ir .= "<div class='absent'>Absent</div>";
+						}
+						$ir .= "</div>";
+					}
+					$ir .= "</div>";
+					$ir .= "</div>";
+				}
+				$ir.="</div>";
+			}
+			$ir .= "</div>";
+			$num++;
+		}
+	} else {
+		foreach ($years[0][1] as $course) {
+			$ir .= "<div id='recordContainer" . $num . "' class='recordContainer' onClick='collapse(" . $num . ");'><b>" . $course[0] . "</b> - " . $course[1] . " <a href='" . PROTOCOL . DOMAIN . ROOT . "/overview?type=courses&id=" . $course[3] . "' target='_blank' class='externalLink'><i class='fa fa-external-link' aria-hidden='true'></i></a></div>";
+			$ir .= "<div id='recordInner" . $num . "' class='recordInner'>";
+			foreach ($course[2] as $lesson) {
+				$num++;
+				$ir .= "<div id='recordContainer" . $num . "' class='recordContainer' onClick='collapse(" . $num . ");'><b>Lesson " . $lesson[0] . "</b> - " . $lesson[1] . "</div>";
+				$graph = getDoughnutGraph($lesson[2], $num);
+				$ir .= "<div class='absoluteRecords'><div class='present'>" . $graph[1] . "</div><div class='late'>" . $graph[2] . "</div><div class='absent'>" . $graph[3] . "</div></div>";
+				$ir .= "<div id='recordInner" . $num . "' class='recordInnerOverview'>";
+				$ir .= $graph[0];
+				$ir .= "<div class='individualRecordsContainer'>";
+				$ir .= "<h2>Students</h2>";
+				foreach ($lesson[2] as $student) {
+					$ir .= "<div class='row'><a href='" . PROTOCOL . DOMAIN . ROOT . "/overview?type=students&id=" . $student[2] . "' target='_blank'>" . $student[0] . " <i class='fa fa-external-link' aria-hidden='true'></i></a>";
+					if ($student[1] == 1) {
+						$ir .= "<div class='present'>Present</div>";
+					} elseif ($student[1] == 2) {
+						$ir .= "<div class='late'>Late</div>";
+					} elseif ($student[1] == 3) {
+						$ir .= "<div class='absent'>Absent</div>";
+					}
+					$ir .= "</div>";
+				}
+				$ir .= "</div>";
+				$ir .= "</div>";
+			}
+			$ir .= "</div>";
+			$num++;
+		}
+	}
+	
+	return $ir;
+}
+
+
+
 if (isset($_GET["type"])) {
 	$type = $_GET["type"];
 	
@@ -43,7 +169,7 @@ if (isset($_GET["type"])) {
 						$objectComakership = $object->getComakership();
 						$objectNotes = $object->getNotes();
 						$objectIcon = "graduation-cap";
-						$objectProfilePicture = getProfilePicture($objectId);
+						$objectProfilePicture = $object->getProfilePicture();
 
 						if (!isset($_GET["filter"])) {
 							$results = (new Connection(DBHOST, DBUSER, DBPASS, DBNAME))->query("SELECT * FROM storedPresence WHERE userId = '" . $objectId . "'");
@@ -91,10 +217,10 @@ if (isset($_GET["type"])) {
 						$objectType = "Teacher";
 						$objectId = $_GET["id"];
 						$objectIcon = "user";
-						$objectProfilePicture = getProfilePicture($objectId);
+						$objectProfilePicture = $object->getProfilePicture();
 						
 						if (!isset($_GET["filter"])) {
-							$results = (new Connection(DBHOST, DBUSER, DBPASS, DBNAME))->query("SELECT * FROM storedPresence WHERE teacherId = '" . $objectId . "'");
+							$results = (new Connection(DBHOST, DBUSER, DBPASS, DBNAME))->query("SELECT * FROM storedPresence WHERE teacherId = '" . $objectId . "' ORDER BY storedPresence.date DESC");
 							
 							if ($results !== false) {
 								if (isset($results["present"])) {
@@ -104,52 +230,90 @@ if (isset($_GET["type"])) {
 								}
 								
 								$years = [];
-								$ir = "";
+								foreach ($results2 as $result) {
+									$year = date_parse($result["date"])["year"];
+									
+									if (!in_array($year, $years)) {
+										$years[] = $year;
+									}
+								}
+								
+								foreach ($years as $year) {
+									$yearsNew[] = [$year, []];
+								}
+								$years = $yearsNew;
 								
 								foreach ($results2 as $result) {
-									$courses = [];
+									$year = date_parse($result["date"])["year"];
+									$count = 0;
+									foreach ($years as $yearContainer) {
+										if ($year == $yearContainer[0]) {
+											$keyYear = $count;
+										}
+										$count++;
+									}
+									
 									$course = (new Course($result["courseId"]))->getName();
-									$teacher = (new User($result["teacherId"]))->getFirstname() . " " . (new User($result["teacherId"]))->getLastname();
-									foreach ($courses as $cours) {
-										if (in_array($course, $cours) && in_array($teacher, $cours)) {
-											$add = false;
+									$comakership = (new User($result["userId"]))->getComakership();
+									
+									foreach($years[$keyYear][1] as $courses) {
+										if ($courses[0] == $course) {
+											$in = true;
 										}
 									}
 									
-									if (!isset($add) && $add !== false) {
-										$courses[] = [$course, $teacher];
-										unset($add);
-									}
-									
-									$year = date_parse($result["date"]);
-									$year =  $year["year"];
-									
-									foreach ($years as $yea) {
-										if (in_array($year, $yea)) {
-											$add = false;
+									if (!isset($in) || $in !== true) {
+										$lessons = (new Connection(DBHOST, DBUSER, DBPASS, DBNAME))->query("SELECT storedPresence.sequence, storedPresence.teacherId FROM storedPresence, courses WHERE storedPresence.teacherId = '" . $objectId . "' AND courses.name = '" . $course . "' AND courses.id = storedPresence.courseId ORDER BY storedPresence.sequence ASC");
+										if (isset($lessons["sequence"])) {
+											$teacher = (new User($lessons["teacherId"]))->getFirstname() . " " . (new User($lessons["teacherId"]))->getLastname();
+											$studentIds = (new Connection(DBHOST, DBUSER, DBPASS, DBNAME))->query("SELECT storedPresence.userId, storedPresence.present FROM storedPresence, courses WHERE storedPresence.teacherId = '" . $objectId . "' AND courses.name = '" . $course . "' AND courses.id = storedPresence.courseId AND storedPresence.sequence = '" . $lessons["sequence"] . "'");
+											$students = [];
+											if (!isset($studentIds["userId"])) {
+												foreach ($studentIds as $student) {
+													$students[] = [(new User($student["userId"]))->getFirstname() . " " . (new User($student["userId"]))->getLastname(), $student["present"], $student["userId"]];
+												}
+											} else {
+												$students[] = [(new User($studentIds["userId"]))->getFirstname() . " " . (new User($studentIds["userId"]))->getLastname(), $studentIds["present"], $studentIds["userId"]];
+											}
+											$years[$keyYear][1][] = [$course, $comakership, [[$lessons["sequence"], $teacher, $students]], $result["courseId"]];
+											unset($students);
+										} else {
+											$allLessons = [];
+											foreach ($lessons as $lesson) {
+												foreach ($allLessons as $allLesson) {
+													if ($allLesson[0] == $lesson["sequence"]) {
+														$add = false;
+													}
+												}
+												
+												if (!isset($add) || $add !== false) {
+													$studentIds = (new Connection(DBHOST, DBUSER, DBPASS, DBNAME))->query("SELECT storedPresence.userId, storedPresence.present FROM storedPresence, courses WHERE storedPresence.teacherId = '" . $objectId . "' AND courses.name = '" . $course . "' AND courses.id = storedPresence.courseId AND storedPresence.sequence = '" . $lesson["sequence"] . "'");
+													$teacher = (new User($lesson["teacherId"]))->getFirstname() . " " . (new User($lesson["teacherId"]))->getLastname();
+													$students = [];
+													if (!isset($studentIds["userId"])) {
+														foreach ($studentIds as $student) {
+															$students[] = [(new User($student["userId"]))->getFirstname() . " " . (new User($student["userId"]))->getLastname(), $student["present"], $student["userId"]];
+														}
+													} else {
+														$students[] = [(new User($studentIds["userId"]))->getFirstname() . " " . (new User($studentIds["userId"]))->getLastname(), $studentIds["present"], $studentIds["userId"]];
+													}
+													$allLessons[] = [$lesson["sequence"], $teacher, $students];
+													unset($students);
+												}
+												
+												if (isset($add)) {
+													unset($add);
+												}
+											}
+											$years[$keyYear][1][] = [$course, $comakership, $allLessons, $result["courseId"]];
+											unset($allLesson);
 										}
+									} else {
+										$in = false;
 									}
-									
-									if (!isset($add) || $add !== false) {
-										$years[] = [$year, $courses];
-									}
-									
-									unset($courses);
 								}
 								
-								//var_dump($years);
-								
-								$num = 1;
-								foreach ($years as $year) {
-									$ir .= "<div id='recordContainer" . $num . "' class='recordContainer expand' onClick='collapse(" . $num . ");'><b>Year</b> - ";
-									$ir .= $year[0];
-									$ir .= "</div>";
-									$ir .= "<div id='recordInner" . $num . "' class='recordInner'>";
-									$num++;
-									$ir .= "<div id='recordContainer" . $num . "' class='recordContainer expand' onClick='collapse(" . $num . ");'><b>" . $year[1][0][0] . "</b> - " . $year[1][0][1] . "</div><div id='recordInner" . $num . "' class='recordInner'>inner</div></div>";
-									$num++;
-								}
-								//var_dump($years);
+								$ir = getIndividualRecords($years);
 							}
 							$set = true;
 						}
@@ -249,11 +413,11 @@ function generateDatasets($data, $labels) {
 	$echo = "";
 	foreach ($data as $dataset) {
 		if ($count == 0) {
-			$echo .= "{ label: '" . $labels[$count] . "', data: " . json_encode($dataset) . ", backgroundColor: 'rgba(75, 176, 1, 0.3)', borderColor: 'rgba(75, 176, 1, 1)', borderWidth: 1 },";
+			$echo .= "{ label: '" . $labels[$count] . "', data: " . json_encode($dataset) . ", backgroundColor: 'rgba(75, 176, 1, 0.5)', borderColor: 'rgba(75, 176, 1, 1)', borderWidth: 1 },";
 		} elseif ($count == 1) {
-			$echo .= "{ label: '" . $labels[$count] . "', data: " . json_encode($dataset) . ", backgroundColor: 'rgba(176, 137, 1, 0.3)', borderColor: 'rgba(176, 137, 1, 1)', borderWidth: 1 },";
+			$echo .= "{ label: '" . $labels[$count] . "', data: " . json_encode($dataset) . ", backgroundColor: 'rgba(176, 137, 1, 0.5)', borderColor: 'rgba(176, 137, 1, 1)', borderWidth: 1 },";
 		} else {
-			$echo .= "{ label: '" . $labels[$count] . "', data: " . json_encode($dataset) . ", backgroundColor: 'rgba(176, 34, 1, 0.3)', borderColor: 'rgba(176, 34, 1, 1)', borderWidth: 1 },";
+			$echo .= "{ label: '" . $labels[$count] . "', data: " . json_encode($dataset) . ", backgroundColor: 'rgba(176, 34, 1, 0.5)', borderColor: 'rgba(176, 34, 1, 1)', borderWidth: 1 },";
 		}
 		$count++;
 	}
@@ -261,6 +425,21 @@ function generateDatasets($data, $labels) {
 }
 
 $echo = generateDatasets($data, $labels);
+
+
+// filter code
+$filter = "?";
+if (isset($_GET["type"]) && $_GET["type"] != NULL) {
+	$filter .= "type=" . $_GET["type"];
+}
+
+if (isset($filter[1])) {
+	$filter .= "&";
+}
+
+if (isset($_GET["id"]) && $_GET["id"] != NULL) {
+	$filter .= "id=" . $_GET["id"] . "&";
+}
 
 ?>
 <style>
@@ -573,14 +752,15 @@ $echo = generateDatasets($data, $labels);
 	}
 	
 	.recordContainer {
-		padding:  13px 20px;
+		padding: 18px 20px 16px 50px;
 		color: #ffffff;
 		border-bottom: 1px solid #ffffff;
 		border-top: 1px solid #ffffff;
-		width: calc(100% - 40px);
+		width: calc(100% - 70px);
 		font-size: 17px;
 		font-style: italic;
 		margin-top: -1px;
+		transition: all 0.3s;
 	}
 	
 	.recordContainer b {
@@ -598,18 +778,245 @@ $echo = generateDatasets($data, $labels);
 		display: none;
 	}
 	
+	.recordInnerOverview {
+		background-color: #ffffff;
+		width: calc(100% - 80px);
+		padding: 40px;
+		display: none;
+		min-height: 270px;
+	}
+	
 	.recordInner.expanded {
 		display: block;
 	}
+	
+	.recordInnerOverview.expanded {
+		display: block;
+	}
+	
+	.recordContainer::before {
+		font-size: 30px;
+		color: #ffffff;
+		content: "\f0da";
+		font-family: FontAwesome !important;
+		font-style: normal;
+		position: absolute;
+		margin-left: -28px;
+    	margin-top: -7px;
+	}
+	
+	.recordContainer.expand::before {
+		content: "\f0d7";
+	}
+	
+	.recordContainer.expand {
+		background-color: rgba(255, 255, 255, 0.1);
+	}
+	
+	.recordContainer:hover {
+		background-color: rgba(255, 255, 255, 0.1);
+	} 
+	
+	.recordContainer:active {
+		background-color: rgba(255, 255, 255, 0.2);
+	}
+	
+	canvas.innerChart {
+		/*width: 30% !important;*/
+		margin-left: -25%;
+		height: auto !important;
+		position: absolute;
+	}
+	
+	.individualRecordsContainer {
+		width: 50%;
+		position: relative;
+		z-index: 1;
+		margin-left: 45%;    
+		max-height: 270px;
+    	overflow-y: auto;
+	}
+	
+	.individualRecordsContainer h2  {
+		font-size: 28px;
+		border-bottom: 2px solid #464646;
+		padding: 7px 0px;
+	}
+	
+	.individualRecordsContainer .row {
+		padding: 14px 20px 12px;
+		margin: 0;
+		width: calc(100% - 40px);
+		border-bottom: 1px solid #464648;
+	}
+	
+	.row:last-child {
+		border-bottom: 0px solid #464648;
+	}
+	
+	.individualRecordsContainer .row .present, .individualRecordsContainer .row .late, .individualRecordsContainer .row .absent {
+		width: 92px;
+		text-align: center;
+		color: #ffffff;
+		padding: 8px 0 7px;
+		border-radius: 5px;
+		float: right;
+		margin-top: -8px;
+	}
+	
+	.individualRecordsContainer .row .present { 
+		background-color: #4cb002;
+	}
+	
+	.individualRecordsContainer .row .late { 
+		background-color: #b08900;
+	}
+	
+	.individualRecordsContainer .row .absent { 
+		background-color: #b12202;
+	}
+	
+	.individualRecordsContainer .row a { 
+		font-size: 17px;
+		outline: none !imporant;
+		transition: all 0.3s;
+	}
+	
+	.individualRecordsContainer .row a:hover {
+		opacity: 0.8;
+	} 
+	
+	.individualRecordsContainer .row a:active {
+		opacity: 1;
+		color: #000000;
+	}
+	
+	.individualRecordsContainer .row a:visited { 
+		color: #464648;
+	}
+	
+	.fa-external-link {
+		font-family: FontAwesome !important;
+		font-size: 17px;
+		position: absolute;
+		margin-left: 11px;
+	}
+	
+	.absoluteRecords {
+		width: 200px;
+		float: right;
+		margin-top: -46px;
+		margin-right: -20px;
+		font-weight: bold;
+	}
+	
+	.absoluteRecords .present, .absoluteRecords .late, .absoluteRecords .absent {
+		width: 40px;
+		height: 40px;
+		color: #ffffff;
+		display: inline-block;
+		margin-right: 20px;
+		font-size: 17px;
+		text-align: center;
+		line-height: 43px;
+		background-size: contain;
+		background-position: center center;
+	}
+	
+	.absoluteRecords .present {
+		background-image: url('/view/images/present.png');
+	}
+	
+	.absoluteRecords .late {
+		background-image: url('/view/images/late.png');
+	}
+	
+	.absoluteRecords .absent {
+		background-image: url('/view/images/absent.png');
+	}
+	
+	.externalLink i {
+		color: #ffffff !important;;
+	}
+	
+	#filterContainer {
+		padding: 74px 30px 20px;		
+		background-color: #464648;
+		display: none;
+		width: auto;
+		color: #ffffff;
+		font-size: 14px;
+		text-align: left;
+		width: 345px;
+	}
+	
+	#filterContainer.show {
+		display: block;
+	}
+	
+	#filterContainer.show + #results {
+		display: none;
+	}
+	
+	.filterItem {
+		color: #ffffff;
+		font-size: 17px;
+		border: 2px solid #ffffff;
+		padding: 7px 20px;
+		display: inline-block;
+		margin: 0 0 0 -2px;
+	}
+	
+	#filterContainer a:link {
+		font-size: 0;
+	}
+	
+	#filterContainer a:hover .filterItem, #filterContainer a:active .filterItem, #filterContainer a .filterItem.active {
+		color: #464648;
+		background-color: #ffffff;
+	}
+	
+	#all { 
+		border-radius: 7px 0 0 7px;
+		margin-left: 0;
+	}
+	
+	#year { 
+		border-radius: 0 7px 7px 0;
+	}
+	
+	
 </style>
 <?php if ($userRole != 1) { ?>
 <div id="searchBar">
-	<div id="filter" onclick="">
+	<div id="filter" onclick="toggleFilter();">
 		<i class="fa fa-sliders" aria-hidden="true"></i>
 	</div>
 	<input id="searchBox" type="text" placeholder="Search..." <?php if ($set || $noData === true) { echo "value='" . $objectName . "'"; } ?> />
 	<div id="searchButton" onclick="search();">
 		<i class="fa fa-search" aria-hidden="true"></i>
+	</div>
+	<div id="filterContainer">
+		<a href="/overview<?php echo $filter; ?>">
+			<div id='all' class="filterItem<?php if (!isset($_GET["filter"])) { echo " active"; } ?>">
+				All
+			</div>
+		</a>
+		<a href="/overview<?php echo $filter; ?>filter=days">
+			<div id="days" class="filterItem<?php if (isset($_GET["filter"]) && $_GET["filter"] == "days") { echo " active"; } ?>">
+				7 Days
+			</div>
+		</a>
+		<a href="/overview<?php echo $filter; ?>filter=month">
+			<div id="month" class="filterItem<?php if (isset($_GET["filter"]) && $_GET["filter"] == "month") { echo " active"; } ?>">
+				30 Days
+			</div>
+		</a>
+		<a href="/overview<?php echo $filter; ?>filter=year">
+			<div id="year" class="filterItem<?php if (isset($_GET["filter"]) && $_GET["filter"] == "year") { echo " active"; } ?>">
+				Year
+			</div>
+		</a>
 	</div>
 	<div id="results">
 
@@ -692,6 +1099,10 @@ $echo = generateDatasets($data, $labels);
 	document.getElementById("searchBox").onkeyup = function () {
 		search();
 	};
+	
+	function toggleFilter() {
+		document.getElementById("filterContainer").classList.toggle("show");
+	}
 </script>
 <?php  
 	}
@@ -842,7 +1253,9 @@ $echo = generateDatasets($data, $labels);
 					<?php } ?>
 					
 					function collapse(id) {
+						var container = "recordContainer" + id;
 						var inner = "recordInner" + id;
+						document.getElementById(container).classList.toggle("expand");
 						document.getElementById(inner).classList.toggle("expanded");
 					}
 				</script>

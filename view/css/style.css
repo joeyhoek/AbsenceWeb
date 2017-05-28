@@ -54,7 +54,7 @@ main {
 }
 
  main + #footer {
-  color: #464648;
+	color: #464648;
  }
 
 @keyframes logInRecIn { 
@@ -153,8 +153,7 @@ body {
 
 #qrcode {
 	width: 100%;
-	min-height: 100px;
-	
+	min-height: 100px;	
 }
 
 @keyframes logInQrIn { 
@@ -1090,7 +1089,6 @@ Hieronder staat de code voor de 404 Pagina
 	color: #464648;
 	position: relative;
 	display: block;
-	top: -100px;
 }
 
 .course {
@@ -1098,14 +1096,13 @@ Hieronder staat de code voor de 404 Pagina
 	color: #464648;
 	position: relative;
 	display: block;	
-	top: -100px;
 }
 
 .start {
 	width: 30px;
 	height: auto;
 	position: relative;
-	top: -40px;
+	top: -30px;
 }
 
 .startCourse {
@@ -1113,6 +1110,25 @@ Hieronder staat de code voor de 404 Pagina
 	color: #464648;
 	position: relative;
 	display: block;
+	margin-top: 30px;
+}
+
+@media only screen and (max-width: 830px) {
+	.course {
+		font-size: 32px;
+	}
+}
+
+@media only screen and (max-width: 699px) {
+	.course {
+		font-size: 34px;
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	.course {
+		font-size: 30px;
+	}
 }
 
 /* the height of the line */
@@ -1177,34 +1193,6 @@ div.tab button.active {
     background-color: #0ba2dd !important;
 }
 
-.importCourse {
-	font-size: 20px;
-	color: #464648;
-	position: relative;
-	display: block;
-	top: -100px;
-}
-
-.course {
-	font-size: 36px;
-	color: #464648;
-	position: relative;
-	display: block;	
-	top: -100px;
-}
-
-.start {
-	width: 30px;
-	height: auto;
-	position: relative;
-	top: -40px;
-}
-
-.startCourse {
-	font-size: 20px;
-	color: #464648;
-}
-
 .fa-trash-o {
 	font-family: FontAwesome !important;
 	font-size: 30px !important;
@@ -1218,7 +1206,6 @@ div.tab button.active {
 	position: relative;
 	float: right;
 	margin-right: 25px;
-
 }
 
 .columnRightManage2 .fa-pencil {
@@ -1494,6 +1481,7 @@ div.tab button.active {
 #searchBar .fa {
 	font-family: FontAwesome !important;
 	margin-left: -23px;
+	bottom: 38px;	
 }
 
 #searchBar #results .result {
@@ -1774,3 +1762,93 @@ main {
 	bottom: 28px;
 	padding: 0 500px;
  }
+
+.fa-play {
+	font-family: fontAwesome !important;
+	font-size: 22px !important;
+	color: white;
+}
+
+
+@media only screen and (max-width: 750px) {
+	.lijnManage {
+		display: none;
+	}
+}
+
+@media only screen and (max-width: 750px) {
+	.lijnNewCourse {
+		display: none;	
+	}
+}
+
+#newCourseName {
+	display: none;
+	width: 100%;
+	height: 35px;
+}
+
+#newCourseCode {
+	display: none;
+	width: 100%;
+	height: 35px;
+}
+
+.buttonAddCourse {
+	width: 50%;
+	display: none;
+	animation: container2 0.1s ease-in-out 0.15s;
+	animation-fill-mode: forwards;
+}
+
+#manageId {
+	display: none;
+	width: 100%;
+	height: 35px;
+}
+
+#manageFirstName {
+	display: none;
+	width: 100%;
+	height: 35px;	
+}
+#manageLastName {
+	display: none;
+	width: 100%;
+	height: 35px;
+}
+#manageEmail {
+	display: none;
+	width: 100%;
+	height: 35px;
+}
+#manageRole {
+	display: none;
+	width: 100%;
+	height: 35px;
+}
+#manageFaculty {
+	display: none;
+	width: 100%;
+	height: 35px;
+}
+#manageClass {
+	display: none;
+	width: 100%;
+	height: 35px;
+}
+#manageComaker {
+	display: none;
+	width: 100%;
+	height: 35px;
+}
+#manageNotes {
+	display: none;
+	width: 100%;
+	height: 35px;
+}
+
+.manageForm {
+	margin-bottom: 5px;
+	margin-top: 5px;
+}

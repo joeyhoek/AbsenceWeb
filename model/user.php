@@ -123,6 +123,26 @@ class User {
 	public function changeClass() {
 		
 	}
+	
+	function getProfilePicture() {
+		$id = $this->id;
+		$idTry = str_replace("s", "", $id);
+		if (is_int((int) $idTry)) {
+			$id = $idTry;
+		}
+		$url = PROTOCOL . DOMAIN . ROOT . "view/images/profilePictures/" . $id . ".jpg";
+		$ch = curl_init($url);    
+		curl_setopt($ch, CURLOPT_NOBODY, true);
+		curl_exec($ch);
+		$code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+		if ($code == 200) {
+			$status = $url;
+		} else {
+			$status = false;
+		}
+		curl_close($ch);
+		return $status;
+	}
 }
 
 ?>
