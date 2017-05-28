@@ -230,6 +230,7 @@ if (isset($_GET["type"])) {
 								}
 								
 								$years = [];
+<<<<<<< HEAD
 								foreach ($results2 as $result) {
 									$year = date_parse($result["date"])["year"];
 									
@@ -314,6 +315,17 @@ if (isset($_GET["type"])) {
 								}
 								
 								$ir = getIndividualRecords($years);
+=======
+								
+								foreach ($results2 as $result) {
+									$year =  date_parse($result["date"])["year"];
+									
+									if (!in_array($year, $years)) {
+										$years[] = $year;
+									}
+								}
+								//var_dump($years);
+>>>>>>> origin/master
 							}
 							$set = true;
 						}
@@ -737,6 +749,7 @@ if (isset($_GET["id"]) && $_GET["id"] != NULL) {
 		color: #096C92;
 		position: absolute;
 	}
+<<<<<<< HEAD
 	
 	.nicescroll-rails {
 		z-index: 5 !important;
@@ -986,6 +999,8 @@ if (isset($_GET["id"]) && $_GET["id"] != NULL) {
 	}
 	
 	
+=======
+>>>>>>> origin/master
 </style>
 <?php if ($userRole != 1) { ?>
 <div id="searchBar">
@@ -1246,10 +1261,10 @@ if (isset($_GET["id"]) && $_GET["id"] != NULL) {
 						return mainChart;
 					}
 					
-					<?php if (isset($filterType)) { ?>
 					document.getElementById("switch").addEventListener("click", function() {
 						mainChart = switchGraph(mainChart);
 					}, false);
+<<<<<<< HEAD
 					<?php } ?>
 					
 					function collapse(id) {
@@ -1258,6 +1273,8 @@ if (isset($_GET["id"]) && $_GET["id"] != NULL) {
 						document.getElementById(container).classList.toggle("expand");
 						document.getElementById(inner).classList.toggle("expanded");
 					}
+=======
+>>>>>>> origin/master
 				</script>
 			</div>
 			<div class="columnRight">
@@ -1285,9 +1302,7 @@ if (isset($_GET["id"]) && $_GET["id"] != NULL) {
 		<div class="row">
 			<div class="columnNone">
 				<h2 class="title">Individual Records</h2>
-				<div class="recordsBox">
-					<?php echo $ir; ?>
-				</div>
+				<div class="recordsBox"><div class="noDataRecorded">No data</div></div>
 			</div>
 		</div>
 <?php } ?>
