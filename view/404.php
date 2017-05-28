@@ -1,6 +1,4 @@
-
 <div class="notFound">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">	
 
 	<div class="four">4</div>
 	<div class="zero">O</div>

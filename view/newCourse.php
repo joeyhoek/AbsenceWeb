@@ -7,13 +7,13 @@ use Team10\Absence\Model\Course as Course;
 use Team10\Absence\Model\Connection as Connection;
 
 
-	
-	if ($userRole == 2 || $userRole == 3 || $userRole == 4) {
-		if (isset($_GET["id"])) {
-			$object = new Course($_GET["id"]);
-			$objectName = $object->getName();
-		}
+
+if ($userRole == 2 || $userRole == 3 || $userRole == 4) {
+	if (isset($_GET["id"])) {
+		$object = new Course($_GET["id"]);
+		$objectName = $object->getName();
 	}
+}
 
 function addCourse() {
 	echo "hoi";
@@ -34,9 +34,12 @@ function addCourse() {
 
 	<div class="columnLeftManage">
 		<div class="columnLeftManage2">
+		<form id="currentCourseForm">
 			<div class="importCourse">Course imported from schedule:</div><br /><br />
 			<div class="course"><?php if ($objectName != "") { echo $objectName;} else {echo "No Course Selected";} ?></div>
-			<div class="startCourse"><button class="button"><i class="fa fa-play" aria-hidden="true"></i></button></div>
+			<div class="startCourse"><button onclick="startCourse()" class="button"><i class="fa fa-play" aria-hidden="true"></i></button></div>
+			<input id="currentCourseInput" type="hidden" name="courseId" value="<?php if (isset($_GET["id"])) { echo $_GET["id"]; } ?>">
+		</form>
 		</div>
 		</div>
 
@@ -47,15 +50,15 @@ function addCourse() {
 						<div id="filter">
 							<i class="fa fa-plus" aria-hidden="true"></i>
 						</div>
-						<input id="searchBox" type="text" placeholder="Search..." />
+						<input id="searchBox" class="manageForm" type="text" placeholder="Search..." />
 							<div id="searchButton" onclick="search();">
 								<i class="fa fa-search" aria-hidden="true"></i>
 							</div>
 							<div id="resultsManage">
 								
 							</div>
-							<input type="text" id="newCourseName" placeholder="Name">
-							<input type="text" id="newCourseCode" placeholder="Code">
+							<input type="text" id="newCourseName" class="manageForm" placeholder="Name">
+							<input type="text" id="newCourseCode" class="manageForm" placeholder="Code">
 							<input type="submit" class="button buttonAddCourse" value="Add course">
 	
 				</div>
@@ -92,7 +95,7 @@ function addCourse() {
 								continue;
 							}
 							count++;
-							html = html + "<a href='/lesson?type=courses&id=" + results.courses[result].id + "'><div class='result result-" + totalCount + "'><i>(" + results.courses[result].code + ")</i> " + results.courses[result].name + "</div></a>";
+							html = html + "<a href='/lesson?id=" + results.courses[result].id + "'><div class='result result-" + totalCount + "'><i>(" + results.courses[result].code + ")</i> " + results.courses[result].name + "</div></a>";
 							totalCount++;
 						}
 					}
@@ -132,6 +135,19 @@ function addCourse() {
 		
 	});
 
+	
+	function startCourse () {
+		var input = document.getElementById("currentCourseInput").value;
+		if (input != "" && input != null && input != undefined) {
+			document.getElementById("currentCourseForm").submit;	
+		} else {
+			alert("error");
+		}
+
+	}
+	
+	
+	
 	
 </script>
 

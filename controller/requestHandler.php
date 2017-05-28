@@ -6,8 +6,6 @@ use Team10\Absence\Model\Login as Login;
 use Team10\Absence\Model\Token as Token;
 use Team10\Absence\Model\User as User;
 
-//session_start();
-//session_destroy();
 session_start();
 require_once("controller/require.php");
 
@@ -72,8 +70,7 @@ if (isset($_POST['email']) && isset($_POST["password"])) {
 					$pageTitle = "Profile";
 					break;
 				case "lesson":
-					$page = "newCourse";
-					$pageTitle = "Start a new lesson";
+					require_once("controller/lesson.php");
 					break;
 				case "courseOverview":
 					$page = "courseOverview";
@@ -103,8 +100,7 @@ if (isset($_POST['email']) && isset($_POST["password"])) {
 					$pageTitle = "Profile";
 					break;
 				case "lesson":
-					$page = "newCourse";
-					$pageTitle = "Start a new lesson";
+					require_once("controller/lesson.php");
 					break;
 				case "overview";
 					$page = "overview";
@@ -130,8 +126,7 @@ if (isset($_POST['email']) && isset($_POST["password"])) {
 					$pageTitle = "Profile";
 					break;
 				case "lesson":
-					$page = "newCourse";
-					$pageTitle = "Start a new lesson";
+					require_once("controller/lesson.php");
 					break;
 				case "manage";
 					$page = "manage";
@@ -165,6 +160,7 @@ if (isset($_GET["url"]) && !isset($page)) {
 			break;
 		case "forgotPassword":
 			$page = "forgotPassword";
+			$pageTitle = "Recover Password";
 			if (isset($_POST["email"])) {
 				$username = $_POST["email"];
 				if (strpos($username, "@")):

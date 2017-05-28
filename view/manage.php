@@ -139,9 +139,9 @@
 			  	<div class="columnRightManage2">
 				  
 					<div class="tab">
-						<button class="tablinks active" onclick="openCity(event, 'users')">Users</button>
-						<button class="tablinks" onclick="openCity(event, 'classrooms')">Classrooms</button>
-						<button class="tablinks" onclick="openCity(event, 'locations')">Locations</button>
+						<button class="tablinks active userr" onclick="openCity(event, 'users')">Users</button>
+						<button class="tablinks classroomss" onclick="openCity(event, 'classrooms')">Classrooms</button>
+						<button class="tablinks locationss" onclick="openCity(event, 'locations')">Locations</button>
 					</div>
 					<div id="searchBar">
 						<div id="filter">
@@ -155,9 +155,9 @@
 
 						</div>
 					</div>
-					<div id="users" style="display: block;">
+					<div id="users">
 						<div class="userInfo">
-							<input type="text" id="manageId" class="manageForm" placeholder="Id">
+							<input type="text" id="manageId" class="manageForm manageUser" placeholder="Id">
 							<input type="text" id="manageFirstName" class="manageForm" placeholder="First Name">
 							<input type="text" id="manageLastName" class="manageForm" placeholder="Last Name">
 							<input type="text" id="manageEmail" class="manageForm" placeholder="Email">
@@ -192,17 +192,31 @@
 							</select>
 							<textarea id="manageNotes" class="manageForm" placeholder="Notes"></textarea>
 							
-							<input type="submit" class="button buttonManage" value="Add user">
+							<input type="submit" id="buttonManageUser" class="button" value="Add user">
 
 						</div>
 					</div>
 
 					<div id="classrooms"> 
+						<div class="classroomInfo">
+							<input type="text" id="classroomCode" class="manageForm" placeholder="Code">
+							<select id="classroomLocation" class="manageForm">
+								<option value="" disabled selected hidden>Location</option>
+								<option>Windesheim Flevoland</option>
+								<option>Alnovum</option>
+								<option>Nieuwe bibliotheek</option>
+							</select>
+							<input type="submit" id="buttonManageClassroom" class="button" value="Add classroom">
+						</div>
 					</div>
 
-					<div id="locations" class="tabcontent">
-						<h3>Locations</h3>
-						<p>Tokyo is the capital of Japan.</p>
+					<div id="locations">
+						<div class="classroomInfo">
+							<input type="text" id="locationName" class="manageForm" placeholder="Locatie">
+							<input type="text" id="ipPrefix" class="manageForm" placeholder="Ip prefix">
+							<input type="submit" id="buttonManageLocation" class="button" value="Add location">
+						</div>
+						
 					</div>
 			</div>
 	</div>
@@ -315,7 +329,7 @@
 		search();
 	};
 	
-	
+	// user form stuff
 	var manageId = document.getElementById("manageId");
 	var manageFirstName = document.getElementById("manageFirstName");
 	var manageLastName = document.getElementById("manageLastName");
@@ -325,30 +339,115 @@
 	var manageClass = document.getElementById("manageClass");
 	var manageComaker = document.getElementById("manageComaker");
 	var manageNotes = document.getElementById("manageNotes");
+	var buttonManageUser = document.getElementById("buttonManageUser");
+	// classroom form stuff
+	var classroomCode = document.getElementById("classroomCode");
+	var classroomLocation = document.getElementById("classroomLocation");
+	var buttonManageClassroom = document.getElementById("buttonManageClassroom");
+	// location form stuff
+	var locationName = document.getElementById("locationName");
+	var ipPrefix = document.getElementById("ipPrefix");
+	var buttonManageLocation = document.getElementById("buttonManageLocation");
 	
+	var manageUser = document.getElementsByClassName(".manageUser");
+		
 	document.getElementById("filter").addEventListener("click", function(){
 
-		if (manageId.style.display === "block" && manageFirstName.style.display === "block" && manageLastName.style.display === "block" && manageEmail.style.display === "block" && manageRole.style.display === "block" && manageFaculty.style.display === "block" && manageClass.style.display === "block" && manageComaker.style.display === "block" && manageNotes.style.display === "block") {
- 			manageId.style.display = "none";
- 			manageFirstName.style.display = "none";
- 			manageLastName.style.display = "none";
- 			manageEmail.style.display = "none";
- 			manageRole.style.display = "none";
- 			manageFaculty.style.display = "none";
- 			manageClass.style.display = "none";
- 			manageComaker.style.display = "none";
- 			manageNotes.style.display = "none";
-		} else {
-			manageId.style.display = "block";
-			manageFirstName.style.display = "block";
-			manageLastName.style.display = "block";
-			manageEmail.style.display = "block";
-			manageRole.style.display = "block";
-			manageFaculty.style.display = "block";
-			manageClass.style.display = "block";
- 			manageComaker.style.display = "block";
- 			manageNotes.style.display = "block";
-		}
+		
+		$(document).ready(function(){
+			if ( $('button.tablinks.userr').hasClass('active') ) {
+
+				if (manageId.style.display === "block" && manageFirstName.style.display === "block" && manageLastName.style.display === "block" && manageEmail.style.display === "block" && manageRole.style.display === "block" && manageFaculty.style.display === "block" && manageClass.style.display === "block" && manageComaker.style.display === "block" && manageNotes.style.display === "block" && buttonManageUser.style.display === "block" && buttonManageUser.style.display === "block") {
+					manageId.style.display = "none";
+					manageFirstName.style.display = "none";
+					manageLastName.style.display = "none";
+					manageEmail.style.display = "none";
+					manageRole.style.display = "none";
+					manageFaculty.style.display = "none";
+					manageClass.style.display = "none";
+					manageComaker.style.display = "none";
+					manageNotes.style.display = "none";
+					buttonManageUser.style.display = "none";
+
+				} else {
+					manageId.style.display = "block";
+					manageFirstName.style.display = "block";
+					manageLastName.style.display = "block";
+					manageEmail.style.display = "block";
+					manageRole.style.display = "block";
+					manageFaculty.style.display = "block";
+					manageClass.style.display = "block";
+					manageComaker.style.display = "block";
+					manageNotes.style.display = "block";
+					buttonManageUser.style.display = "block";
+				}
+
+			 }
+		});
+
+		$(document).ready(function(){
+			if ( !$('button.tablinks.userr').hasClass('active') ) {	
+				manageId.style.display = "none";
+				manageFirstName.style.display = "none";
+				manageLastName.style.display = "none";
+				manageEmail.style.display = "none";
+				manageRole.style.display = "none";
+				manageFaculty.style.display = "none";
+				manageClass.style.display = "none";
+				manageComaker.style.display = "none";
+				manageNotes.style.display = "none";
+				buttonManageUser.style.display = "none";
+			}
+		});
+
+		$(document).ready(function(){
+			if ( $('button.tablinks.classroomss').hasClass('active') ) {
+
+				if (classroomCode.style.display === "block" && classroomLocation.style.display === "block" && buttonManageClassroom.style.display === "block" ) {
+					classroomCode.style.display = "none";
+					classroomLocation.style.display = "none";
+					buttonManageClassroom.style.display = "none";
+				} else {
+					classroomCode.style.display = "block";
+					classroomLocation.style.display = "block";
+					buttonManageClassroom.style.display = "block";
+
+				}
+			}
+		});	
+
+		$(document).ready(function(){
+			if ( !$('button.tablinks.classroomss').hasClass('active') ) {	
+					classroomCode.style.display = "none";
+					classroomLocation.style.display = "none";
+					buttonManageClassroom.style.display = "none";
+			}
+		});	
+
+		$(document).ready(function(){
+			if ( $('button.tablinks.locationss').hasClass('active') ) {
+
+				if (locationName.style.display === "block" && ipPrefix.style.display === "block" && buttonManageLocation.style.display === "block" ) {
+					locationName.style.display = "none";
+					ipPrefix.style.display = "none";
+					buttonManageLocation.style.display = "none";
+				} else {
+					locationName.style.display = "block";
+					ipPrefix.style.display = "block";
+					buttonManageLocation.style.display = "block";
+				}
+			}
+		});	
+
+		$(document).ready(function(){
+			if ( !$('button.tablinks.locationss').hasClass('active') ) {	
+				locationName.style.display = "none";
+				ipPrefix.style.display = "none";
+				buttonManageLocation.style.display = "none";
+			}
+		});
+		
+		
 	});
 	
 	

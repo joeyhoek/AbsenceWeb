@@ -19,7 +19,7 @@
  -moz-user-drag: none;
  -ms-user-drag: none;
  user-drag: none;
-font-family: "Arial", sans-serif !important;
+font-family: "Arial", sans-serif !important; 
 }
 
 input[type="text"], textearea {
@@ -996,6 +996,7 @@ Hieronder staat de code voor de 404 Pagina
     -o-transform: translate(-50%, -50%);
 	transform: translate(-50%, -50%);
 	font-family: "Arial Black", Gadget, sans-serif;
+	width: 90%;
 }
 
 .notFound .zero {
@@ -1004,10 +1005,22 @@ Hieronder staat de code voor de 404 Pagina
 	display: inline-block;
 }
 
+@media only screen and (max-width: 420px) {
+	.notFound .zero {
+	font-size: 108px;
+	}
+}
+
 .notFound .four {
 	font-size: 200px;
 	color: #0ba2dd;
 	display: inline-block;
+}
+
+@media only screen and (max-width: 420px) {
+	.notFound .four {
+		font-size: 120px;
+	}
 }
 
 .homepage a {
@@ -1022,20 +1035,37 @@ Hieronder staat de code voor de 404 Pagina
 	color: #ffffff;
 }
 
+@media only screen and (max-width: 420px) {
+	.notFound h1 {
+		font-size: 30px;
+		margin-top: -15px;
+	}
+}
+
 .homepage {
 	margin-top: -10px;
+
 }
 
 .button2 {
 	min-width: 130px;
 	width: 100%;
 	padding: 14px 0 0px 0;
-	margin: 18px 0 0px 0px;
 	background-color: #0ba2dd;
+	max-width: 371px;
+	margin: 18px auto 0;
 }
 
 .button2:hover {
 	background-color: #01577A;
+}
+
+@media only screen and (max-width: 420px) {
+	.button2 {
+		font-size: 30px;
+		margin: 5px auto 0;
+		max-width: 230px;
+	}
 }
 
 .alert {
@@ -1143,12 +1173,6 @@ Hieronder staat de code voor de 404 Pagina
 	cursor: pointer;
 }
 
-.fa-trash-o {
-	font-family: FontAwesome !important;
-	font-size: 30px !important;
-	color: #464648;
-}
-
 .fa-plus {
     font-size: 38px !important;
 	margin-top: 2px;		
@@ -1223,11 +1247,6 @@ div.tab button.active {
 	float: right;
 	margin-right: 25px;
 
-}
-.fa-trash-o {
-	position: relative;
-	float: right;
-	margin-right: 5px;
 }
 
 /* Style the tab */
@@ -1795,7 +1814,7 @@ main {
 }
 
 .buttonAddCourse {
-	width: 50%;
+	width: 100%;
 	display: none;
 	animation: container2 0.1s ease-in-out 0.15s;
 	animation-fill-mode: forwards;
@@ -1849,6 +1868,51 @@ main {
 }
 
 .manageForm {
-	margin-bottom: 5px;
-	margin-top: 5px;
+	margin-bottom: 5px !important;
+}
+#buttonManageUser {
+	display: none;
+	width: 100%;
+	animation: container2 0.1s ease-in-out 0.15s;
+	animation-fill-mode: forwards;
+}
+
+#classroomCode {
+	display: none;
+	width: 100%;
+	height: 35px;
+}
+#classroomLocation {
+	display: none;
+	width: 100%;
+	height: 35px;
+}
+#buttonManageClassroom {
+	display: none;
+	width: 100%;
+	animation: container2 0.1s ease-in-out 0.15s;
+	animation-fill-mode: forwards;
+}
+
+#locationName {
+	display: none;
+	width: 100%;
+	height: 35px;
+}
+#ipPrefix {
+	display: none;
+	width: 100%;
+	height: 35px;
+}
+#buttonManageLocation {
+	display: none;
+	width: 100%;
+	animation: container2 0.1s ease-in-out 0.15s;
+	animation-fill-mode: forwards;
+}
+
+.manageUser {
+	display: none;
+	width: 100%;
+	height: 35px;
 }
