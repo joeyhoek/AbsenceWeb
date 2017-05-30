@@ -15,8 +15,6 @@ if (isset($_GET["action"]) && $_GET["action"] ==  "logout") {
 
 if (isset($_POST['email']) && isset($_POST["password"])) {
 	if ((new Login)->checkLogin($_POST["email"], $_POST["password"])) {
-		$page = "dashboard";
-		$pageTitle = "Dashboard";
 		header("Location: /");
 	} else {
 		$page = "login";
@@ -122,6 +120,11 @@ if (isset($_POST['email']) && isset($_POST["password"])) {
 					$pageTitle = "About us";
 					break;
 				case "profile":
+					if (isset($_POST["oldPassword"])) {
+						if ((new Login)->checkLogin($_SESSION["userId"], $_POST["oldPassword"], false)) {
+							$user->changePassword($_POST["newPassword"], $_POST["confirmPassword"]);
+						}
+					}
 					$page = "profile";
 					$pageTitle = "Profile";
 					break;
@@ -171,7 +174,7 @@ if (isset($_GET["url"]) && !isset($page)) {
 					elseif ($username[0] == "s"):
 						$email = $username . "@student.windesheim.nl";
 					else:
-						$id = $username . "@docent.windesheim.nl";
+						$email = (new User($username))->getEmail();
 					endif;
 				endif;
 

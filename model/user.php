@@ -111,13 +111,13 @@ class User {
 				$this->deleteForgotToken($_GET["token"]);
 				header("Location: /");
 			} else {
-				$this->connection->query("UPDATE users SET password = '" . $password . '" WHERE id = "' . $this->id . "'");
+				$this->connection->query("UPDATE users SET password = '" . $password . "' WHERE id = '" . $this->id . "'");
 				$this->deleteForgotToken($_GET["token"]);
 				header("Location: /");
 			}
 		} else {
 			echo "Passwords do not match";
-		}			
+		}		
 	}
 	
 	public function changeClass() {

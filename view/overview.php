@@ -985,6 +985,36 @@ if (isset($_GET["id"]) && $_GET["id"] != NULL) {
 		border-radius: 0 7px 7px 0;
 	}
 	
+	@media all and (max-width:700px){ 
+		.columnNone{
+			display:none;
+		}
+	}
+	
+	@media all and (max-width:1100px){
+		.columnLeft{ 
+			float:none;
+			margin:0 auto;
+			position:relative;
+			width:calc(100% - 90px);
+		}
+		
+		.columnRight{ 
+			float:none;
+			margin:15px auto ;
+			position:relative;
+			width:calc(100% - 90px);
+		}
+		
+		.row1{ 
+			min-width: none;
+			max-height: none;
+		}
+		.columnNone{ 
+		
+		}
+	}
+	
 	
 </style>
 <?php if ($userRole != 1) { ?>
@@ -1166,6 +1196,7 @@ if (isset($_GET["id"]) && $_GET["id"] != NULL) {
 								datasets: [<?php echo $echo; ?>]
 							},
 							options: {
+								maintainAspectRatio: false,
 								legend: {labels:{fontColor:"#464648"}},
 								scales: {
 									yAxes: [{
